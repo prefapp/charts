@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app: {{ .Values.deployment.app }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.deployment.app }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployment.app }}
+    spec:
+      containers:
+      - name: {{ .Values.deployment.app }}
+        image: {{ .Values.deployment.image }}
+        livenessProbe:
+            exec:
+              command:
+                - cat
+                - /bin/sh
+            initialDelaySeconds: 20
+            periodSeconds: 10     #TODO - WORKING ON IT
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.deployment.readinessPath }}
+              port: {{ .Values.deployment.containerPort }}
+            initialDelaySeconds: 15
+            periodSeconds: 5        #TODO - WORKING ON IT
+            
+        {{- if .Values.parameterStore.enabled }}
+        volumeMounts:
+          - name: parameter-store-volume
+            mountPath: /mnt/parameter-store/parameter-store-volume
+            readOnly: true
+        {{ end }}
+        ports:
+        - containerPort: {{ .Values.deployment.containerPort }}
+        imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
+      
+      {{- if .Values.parameterStore.enabled }}
+      volumes:
+        - csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: {{ .Release.Name }}-spc-ssm
+            name: parameter-store-volume
+      {{ end }}

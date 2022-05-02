@@ -1,0 +1,29 @@
+configmap:
+  values:
+
+deployment:
+  app: myApp
+  image: nginx
+  containerPort: 80
+
+service:
+  labels:
+  type: 
+  ports: |
+    - 80
+
+
+ingress:
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/group.name: default-group
+    alb.ingress.kubernetes.io/backend-protocol: HTTPS
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+
+
+
+parameterStore:
+  enabled: false
+  

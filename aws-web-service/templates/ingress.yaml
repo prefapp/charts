@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/group.name: {{ .Values.ingress.groupName }}
+  {{ with .Values.ingress.annotations }}
+  {{ . | toYaml | nindent 2 }}
+  {{ end }}
+spec:
+  {{- if .Values.tls }}
+  tls:
+    {{ range $tls := .Values.tls }}
+    - hosts: {{ $tls.hosts | toYaml | nindent 6 }}
+      secretName: {{ $tls.secretName }}
+    {{ end }}
+  {{ end }}
+  {{- if  .Values.ingressClassName }}
+  ingressClassName: {{ .Values.ingressClassName }}
+  {{ end }}
+  rules:
+  {{- if .Values.ingress.hosts }}
+  {{ range $host := .Values.hosts }}
+  - http:
+      paths:
+      - path: $host.path
+        pathType: Prefix
+        backend:
+          service:
+            name: $host.serviceName
+            port:
+              number: $host.servicePort
+  {{ end }}
+  {{ end }}
