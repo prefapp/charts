@@ -3,8 +3,14 @@ kind: Ingress
 metadata:
   name: {{ .Release.Name }}
   annotations:
+    {{- if .Values.ingress.alb.enabled }}
     kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/group.name: {{ .Values.ingress.groupName }}
+    alb.ingress.kubernetes.io/group.name: {{ .Values.ingress.alb.groupName }}
+    alb.ingress.kubernetes.io/backend-protocol: {{ .Values.ingress.protocol }}
+    alb.ingress.kubernetes.io/listen-ports: {{ .Values.ingress.listenPorts }}
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    {{ end }}
     {{ with .Values.ingress.annotations }}
     {{ . | toYaml | nindent 4 }}
     {{ end }}

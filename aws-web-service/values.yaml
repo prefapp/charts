@@ -1,26 +1,32 @@
+#Default values
 configmap:
   values:
 
 deployment:
-  app: myApp
+  app: app-name
   image: nginx
   containerPort: 80
 
 service:
   labels:
   type: 
-  ports:
-    - 80
+  port: 80
 
 
 ingress:
-  groupName: default-group
+  alb:
+    # If you want to use AWS Application Load Balancer, first you have to deploy the official ALB chart 
+    # Link here: https://artifacthub.io/packages/helm/aws/aws-load-balancer-controller
+    enabled: true
+    protocol: HTTPS
+    listenPorts: '[{"HTTPS":443}]'
+    groupName: default-group
   annotations:
-    alb.ingress.kubernetes.io/backend-protocol: HTTPS
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
 
 parameterStore:
-  enabled: true
+  # If you want to use aws parameter store, first you have to deploy csi-driver official chart
+  # Link here: https://artifacthub.io/packages/helm/aws/csi-secrets-store-provider-aws
+  # Besides that, you have to create a new policy and a role for the service account to provide the secrets.
+  enabled: false
+
   

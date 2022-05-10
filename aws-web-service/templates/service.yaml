@@ -9,13 +9,11 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   selector:
-    app:  {{ .Values.deployment.app }}
+    app: {{ .Values.deployment.app }}
   ports:
-   {{ range $value := .Values.service.ports }}
-    - port: {{ $value }}
+    - port: {{ .Values.service.port }}
       targetPort: http
       protocol: TCP
-      name: http
-   {{ end }}     
+      name: http     
 
     
