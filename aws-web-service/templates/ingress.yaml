@@ -5,9 +5,9 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/group.name: {{ .Values.ingress.groupName }}
-  {{ with .Values.ingress.annotations }}
-  {{ . | toYaml | nindent 2 }}
-  {{ end }}
+    {{ with .Values.ingress.annotations }}
+    {{ . | toYaml | nindent 4 }}
+    {{ end }}
 spec:
   {{- if .Values.tls }}
   tls:

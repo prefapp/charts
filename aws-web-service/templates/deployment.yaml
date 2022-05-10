@@ -17,32 +17,32 @@ spec:
       containers:
       - name: {{ .Values.deployment.app }}
         image: {{ .Values.deployment.image }}
+        {{- if .Values.deployment.livenessProbe }}
         livenessProbe:
-            exec:
-              command:
-                - cat
-                - /bin/sh
-            initialDelaySeconds: 20
-            periodSeconds: 10     #TODO - WORKING ON IT
-          readinessProbe:
-            httpGet:
-              path: {{ .Values.deployment.readinessPath }}
-              port: {{ .Values.deployment.containerPort }}
-            initialDelaySeconds: 15
-            periodSeconds: 5        #TODO - WORKING ON IT
-            
-        {{- if .Values.parameterStore.enabled }}
+          {{- with .Values.deployment.livenessProbe }}
+          {{ . | nindent 6 }}
+          {{- end }}
+        {{- end }}
+        {{- if .Values.deployment.readinessProbe }}
+        readinessProbe:
+          {{- with .Values.deployment.livenessProbe }}
+          {{ . | nindent 6 }}
+          {{- end }}
+        {{- end }}
         volumeMounts:
+        {{- if .Values.parameterStore.enabled }}
           - name: parameter-store-volume
             mountPath: /mnt/parameter-store/parameter-store-volume
             readOnly: true
         {{ end }}
+        {{- with .Values.deployment.volumeMounts }}
+        {{ . | nindent 6 }}
+        {{- end }}
         ports:
         - containerPort: {{ .Values.deployment.containerPort }}
         imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
-      
-      {{- if .Values.parameterStore.enabled }}
       volumes:
+      {{- if .Values.parameterStore.enabled }}
         - csi:
             driver: secrets-store.csi.k8s.io
             readOnly: true
@@ -50,3 +50,6 @@ spec:
               secretProviderClass: {{ .Release.Name }}-spc-ssm
             name: parameter-store-volume
       {{ end }}
+      {{- with .Values.deployment.volumes }}
+      {{ . | nindent 6 }}
+      {{- end }}

@@ -9,7 +9,7 @@ deployment:
 service:
   labels:
   type: 
-  ports: |
+  ports:
     - 80
 
 
@@ -22,5 +22,5 @@ ingress:
     alb.ingress.kubernetes.io/target-type: ip
 
 parameterStore:
-  enabled: false
+  enabled: true
   
