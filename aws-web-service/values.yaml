@@ -1,4 +1,5 @@
-#Default values
+# Default values
+
 configmap:
   values:
 
@@ -24,9 +25,9 @@ ingress:
   annotations:
 
 parameterStore:
-  # If you want to use aws parameter store, first you have to deploy csi-driver official chart
+  # If you want to use aws parameter store, first you have to deploy csi-secrets-store-provider-aws official chart
   # Link here: https://artifacthub.io/packages/helm/aws/csi-secrets-store-provider-aws
-  # Besides that, you have to create a new policy and a role for the service account to provide the secrets.
+  # Besides that, you have to create a new policy and a role for the service account to provide the secrets to the pods.
   enabled: false
 
   
