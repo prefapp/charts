@@ -1,7 +1,8 @@
 # Default values
 
-configmap:
-  values:
+configmap: 
+  a: "afasdf"
+  b: "asdf"
 
 deployment:
   app: app-name
@@ -30,4 +31,8 @@ parameterStore:
   # Besides that, you have to create a new policy and a role for the service account to provide the secrets to the pods.
   enabled: false
 
-  
+ 
+secrets: 
+  a: 1
+  b: 2
+  c: "afoasdf:asfaosdfasdf.asdfasf"
