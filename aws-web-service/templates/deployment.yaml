@@ -1,18 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
   labels:
     app: {{ .Values.deployment.app }}
 spec:
   replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels:
-      app: {{ .Values.deployment.app }}
+      app: {{ .Release.Name }}
+      chart: {{ .Chart.Name }}
   template:
     metadata:
       labels:
-        app: {{ .Values.deployment.app }}
+        app: {{ .Release.Name }}
+        chart: {{ .Chart.Name }}
     spec:
       containers:
       - name: {{ .Values.deployment.app }}
@@ -41,13 +43,22 @@ spec:
         ports:
         - containerPort: {{ .Values.deployment.containerPort }}
         imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
+        envFrom:
+        {{ with .Values.secrets }}
+          - secretRef:
+              name: {{ $.Release.Name }}-{{ $.Chart.Name }}
+        {{ end }}
+        {{ with .Values.configmap }}
+          - configMapRef:
+              name: {{ $.Release.Name }}-{{ $.Chart.Name }}
+        {{ end }}
       volumes:
       {{- if .Values.parameterStore.enabled }}
         - csi:
             driver: secrets-store.csi.k8s.io
             readOnly: true
             volumeAttributes:
-              secretProviderClass: {{ .Release.Name }}-spc-ssm
+              secretProviderClass: {{ .Release.Name }}-{{.Chart.Name}}-spc-ssm
             name: parameter-store-volume
       {{ end }}
       {{- with .Values.deployment.volumes }}
