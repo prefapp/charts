@@ -40,6 +40,7 @@ jobs:
              token=${{ secrets.GITHUB_TOKEN }} \
              titulo="${prName}" \
              rama_origen=${{ steps.step-branch.outputs.branch }} \
+             rama_destino=main \
              repo=charts \
              proyecto=${{ env.proyecto }} \
              reviewers='${{ github.actor }}'
