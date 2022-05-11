@@ -1,8 +1,10 @@
 # Default values
 
-configmap: 
-  a: "afasdf"
-  b: "asdf"
+#
+# Set config values that will be pass as a 
+# envFrom section
+#
+configmap: {}
 
 deployment:
   app: app-name
@@ -32,7 +34,9 @@ parameterStore:
   enabled: false
 
  
-secrets: 
-  a: 1
-  b: 2
-  c: "afoasdf:asfaosdfasdf.asdfasf"
+
+#
+# Set secret values that will be stored in a Secret artifact and passed
+# to de pods using an envFrom section
+#
+secrets: {}
