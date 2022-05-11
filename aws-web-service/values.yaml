@@ -1,0 +1,33 @@
+# Default values
+
+configmap:
+  values:
+
+deployment:
+  app: app-name
+  image: nginx
+  containerPort: 80
+
+service:
+  labels:
+  type: 
+  port: 80
+
+
+ingress:
+  alb:
+    # If you want to use AWS Application Load Balancer, first you have to deploy the official ALB chart 
+    # Link here: https://artifacthub.io/packages/helm/aws/aws-load-balancer-controller
+    enabled: true
+    protocol: HTTPS
+    listenPorts: '[{"HTTPS":443}]'
+    groupName: default-group
+  annotations:
+
+parameterStore:
+  # If you want to use aws parameter store, first you have to deploy csi-secrets-store-provider-aws official chart
+  # Link here: https://artifacthub.io/packages/helm/aws/csi-secrets-store-provider-aws
+  # Besides that, you have to create a new policy and a role for the service account to provide the secrets to the pods.
+  enabled: false
+
+  

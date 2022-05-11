@@ -1,0 +1,41 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}
+  annotations:
+    {{- if .Values.ingress.alb.enabled }}
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/group.name: {{ .Values.ingress.alb.groupName }}
+    alb.ingress.kubernetes.io/backend-protocol: {{ .Values.ingress.protocol }}
+    alb.ingress.kubernetes.io/listen-ports: {{ .Values.ingress.listenPorts }}
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    {{ end }}
+    {{ with .Values.ingress.annotations }}
+    {{ . | toYaml | nindent 4 }}
+    {{ end }}
+spec:
+  {{- if .Values.tls }}
+  tls:
+    {{ range $tls := .Values.tls }}
+    - hosts: {{ $tls.hosts | toYaml | nindent 6 }}
+      secretName: {{ $tls.secretName }}
+    {{ end }}
+  {{ end }}
+  {{- if  .Values.ingressClassName }}
+  ingressClassName: {{ .Values.ingressClassName }}
+  {{ end }}
+  rules:
+  {{- if .Values.ingress.hosts }}
+  {{ range $host := .Values.hosts }}
+  - http:
+      paths:
+      - path: $host.path
+        pathType: Prefix
+        backend:
+          service:
+            name: $host.serviceName
+            port:
+              number: $host.servicePort
+  {{ end }}
+  {{ end }}
