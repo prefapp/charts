@@ -28,7 +28,7 @@ jobs:
           git config --global user.email ${{ env.git_email }}
           git checkout -b ${{ steps.step-branch.outputs.branch }}
           cd ${{env.repositorio}} && helm package . -d ../docs/${{ env.repositorio }}
-          cd docs/${{ env.repositorio }} && helm repo index . 
+          cd ../docs/${{ env.repositorio }} && helm repo index . 
           git add .
           git commit -m "${{steps.step-commit_message.outputs.commit_message}}"
           git push origin ${{ steps.step-branch.outputs.branch }}
