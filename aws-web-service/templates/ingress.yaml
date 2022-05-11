@@ -1,13 +1,13 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
   annotations:
     {{- if .Values.ingress.alb.enabled }}
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/group.name: {{ .Values.ingress.alb.groupName }}
-    alb.ingress.kubernetes.io/backend-protocol: {{ .Values.ingress.protocol }}
-    alb.ingress.kubernetes.io/listen-ports: {{ .Values.ingress.listenPorts }}
+    alb.ingress.kubernetes.io/backend-protocol: {{ .Values.ingress.alb.protocol }}
+    alb.ingress.kubernetes.io/listen-ports: {{ .Values.ingress.alb.listenPorts | quote }}
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     {{ end }}

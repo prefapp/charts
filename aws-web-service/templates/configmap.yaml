@@ -1,8 +1,10 @@
+{{with .Values.configmap }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ $.Release.Name }}-{{ $.Chart.Name }}
 data:
-{{- with .Values.configmap.values }}
-{{ . | nindent 2 }}
-{{- end }}
+  {{ range $key, $value := . }}
+  {{ $key }}: {{ $value | quote }}
+  {{ end }}
+{{ end }}
