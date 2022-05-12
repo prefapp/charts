@@ -8,6 +8,8 @@ annotations:
   artifacthub.io/links: |
     - name: Support
       url: https://github.com/prefapp/charts/issues
+    - name: Info
+      url: charts@prefapp.es
 keywords:
   - aws
   - web
