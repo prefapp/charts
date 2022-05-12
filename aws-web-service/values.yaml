@@ -1,5 +1,4 @@
 # Default values
-
 #
 # Set config values that will be pass as a 
 # envFrom section
@@ -7,20 +6,23 @@
 configmap: {}
 
 deployment:
-  app: app-name
-  image: nginx
+  app: 
+  image: 
   containerPort: 80
 
 service:
   labels:
   type: 
+  #Your app port
   port: 80
 
 
 ingress:
   alb:
+    #
     # If you want to use AWS Application Load Balancer, first you have to deploy the official ALB chart 
     # Link here: https://artifacthub.io/packages/helm/aws/aws-load-balancer-controller
+    #
     enabled: true
     protocol: HTTPS
     listenPorts: '[{"HTTPS":443}]'
@@ -28,10 +30,29 @@ ingress:
   annotations:
 
 parameterStore:
+  #
   # If you want to use aws parameter store, first you have to deploy csi-secrets-store-provider-aws official chart
   # Link here: https://artifacthub.io/packages/helm/aws/csi-secrets-store-provider-aws
   # Besides that, you have to create a new policy and a role for the service account to provide the secrets to the pods.
-  enabled: false
+  #
+  enabled: true
+
+  #
+  # Parameters use to be separated by a dot, slash... so you can modify this splitter depeding on the format of your parameters in AWS.
+  #
+  splitter: /
+
+  #
+  # Set your parameters following the format you have on your parameter store:
+  #
+  # Example:
+  #   
+  # data:
+  #   your_env_var_name: /my/parameter/path 
+  #   your_env_var_name_2: /my/parameter/path_2 
+  #
+  data:
+  
 
  
 
