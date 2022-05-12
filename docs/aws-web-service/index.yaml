@@ -1,9 +1,42 @@
 apiVersion: v1
 entries:
   aws-web-service:
+  - annotations:
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/prefapp/charts/issues
+        - name: Info
+          url: charts@prefapp.es
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-05-12T17:12:05.03868364Z"
+    description: A Helm chart for Kubernetes to deploy a web service using alb annotations
+      and parameter store
+    digest: 0ed9c4f72d3356f0904dfaa3b4a80a6f7c8ee496856ecb8b7bc4e6886e8a957b
+    keywords:
+    - aws
+    - web
+    - service
+    - alb
+    - parameter
+    - store
+    - generic
+    - web-service
+    maintainers:
+    - email: antonio.rodriguez@prefapp.es
+      name: arvegadev
+    - email: francisco.maseda@prefapp.es
+      name: frmadem
+    name: aws-web-service
+    sources:
+    - https://github.com/prefapp/charts/tree/master/aws-web-service
+    type: application
+    urls:
+    - aws-web-service-0.1.5.tgz
+    version: 0.1.5
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2022-05-12T12:46:32.404791126Z"
+    created: "2022-05-12T17:12:05.03804414Z"
     description: A Helm chart for Kubernetes to deploy a web service using alb annotations
       and parameter store
     digest: b0e3b1fc66ca3a8aaec7053d8899c9f9079e64a83235a361dc47726de3517668
@@ -14,7 +47,7 @@ entries:
     version: 0.1.4
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2022-05-12T12:46:32.404439824Z"
+    created: "2022-05-12T17:12:05.037529239Z"
     description: A Helm chart for Kubernetes to deploy a web service using alb annotations
       and parameter store
     digest: 6603df4bf3fd8854b53e1503c1e4f2db38af29c8dc169160fd7662d0a3230d99
@@ -25,7 +58,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-05-12T12:46:32.404088421Z"
+    created: "2022-05-12T17:12:05.036709538Z"
     description: A Helm chart for Kubernetes to deploy a web service using alb annotations
       and parameter store
     digest: ee3f001a9cac5cd8a82a3d968a09a8f19de9493e0cf859e867b4e94d0fd70772
@@ -34,4 +67,4 @@ entries:
     urls:
     - aws-web-service-0.1.0.tgz
     version: 0.1.0
-generated: "2022-05-12T12:46:32.403517017Z"
+generated: "2022-05-12T17:12:05.035843537Z"
