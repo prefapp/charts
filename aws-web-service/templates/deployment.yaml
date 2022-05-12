@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: {{ .Values.deployment.app }}
-        image: {{ .Values.webService.image }}
+        image: {{ .Values.deployment.image }}
         {{- if .Values.deployment.livenessProbe }}
         livenessProbe:
         {{- with .Values.deployment.livenessProbe }}
@@ -54,12 +54,12 @@ spec:
         {{ end }}
       volumes:
       {{- if .Values.parameterStore.enabled }}
-        - csi:
+        - name: parameter-store-volume
+          csi:
             driver: secrets-store.csi.k8s.io
             readOnly: true
             volumeAttributes:
               secretProviderClass: {{ .Release.Name }}-{{.Chart.Name}}-spc-ssm
-            name: parameter-store-volume
       {{ end }}
       {{- with .Values.deployment.volumes }}
       {{ . | toYaml | nindent 8 }}
