@@ -10,8 +10,6 @@ This chart allows you to deploy any webservice on your EKS Cluster to expose it 
 
 If you want to use AWS Parameter Store, first you have to install [csi-secrets-store-provider-aws](https://artifacthub.io/packages/helm/aws/csi-secrets-store-provider-aws).
 
-Link here: 
-
 Then you have to grant access to the pods to the secrets. So we need to create a policy, a role and an attachtment.
 
 You can do it with terraform, where you have your EKS Module.
@@ -67,9 +65,7 @@ resource "aws_iam_role_policy_attachment" "iam_role_parameter_store_attachment" 
 
 ### AWS Application Load Balancer
 
-If you want to use AWS Application Load Balancer, first you have to deploy the [official ALB chart](https://artifacthub.io/packages/helm/aws/aws-load-balancer-controller)
-
-
+If you want to use AWS Application Load Balancer, first you have to deploy the [official ALB chart](https://artifacthub.io/packages/helm/aws/aws-load-balancer-controller).
 
 
 
