@@ -3,7 +3,18 @@ entries:
   aws-web-service:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2022-05-12T11:13:51.166033424Z"
+    created: "2022-05-12T12:46:32.404791126Z"
+    description: A Helm chart for Kubernetes to deploy a web service using alb annotations
+      and parameter store
+    digest: b0e3b1fc66ca3a8aaec7053d8899c9f9079e64a83235a361dc47726de3517668
+    name: aws-web-service
+    type: application
+    urls:
+    - aws-web-service-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-05-12T12:46:32.404439824Z"
     description: A Helm chart for Kubernetes to deploy a web service using alb annotations
       and parameter store
     digest: 6603df4bf3fd8854b53e1503c1e4f2db38af29c8dc169160fd7662d0a3230d99
@@ -14,7 +25,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-05-12T11:13:51.165493389Z"
+    created: "2022-05-12T12:46:32.404088421Z"
     description: A Helm chart for Kubernetes to deploy a web service using alb annotations
       and parameter store
     digest: ee3f001a9cac5cd8a82a3d968a09a8f19de9493e0cf859e867b4e94d0fd70772
@@ -23,4 +34,4 @@ entries:
     urls:
     - aws-web-service-0.1.0.tgz
     version: 0.1.0
-generated: "2022-05-12T11:13:51.164261909Z"
+generated: "2022-05-12T12:46:32.403517017Z"
