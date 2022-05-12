@@ -1,18 +1,20 @@
 # Default values
 #
-# Set config values that will be pass as a 
+# Set config values that will be pass as a
 # envFrom section
 #
 configmap: {}
 
+webService:
+  image:
+
 deployment:
-  app: 
-  image: 
+  app:
   containerPort: 80
 
 service:
   labels:
-  type: 
+  type:
   #Your app port
   port: 80
 
@@ -20,7 +22,7 @@ service:
 ingress:
   alb:
     #
-    # If you want to use AWS Application Load Balancer, first you have to deploy the official ALB chart 
+    # If you want to use AWS Application Load Balancer, first you have to deploy the official ALB chart
     # Link here: https://artifacthub.io/packages/helm/aws/aws-load-balancer-controller
     #
     enabled: true
@@ -46,15 +48,15 @@ parameterStore:
   # Set your parameters following the format you have on your parameter store:
   #
   # Example:
-  #   
+  #
   # data:
-  #   your_env_var_name: /my/parameter/path 
-  #   your_env_var_name_2: /my/parameter/path_2 
+  #   your_env_var_name: /my/parameter/path
+  #   your_env_var_name_2: /my/parameter/path_2
   #
   data:
-  
 
- 
+
+
 
 #
 # Set secret values that will be stored in a Secret artifact and passed
