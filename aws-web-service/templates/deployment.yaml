@@ -44,6 +44,8 @@ spec:
         - containerPort: {{ .Values.deployment.containerPort }}
         imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
         envFrom:
+          - secretRef:
+              name: {{ $.Release.Name }}-secret-ssm
         {{ with .Values.secrets }}
           - secretRef:
               name: {{ $.Release.Name }}-{{ $.Chart.Name }}
@@ -52,6 +54,8 @@ spec:
           - configMapRef:
               name: {{ $.Release.Name }}-{{ $.Chart.Name }}
         {{ end }}
+      serviceAccount: {{ .Values.parameterStore.secrets_scm_sa }}
+      serviceAccountName: {{ .Values.parameterStore.secrets_scm_sa }}
       volumes:
       {{- if .Values.parameterStore.enabled }}
         - name: parameter-store-volume
@@ -59,7 +63,7 @@ spec:
             driver: secrets-store.csi.k8s.io
             readOnly: true
             volumeAttributes:
-              secretProviderClass: {{ .Release.Name }}-{{.Chart.Name}}-spc-ssm
+              secretProviderClass: {{ .Release.Name }}-{{ .Chart.Name }}-spc-ssm
       {{ end }}
       {{- with .Values.deployment.volumes }}
       {{ . | toYaml | nindent 8 }}
