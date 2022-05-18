@@ -29,6 +29,8 @@ ingress:
     protocol: HTTPS
     listenPorts: '[{"HTTPS":443}]'
     groupName: default-group
+  path: /
+  host: site.com
   annotations:
 
 parameterStore:
