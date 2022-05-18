@@ -6,16 +6,13 @@
 configmap: {}
 
 webService:
-  image:
+  image: k8s.gcr.io/e2e-test-images/echoserver:2.5
 
 deployment:
   app:
   replicas: 1
   maintenance_mode: false # The value to true launches the command for maintenance action and cancels the standard command.
   containerPort: 80
-  command:
-    - foo
-    - bar
 
 service:
   labels:
@@ -31,8 +28,8 @@ ingress:
     # Link here: https://artifacthub.io/packages/helm/aws/aws-load-balancer-controller
     #
     enabled: true
-    protocol: HTTPS
-    listenPorts: '[{"HTTPS":443}]'
+    protocol: HTTP
+    listenPorts: '[{"HTTP": 80}, {"HTTPS": 443}]'
     groupName: default-group
   path: /
   host: site.com
