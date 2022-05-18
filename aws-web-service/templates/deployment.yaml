@@ -5,7 +5,7 @@ metadata:
   labels:
     app: {{ .Values.deployment.app }}
 spec:
-  replicas: {{ .Values.deployment.replicas }}
+  replicas: {{ .Values.deployment.replicas | default 1 }}
   selector:
     matchLabels:
       app: {{ .Release.Name }}
@@ -39,6 +39,15 @@ spec:
         {{ end }}
         {{- with .Values.deployment.volumeMounts }}
         {{ . | toYaml | nindent 8 }}
+        {{- end }}
+        {{ if .Values.maintenance_mode | toYaml | nindent 8 }}
+        command:
+          - tail
+          - -f 
+          - /dev/null
+        {{- end }}
+        {{- if .Values.deployment.command }}
+        command: {{ .Values.deployment.command | toYaml | nindent 8 }}
         {{- end }}
         ports:
         - containerPort: {{ .Values.deployment.containerPort }}
