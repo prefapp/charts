@@ -10,7 +10,12 @@ webService:
 
 deployment:
   app:
+  replicas: 1
+  maintenance_mode: false # The value to true launches the command for maintenance action and cancels the standard command.
   containerPort: 80
+  command:
+    - foo
+    - bar
 
 service:
   labels:
