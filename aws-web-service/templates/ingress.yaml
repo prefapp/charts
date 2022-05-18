@@ -4,33 +4,31 @@ metadata:
   name: {{ .Release.Name }}-{{ .Chart.Name }}
   annotations:
     {{- if .Values.ingress.alb.enabled }}
-    kubernetes.io/ingress.class: alb
+    kubernetes.io/ingress.class: 'alb'
     alb.ingress.kubernetes.io/group.name: {{ .Values.ingress.alb.groupName }}
     alb.ingress.kubernetes.io/backend-protocol: {{ .Values.ingress.alb.protocol }}
     alb.ingress.kubernetes.io/listen-ports: {{ .Values.ingress.alb.listenPorts | quote }}
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/scheme: 'internet-facing'
+    alb.ingress.kubernetes.io/target-type: 'ip'
     {{ end }}
     {{ with .Values.ingress.annotations }}
     {{ . | toYaml | nindent 4 }}
     {{ end }}
 spec:
-  {{- if .Values.ingress.tls }}
   tls:
-    {{ range $tls := .Values.ingress.tls }}
-    - hosts: {{ $tls.hosts | toYaml | nindent 6 }}
-      secretName: {{ $tls.secretName }}
-    {{ end }}
+  {{ range $tls := .Values.ingress.tls }}
+  - hosts: {{ $tls.hosts | toYaml | nindent 6 }}
+    secretName: {{ $tls.secretName }}
   {{ end }}
   {{- if  .Values.ingress.ingressClassName }}
   ingressClassName: {{ .Values.ingress.ingressClassName }}
   {{ end }}
   rules:
-  - host:
-    http: {{ .Values.ingress.host }}
-     paths:
-      - path: {{ .Values.ingress.path }}
-        pathType: Prefix
+  - host: {{ .Values.ingress.host }}
+    http:
+      paths:
+      - pathType: Prefix
+        path: {{ .Values.ingress.path }}
         backend:
           service:
             name: {{ .Release.Name }}-{{ .Chart.Name }}
