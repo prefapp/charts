@@ -7,7 +7,39 @@ entries:
           url: https://github.com/prefapp/charts/issues
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2022-05-18T17:05:43.905648237Z"
+    created: "2022-05-19T08:39:08.678847078Z"
+    description: A Helm chart for Kubernetes to deploy a web service using alb annotations
+      and parameter store
+    digest: 54d3de84fbdd5c449c8d2c8cd67402a410d56ca410fae6206151bf3e31eebd53
+    keywords:
+    - aws
+    - web
+    - service
+    - alb
+    - parameter-store
+    - generic
+    - web-service
+    maintainers:
+    - email: antonio.rodriguez@prefapp.es
+      name: arvegadev
+    - email: francisco.maseda@prefapp.es
+      name: frmadem
+    - email: charts@prefapp.es
+      name: Info
+    name: aws-web-service
+    sources:
+    - https://github.com/prefapp/charts/tree/master/aws-web-service
+    type: application
+    urls:
+    - aws-web-service-0.1.11.tgz
+    version: 0.1.11
+  - annotations:
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/prefapp/charts/issues
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-05-19T08:39:08.678184279Z"
     description: A Helm chart for Kubernetes to deploy a web service using alb annotations
       and parameter store
     digest: 842a164da4f8fd4af9d673de4ed7d5375860fc51fa9ebc82525dc4f541a93bd1
@@ -39,7 +71,7 @@ entries:
           url: https://github.com/prefapp/charts/issues
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2022-05-18T17:05:43.908819181Z"
+    created: "2022-05-19T08:39:08.682839475Z"
     description: A Helm chart for Kubernetes to deploy a web service using alb annotations
       and parameter store
     digest: e29104bcf740ee6cbd243d4daa72a7b53ac0abd1350d72d0160918b5fe1c7253
@@ -71,7 +103,7 @@ entries:
           url: https://github.com/prefapp/charts/issues
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2022-05-18T17:05:43.908376375Z"
+    created: "2022-05-19T08:39:08.682301475Z"
     description: A Helm chart for Kubernetes to deploy a web service using alb annotations
       and parameter store
     digest: ee9e7cb6e548113778ccc95f1720bee1938efa8e9c2435e65a0bdf0711a62cc0
@@ -103,7 +135,7 @@ entries:
           url: https://github.com/prefapp/charts/issues
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2022-05-18T17:05:43.907941069Z"
+    created: "2022-05-19T08:39:08.681753276Z"
     description: A Helm chart for Kubernetes to deploy a web service using alb annotations
       and parameter store
     digest: db772ec03749faa285451c10e51cf1c16acfdce5a9ab63e57d4a0b917e7b670d
@@ -135,7 +167,7 @@ entries:
           url: https://github.com/prefapp/charts/issues
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2022-05-18T17:05:43.907498563Z"
+    created: "2022-05-19T08:39:08.681155476Z"
     description: A Helm chart for Kubernetes to deploy a web service using alb annotations
       and parameter store
     digest: 9f246d184b9e38e005c030e650b5a3d4b1115a7aa334946de06775cf5d31d299
@@ -169,7 +201,7 @@ entries:
           url: charts@prefapp.es
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2022-05-18T17:05:43.907042757Z"
+    created: "2022-05-19T08:39:08.680506277Z"
     description: A Helm chart for Kubernetes to deploy a web service using alb annotations
       and parameter store
     digest: 0ed9c4f72d3356f0904dfaa3b4a80a6f7c8ee496856ecb8b7bc4e6886e8a957b
@@ -196,7 +228,7 @@ entries:
     version: 0.1.5
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2022-05-18T17:05:43.906606151Z"
+    created: "2022-05-19T08:39:08.679777577Z"
     description: A Helm chart for Kubernetes to deploy a web service using alb annotations
       and parameter store
     digest: b0e3b1fc66ca3a8aaec7053d8899c9f9079e64a83235a361dc47726de3517668
@@ -207,7 +239,7 @@ entries:
     version: 0.1.4
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2022-05-18T17:05:43.906241846Z"
+    created: "2022-05-19T08:39:08.679331578Z"
     description: A Helm chart for Kubernetes to deploy a web service using alb annotations
       and parameter store
     digest: 6603df4bf3fd8854b53e1503c1e4f2db38af29c8dc169160fd7662d0a3230d99
@@ -218,7 +250,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-05-18T17:05:43.905021129Z"
+    created: "2022-05-19T08:39:08.669337086Z"
     description: A Helm chart for Kubernetes to deploy a web service using alb annotations
       and parameter store
     digest: ee3f001a9cac5cd8a82a3d968a09a8f19de9493e0cf859e867b4e94d0fd70772
@@ -227,4 +259,4 @@ entries:
     urls:
     - aws-web-service-0.1.0.tgz
     version: 0.1.0
-generated: "2022-05-18T17:05:43.904098816Z"
+generated: "2022-05-19T08:39:08.667400288Z"
