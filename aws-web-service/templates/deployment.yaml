@@ -40,10 +40,10 @@ spec:
         {{- with .Values.deployment.volumeMounts }}
         {{ . | toYaml | nindent 8 }}
         {{- end }}
-        {{ if .Values.maintenance_mode | toYaml | nindent 8 }}
+        {{ if .Values.maintenance_mode | default 0 }}
         command:
           - tail
-          - -f 
+          - -f
           - /dev/null
         {{- end }}
         {{- if .Values.deployment.command }}

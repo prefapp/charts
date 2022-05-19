@@ -4,11 +4,11 @@ metadata:
   name: {{ .Release.Name }}-{{ .Chart.Name }}
   annotations:
     {{- if .Values.ingress.alb.enabled }}
-    kubernetes.io/ingress.class: 'alb'
-    alb.ingress.kubernetes.io/group.name: {{ .Values.ingress.alb.groupName }}
-    alb.ingress.kubernetes.io/backend-protocol: {{ .Values.ingress.alb.protocol }}
+    alb.ingress.kubernetes.io/group.name: {{ .Values.ingress.alb.groupName | quote }}
+    alb.ingress.kubernetes.io/backend-protocol: {{ .Values.ingress.alb.protocol | quote }}
     alb.ingress.kubernetes.io/listen-ports: {{ .Values.ingress.alb.listenPorts | quote }}
     alb.ingress.kubernetes.io/scheme: 'internet-facing'
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
     alb.ingress.kubernetes.io/target-type: 'ip'
     {{ end }}
     {{ with .Values.ingress.annotations }}
