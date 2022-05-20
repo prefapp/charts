@@ -6,7 +6,7 @@
 configmap: {}
 
 webService:
-  image: k8s.gcr.io/e2e-test-images/echoserver:2.5
+  image: nginxdemos/hello:0.3
 
 deployment:
   app:
@@ -22,6 +22,7 @@ service:
 
 
 ingress:
+  enabled: true
   alb:
     #
     # If you want to use AWS Application Load Balancer, first you have to deploy the official ALB chart
