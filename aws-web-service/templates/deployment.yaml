@@ -65,8 +65,10 @@ spec:
           - configMapRef:
               name: {{ $.Release.Name }}-{{ $.Chart.Name }}
         {{ end }}
+      {{- if .Values.parameterStore.enabled }}
       serviceAccount: {{ .Values.parameterStore.secrets_scm_sa }}
       serviceAccountName: {{ .Values.parameterStore.secrets_scm_sa }}
+      {{- end }}
       volumes:
       {{- if .Values.parameterStore.enabled }}
         - name: parameter-store-volume
