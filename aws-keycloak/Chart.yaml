@@ -1,0 +1,10 @@
+apiVersion: v2
+name: keycloak
+version: 0.1.0
+appVersion: 0.1.0
+description: A chart for keycloak deployment
+dependencies:
+  - name: postgresql
+    version: 10.3.13
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
