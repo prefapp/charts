@@ -25,7 +25,7 @@ spec:
   ingressClassName: {{ .Values.ingress.ingressClassName }}
   {{ end }}
   rules:
-  - host: {{ .Values.ingress.hosts }}
+  - host: {{ .Values.ingress.host }}
     http:
       paths:
       - pathType: Prefix
