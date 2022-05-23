@@ -492,9 +492,9 @@ test:
   deletionPolicy: before-hook-creation
 
 parameterStore:
-  enabled: true
-  secrets_scm_sa_arn: "arn:aws:iam::523334766143:role/iam_role_parameter_store_service_keycloack"
+  enabled: false
+  secrets_scm_sa_arn: "arn:aws:iam::XXXXXXXXXXX:role/your_iam_role"
   secrets_scm_sa: "keycloak-pro"
   splitter: /
   data:
-    DB_PASSWORD: /rds/produccion/password
+   # EXAMPLE_ENV: /my/parameter/path
