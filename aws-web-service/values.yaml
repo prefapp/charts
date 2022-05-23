@@ -6,6 +6,11 @@
 configmap: {}
 
 webService:
+  #
+  # Default image:
+  # NGINX webserver that serves a simple page containing its hostname, IP address and port
+  # https://hub.docker.com/r/nginxdemos/hello/tags
+  #
   image: nginxdemos/hello:0.3
 
 deployment:

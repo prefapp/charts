@@ -53,7 +53,7 @@ spec:
         - containerPort: {{ .Values.deployment.containerPort }}
         imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
         envFrom:
-        {{- if .Values.ingress.alb.enabled }}
+        {{- if .Values.parameterStore.enabled }}
           - secretRef:
               name: {{ $.Release.Name }}-secret-ssm
         {{ end }}
