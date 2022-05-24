@@ -1,3 +1,4 @@
+{{ $scheme := .Values.ingress.alb.scheme | default "internet-facing"  }}
 {{- if .Values.ingress.enabled }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -8,7 +9,6 @@ metadata:
     alb.ingress.kubernetes.io/group.name: {{ .Values.ingress.alb.groupName | quote }}
     alb.ingress.kubernetes.io/backend-protocol: {{ .Values.ingress.alb.protocol | quote }}
     alb.ingress.kubernetes.io/listen-ports: {{ .Values.ingress.alb.listenPorts | quote }}
-    {{ $scheme := .Values.ingress.alb.scheme | default 'internet-facing'  }}
     alb.ingress.kubernetes.io/scheme: {{ $scheme }}
     alb.ingress.kubernetes.io/ssl-redirect: '443'
     alb.ingress.kubernetes.io/target-type: 'ip'
