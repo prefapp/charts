@@ -8,7 +8,7 @@ metadata:
     alb.ingress.kubernetes.io/group.name: {{ .Values.ingress.alb.groupName | quote }}
     alb.ingress.kubernetes.io/backend-protocol: {{ .Values.ingress.alb.protocol | quote }}
     alb.ingress.kubernetes.io/listen-ports: {{ .Values.ingress.alb.listenPorts | quote }}
-    alb.ingress.kubernetes.io/scheme: 'internet-facing'
+    alb.ingress.kubernetes.io/scheme: {{ .Values.ingress.alb.scheme | quote | default 'internet-facing' }}
     alb.ingress.kubernetes.io/ssl-redirect: '443'
     alb.ingress.kubernetes.io/target-type: 'ip'
     {{ end }}
