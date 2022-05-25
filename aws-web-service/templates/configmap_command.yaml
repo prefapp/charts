@@ -4,5 +4,5 @@ kind: ConfigMap
 metadata:
   name: {{ $.Release.Name }}-{{ $.Chart.Name }}-command
 data:
-  entrypoint.sh: | {{ . | nintdent 4 }}
+  entrypoint.sh: | {{ . | toYaml | nindent 4 }}
 {{ end }}

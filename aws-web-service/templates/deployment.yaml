@@ -33,7 +33,7 @@ spec:
         {{- end }}
         volumeMounts:
         {{ with .Values.deployment.command_entrypointFile }}
-          - name: {{ .Release.Name }}-{{ .Chart.Name }}-command
+          - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-command
             mountPath: /entrypoint
             readOnly: true
         {{ end }}
@@ -56,6 +56,8 @@ spec:
         command:
           - "sh"
           - "/entrypoint/entrypoint.sh"
+        {{ else }}
+        command: {}
         {{- end }}
         ports:
         - containerPort: {{ .Values.deployment.containerPort }}
@@ -83,9 +85,9 @@ spec:
       {{- end }}
       volumes:
       {{ with .Values.deployment.command_entrypointFile }}
-        - name: {{ .Release.Name }}-{{ .Chart.Name }}-command
+        - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-command
           configMap:
-            name: {{ .Release.Name }}-{{ .Chart.Name }}-command
+            name: {{ $.Release.Name }}-{{ $.Chart.Name }}-command
             readOnly: true
       {{ end }}
       {{- if .Values.parameterStore.enabled }}
