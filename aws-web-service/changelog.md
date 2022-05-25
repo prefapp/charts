@@ -1,10 +1,13 @@
 # Change Log - aws-web-service chart
 
-## v0.1.17 [18/05/2022]
+## v0.1.17 [25/05/2022]
 
 * Add simple command
-* Fix maintenance_mode bug
+* Add startupProbe
 * Add command entrypointFile
+* Fix maintenance_mode [bug](https://github.com/prefapp/charts/issues/54)
+* Fix livenessProbe identation
+* Fix readinessProbe identation
 
 ## v0.1.10 [18/05/2022]
 
