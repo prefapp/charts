@@ -2,9 +2,9 @@
 
 ## v0.1.17 [18/05/2022]
 
-* Add default replicas.
-* Add spec command in template deployment.
-* Add maintenence mode > void command.
+* Add simple command
+* Fix maintenance_mode bug
+* Add command entrypointFile
 
 ## v0.1.10 [18/05/2022]
 

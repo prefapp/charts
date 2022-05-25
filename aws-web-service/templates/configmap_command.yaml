@@ -1,4 +1,4 @@
-{{with .Values.deployment.command_entrypointFile }}
+{{with .Values.deployment.entrypointFile }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
