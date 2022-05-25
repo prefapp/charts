@@ -22,16 +22,27 @@ spec:
         {{- if .Values.deployment.livenessProbe }}
         livenessProbe:
         {{- with .Values.deployment.livenessProbe }}
-        {{ . | toYaml | nindent 8 }}
+        {{ . | toYaml | nindent 10 }}
         {{- end }}
         {{- end }}
         {{- if .Values.deployment.readinessProbe }}
         readinessProbe:
         {{- with .Values.deployment.livenessProbe }}
-        {{ . | toYaml | nindent 8 }}
+        {{ . | toYaml | nindent 10 }}
+        {{- end }}
+        {{- end }}
+        {{- if .Values.deployment.startupProbe }}
+        startupProbe:
+        {{- with .Values.deployment.startupProbe }}
+        {{ . | toYaml | nindent 10 }}
         {{- end }}
         {{- end }}
         volumeMounts:
+        {{ with .Values.deployment.entrypointFile }}
+          - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-command
+            mountPath: /entrypoint
+            readOnly: true
+        {{ end }}
         {{- if .Values.parameterStore.enabled }}
           - name: parameter-store-volume
             mountPath: /mnt/parameter-store/parameter-store-volume
@@ -45,9 +56,14 @@ spec:
           - tail
           - -f
           - /dev/null
-        {{- end }}
-        {{- if .Values.deployment.command }}
+        {{- else if .Values.deployment.command }}
         command: {{ .Values.deployment.command | toYaml | nindent 8 }}
+        {{- else if .Values.deployment.entrypointFile}}
+        command:
+          - "sh"
+          - "/entrypoint/entrypoint.sh"
+        {{ else }}
+        command: {}
         {{- end }}
         ports:
         - containerPort: {{ .Values.deployment.containerPort }}
@@ -65,11 +81,20 @@ spec:
           - configMapRef:
               name: {{ $.Release.Name }}-{{ $.Chart.Name }}
         {{ end }}
+        {{ with .Values.deployment.entrypointFile }}
+          - configMapRef:
+              name: {{ $.Release.Name }}-{{ $.Chart.Name }}-command
+        {{ end }}
       {{- if .Values.parameterStore.enabled }}
       serviceAccount: {{ .Values.parameterStore.secrets_scm_sa }}
       serviceAccountName: {{ .Values.parameterStore.secrets_scm_sa }}
       {{- end }}
       volumes:
+      {{ with .Values.deployment.entrypointFile }}
+        - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-command
+          configMap:
+            name: {{ $.Release.Name }}-{{ $.Chart.Name }}-command
+      {{ end }}
       {{- if .Values.parameterStore.enabled }}
         - name: parameter-store-volume
           csi:

@@ -1,0 +1,8 @@
+{{with .Values.deployment.entrypointFile }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $.Release.Name }}-{{ $.Chart.Name }}-command
+data:
+  entrypoint.sh: | {{ . | toYaml | nindent 4 }}
+{{ end }}
