@@ -32,6 +32,11 @@ spec:
         {{- end }}
         {{- end }}
         volumeMounts:
+        {{ with .Values.deployment.command_entrypointFile }}
+          - name: {{ .Release.Name }}-{{ .Chart.Name }}-command
+            mountPath: /entrypoint
+            readOnly: true
+        {{ end }}
         {{- if .Values.parameterStore.enabled }}
           - name: parameter-store-volume
             mountPath: /mnt/parameter-store/parameter-store-volume
@@ -45,9 +50,12 @@ spec:
           - tail
           - -f
           - /dev/null
-        {{- end }}
-        {{- if .Values.deployment.command }}
+        {{- else if .Values.deployment.command }}
         command: {{ .Values.deployment.command | toYaml | nindent 8 }}
+        {{- else if .Values.deployment.command_entrypointFile}}
+        command:
+          - "sh"
+          - "/entrypoint/entrypoint.sh"
         {{- end }}
         ports:
         - containerPort: {{ .Values.deployment.containerPort }}
@@ -65,11 +73,21 @@ spec:
           - configMapRef:
               name: {{ $.Release.Name }}-{{ $.Chart.Name }}
         {{ end }}
+        {{ with .Values.deployment.command_entrypointFile }}
+          - configMapRef:
+              name: {{ $.Release.Name }}-{{ $.Chart.Name }}-command
+        {{ end }}
       {{- if .Values.parameterStore.enabled }}
       serviceAccount: {{ .Values.parameterStore.secrets_scm_sa }}
       serviceAccountName: {{ .Values.parameterStore.secrets_scm_sa }}
       {{- end }}
       volumes:
+      {{ with .Values.deployment.command_entrypointFile }}
+        - name: {{ .Release.Name }}-{{ .Chart.Name }}-command
+          configMap:
+            name: {{ .Release.Name }}-{{ .Chart.Name }}-command
+            readOnly: true
+      {{ end }}
       {{- if .Values.parameterStore.enabled }}
         - name: parameter-store-volume
           csi:

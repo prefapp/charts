@@ -1,0 +1,8 @@
+{{with .Values.deployment.command_entrypointFile }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $.Release.Name }}-{{ $.Chart.Name }}-command
+data:
+  entrypoint.sh: | {{ . | nintdent 4 }}
+{{ end }}
