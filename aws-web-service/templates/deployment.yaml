@@ -31,6 +31,7 @@ spec:
         {{ . | toYaml | nindent 10 }}
         {{- end }}
         {{- end }}
+        {{- if .Values.deployment.startupProbe }}
         startupProbe:
         {{- with .Values.deployment.startupProbe }}
         {{ . | toYaml | nindent 10 }}
