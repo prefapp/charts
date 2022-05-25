@@ -28,7 +28,12 @@ spec:
         {{- if .Values.deployment.readinessProbe }}
         readinessProbe:
         {{- with .Values.deployment.livenessProbe }}
-        {{ . | toYaml | nindent 8 }}
+        {{ . | toYaml | nindent 10 }}
+        {{- end }}
+        {{- end }}
+        startupProbe:
+        {{- with .Values.deployment.startupProbe }}
+        {{ . | toYaml | nindent 10 }}
         {{- end }}
         {{- end }}
         volumeMounts:
