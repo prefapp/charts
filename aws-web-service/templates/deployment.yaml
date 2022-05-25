@@ -88,7 +88,6 @@ spec:
         - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-command
           configMap:
             name: {{ $.Release.Name }}-{{ $.Chart.Name }}-command
-            readOnly: true
       {{ end }}
       {{- if .Values.parameterStore.enabled }}
         - name: parameter-store-volume
