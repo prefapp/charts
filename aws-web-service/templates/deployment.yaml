@@ -22,7 +22,7 @@ spec:
         {{- if .Values.deployment.livenessProbe }}
         livenessProbe:
         {{- with .Values.deployment.livenessProbe }}
-        {{ . | toYaml | nindent 8 }}
+        {{ . | toYaml | nindent 10 }}
         {{- end }}
         {{- end }}
         {{- if .Values.deployment.readinessProbe }}
