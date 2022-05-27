@@ -79,10 +79,12 @@ parameterStore:
   data:
 
   dataAsFiles:
-    your_env_var_name:
-      ref: /my/parameter/path
-      mountPath: /my/parameter/mount
-
+  #
+  # Example:
+  # your_env_var_name:
+  #   ref: /my/parameter/path
+  #   mountPath: /my/parameter/mount
+  #
 
 
 #
