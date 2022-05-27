@@ -78,13 +78,13 @@ parameterStore:
   #
   data:
 
-  dataAsFiles:
   #
   # Example:
   # your_key:
   #   ref: /my/parameter/path
   #   mountPath: /my/parameter/mount
   #
+  dataAsFiles:
 
 
 #
