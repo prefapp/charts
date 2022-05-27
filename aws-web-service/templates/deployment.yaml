@@ -108,7 +108,11 @@ spec:
             driver: secrets-store.csi.k8s.io
             readOnly: true
             volumeAttributes:
+            {{- if .Values.parameterStore.mountAsFile }}
+              secretProviderClass: {{ .Release.Name }}-{{ .Chart.Name }}-spc-ssm-as-file
+            {{ else }}
               secretProviderClass: {{ .Release.Name }}-{{ .Chart.Name }}-spc-ssm
+            {{ end }}
       {{- if .Values.parameterStore.mountAsFile }}
       {{ range $key, $value := .Values.parameterStore.data }}
         - name: {{ $key }}-{{ $.Release.Name }}-parameter-store-secrets-file
