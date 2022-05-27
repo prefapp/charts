@@ -55,7 +55,7 @@ parameterStore:
   #
   # If you want to mount your secret as a file, set this value to true.
   #
-  mountAsFile: false
+  mountAsFile: true
 
   #
   # Once you use mountAsFile, you need a path for your file

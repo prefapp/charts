@@ -27,7 +27,7 @@ spec:
         {{- end }}
         {{- if .Values.deployment.readinessProbe }}
         readinessProbe:
-        {{- with .Values.deployment.livenessProbe }}
+        {{- with .Values.deployment.readinessProbe }}
         {{ . | toYaml | nindent 10 }}
         {{- end }}
         {{- end }}
@@ -48,9 +48,9 @@ spec:
             mountPath: /mnt/parameter-store/parameter-store-volume
             readOnly: true
         {{- if .Values.parameterStore.mountAsFile }}
-        - name: {{ $.Release.Name }}-parameterStore-file
-          mountPath: {{.Values.parameterStore.filePath }}
-          readOnly: true
+          - name: {{ $.Release.Name }}-parameter-store-secrets-file
+            mountPath: {{.Values.parameterStore.filePath }}
+            readOnly: true
         {{ end }}
         {{ end }}
         {{- with .Values.deployment.volumeMounts }}
@@ -108,7 +108,7 @@ spec:
             volumeAttributes:
               secretProviderClass: {{ .Release.Name }}-{{ .Chart.Name }}-spc-ssm
       {{- if .Values.parameterStore.mountAsFile }}
-        - name: {{ $.Release.Name }}-parameterStore-file
+        - name: {{ $.Release.Name }}-parameter-store-secrets-file
           secret:
             secretName: {{ $.Release.Name }}-secret-ssm
             optional: false
