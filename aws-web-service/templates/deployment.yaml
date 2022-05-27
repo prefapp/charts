@@ -47,6 +47,11 @@ spec:
           - name: parameter-store-volume
             mountPath: /mnt/parameter-store/parameter-store-volume
             readOnly: true
+        {{- if .Values.parameterStore.mountAsFile }}
+        - name: {{ $.Release.Name }}-parameterStore-file
+          mountPath: {{.Values.parameterStore.filePath }}
+          readOnly: true
+        {{ end }}
         {{ end }}
         {{- with .Values.deployment.volumeMounts }}
         {{ . | toYaml | nindent 8 }}
@@ -69,7 +74,7 @@ spec:
         - containerPort: {{ .Values.deployment.containerPort }}
         imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
         envFrom:
-        {{- if .Values.parameterStore.enabled }}
+        {{- if and .Values.parameterStore.enabled (eq .Values.parameterStore.mountAsFile false) }}
           - secretRef:
               name: {{ $.Release.Name }}-secret-ssm
         {{ end }}
@@ -102,6 +107,12 @@ spec:
             readOnly: true
             volumeAttributes:
               secretProviderClass: {{ .Release.Name }}-{{ .Chart.Name }}-spc-ssm
+      {{- if .Values.parameterStore.mountAsFile | default false }}
+        - name: {{ $.Release.Name }}-parameterStore-file
+          secret:
+            secretName: {{ $.Release.Name }}-secret-ssm
+            optional: false
+      {{ end }}
       {{ end }}
       {{- with .Values.deployment.volumes }}
       {{ . | toYaml | nindent 8 }}
