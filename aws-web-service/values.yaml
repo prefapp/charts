@@ -60,7 +60,7 @@ parameterStore:
   #
   # Once you use mountAsFile, you need a path for your file
   #
-  filePath: /my/path
+
 
   #
   # Parameters use to be separated by a dot, slash... so you can modify this splitter depeding on the format of your parameters in AWS.
@@ -78,6 +78,10 @@ parameterStore:
   #
   data:
 
+  dataAsFiles:
+    your_env_var_name:
+      ref: /my/parameter/path
+      mountPath: /my/parameter/mount
 
 
 

@@ -38,6 +38,13 @@ spec:
         {{- end }}
         {{- end }}
         volumeMounts:
+         {{- if .Values.parameterStore.mountAsFile }}
+         {{ range $key, $value := .Values.parameterStore.dataAsFiles }}
+          - name: {{ $key }}-{{ $.Release.Name }}-parameter-store-secrets-file
+            mountPath: {{ $value.mountPath }}
+            readOnly: true
+        {{ end }}
+        {{ end }}
         {{ with .Values.deployment.entrypointFile }}
           - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-command
             mountPath: /entrypoint
@@ -47,11 +54,6 @@ spec:
           - name: parameter-store-volume
             mountPath: /mnt/parameter-store/parameter-store-volume
             readOnly: true
-        {{- if .Values.parameterStore.mountAsFile }}
-          - name: {{ $.Release.Name }}-parameter-store-secrets-file
-            mountPath: {{.Values.parameterStore.filePath }}
-            readOnly: true
-        {{ end }}
         {{ end }}
         {{- with .Values.deployment.volumeMounts }}
         {{ . | toYaml | nindent 8 }}
@@ -108,10 +110,12 @@ spec:
             volumeAttributes:
               secretProviderClass: {{ .Release.Name }}-{{ .Chart.Name }}-spc-ssm
       {{- if .Values.parameterStore.mountAsFile }}
-        - name: {{ $.Release.Name }}-parameter-store-secrets-file
+      {{ range $key, $value := .Values.parameterStore.data }}
+        - name: {{ $key }}-{{ $.Release.Name }}-parameter-store-secrets-file
           secret:
-            secretName: {{ $.Release.Name }}-secret-ssm
+            secretName: {{ $key }}-{{ $.Release.Name }}-secret-ssm
             optional: false
+      {{ end }}
       {{ end }}
       {{ end }}
       {{- with .Values.deployment.volumes }}
