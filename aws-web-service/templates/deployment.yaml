@@ -107,7 +107,7 @@ spec:
             readOnly: true
             volumeAttributes:
               secretProviderClass: {{ .Release.Name }}-{{ .Chart.Name }}-spc-ssm
-      {{- if .Values.parameterStore.mountAsFile | default false }}
+      {{- if .Values.parameterStore.mountAsFile }}
         - name: {{ $.Release.Name }}-parameterStore-file
           secret:
             secretName: {{ $.Release.Name }}-secret-ssm
