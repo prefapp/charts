@@ -81,7 +81,7 @@ parameterStore:
   dataAsFiles:
   #
   # Example:
-  # your_env_var_name:
+  # your_key:
   #   ref: /my/parameter/path
   #   mountPath: /my/parameter/mount
   #
