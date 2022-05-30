@@ -50,7 +50,7 @@ spec:
             mountPath: /entrypoint
             readOnly: true
         {{ end }}
-        {{- if .Values.parameterStore.enabled }}
+        {{- if and .Values.parameterStore.enabled (eq .Values.parameterStore.mountAsFile false)}}
           - name: parameter-store-volume
             mountPath: /mnt/parameter-store/parameter-store-volume
             readOnly: true
@@ -70,7 +70,7 @@ spec:
           - "sh"
           - "/entrypoint/entrypoint.sh"
         {{ else }}
-        command: {}
+        command:
         {{- end }}
         ports:
         - containerPort: {{ .Values.deployment.containerPort }}
@@ -78,7 +78,7 @@ spec:
         envFrom:
         {{- if and .Values.parameterStore.enabled (eq .Values.parameterStore.mountAsFile false) }}
           - secretRef:
-              name: {{ $.Release.Name }}-secret-ssm
+              name: {{ .Release.Name }}-secret-ssm
         {{ end }}
         {{ with .Values.secrets }}
           - secretRef:
@@ -108,15 +108,17 @@ spec:
             driver: secrets-store.csi.k8s.io
             readOnly: true
             volumeAttributes:
+       {{- if (eq .Values.parameterStore.mountAsFile  false)}}
               secretProviderClass: {{ .Release.Name }}-{{ .Chart.Name }}-spc-ssm
-      {{- if .Values.parameterStore.mountAsFile }}
-      {{ range $key, $value := .Values.parameterStore.data }}
+       {{ else }}
+              secretProviderClass: {{.Release.Name}}-{{.Chart.Name}}-spc-ssm-as-file
+       {{ end }}
+       {{ range $key, $value := .Values.parameterStore.dataAsFiles }}
         - name: {{ $key }}-{{ $.Release.Name }}-parameter-store-secrets-file
           secret:
-            secretName: {{ $key }}-{{ $.Release.Name }}-secret-ssm
+            secretName: {{ $key }}-{{$.Release.Name}}-secret-ssm
             optional: false
-      {{ end }}
-      {{ end }}
+       {{ end }}
       {{ end }}
       {{- with .Values.deployment.volumes }}
       {{ . | toYaml | nindent 8 }}

@@ -79,10 +79,13 @@ parameterStore:
   data:
 
   #
+  # If you want to mount a file inside a pod with the paramater content, use this way.
+
   # Example:
-  # your_key:
-  #   ref: /my/parameter/path
-  #   mountPath: /my/parameter/mount
+  # dataAsFiles:
+  #   my_key:
+  #     ref: /my/parameter/path
+  #     mountPath: /my/parameter/mount
   #
   dataAsFiles:
 
