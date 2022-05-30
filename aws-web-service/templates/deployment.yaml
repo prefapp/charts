@@ -41,7 +41,12 @@ spec:
          {{- if .Values.parameterStore.mountAsFile }}
          {{ range $key, $value := .Values.parameterStore.dataAsFiles }}
           - name: {{ $.Release.Name }}-{{ $key }}-parameter-store-secrets-file
+          {{- if $value.mountPathExists | default 0 }}
+            mountPath: {{ $value.mountPath }}/{{ $value.fileName }}
+            subPath: {{ $value.fileName }}
+          {{- else }}
             mountPath: {{ $value.mountPath }}
+          {{- end }}
             readOnly: true
         {{ end }}
         {{ end }}
@@ -50,7 +55,7 @@ spec:
             mountPath: /entrypoint
             readOnly: true
         {{ end }}
-        {{- if and .Values.parameterStore.enabled (eq .Values.parameterStore.mountAsFile false)}}
+        {{- if .Values.parameterStore.enabled }}
           - name: parameter-store-volume
             mountPath: /mnt/parameter-store/parameter-store-volume
             readOnly: true
