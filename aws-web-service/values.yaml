@@ -86,7 +86,7 @@ parameterStore:
   #   my_key:
   #     ref: /my/parameter/path
   #     mountPath: /my/parameter/mount
-  #
+  #     fileName: myfile.yaml
   dataAsFiles:
 
 
