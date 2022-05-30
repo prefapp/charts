@@ -27,7 +27,7 @@ spec:
         {{- end }}
         {{- if .Values.deployment.readinessProbe }}
         readinessProbe:
-        {{- with .Values.deployment.livenessProbe }}
+        {{- with .Values.deployment.readinessProbe }}
         {{ . | toYaml | nindent 10 }}
         {{- end }}
         {{- end }}
@@ -38,6 +38,18 @@ spec:
         {{- end }}
         {{- end }}
         volumeMounts:
+         {{- if .Values.parameterStore.mountAsFile }}
+         {{ range $key, $value := .Values.parameterStore.dataAsFiles }}
+          - name: {{ $.Release.Name }}-{{ $key }}-parameter-store-secrets-file
+          {{- if $value.mountPathExists | default 0 }}
+            mountPath: {{ $value.mountPath }}/{{ $value.fileName }}
+            subPath: {{ $value.fileName }}
+          {{- else }}
+            mountPath: {{ $value.mountPath }}
+          {{- end }}
+            readOnly: true
+        {{ end }}
+        {{ end }}
         {{ with .Values.deployment.entrypointFile }}
           - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-command
             mountPath: /entrypoint
@@ -63,15 +75,15 @@ spec:
           - "sh"
           - "/entrypoint/entrypoint.sh"
         {{ else }}
-        command: {}
+        command:
         {{- end }}
         ports:
         - containerPort: {{ .Values.deployment.containerPort }}
         imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
         envFrom:
-        {{- if .Values.parameterStore.enabled }}
+        {{- if and .Values.parameterStore.enabled (eq .Values.parameterStore.mountAsFile false) }}
           - secretRef:
-              name: {{ $.Release.Name }}-secret-ssm
+              name: {{ .Release.Name }}-secret-ssm
         {{ end }}
         {{ with .Values.secrets }}
           - secretRef:
@@ -101,7 +113,17 @@ spec:
             driver: secrets-store.csi.k8s.io
             readOnly: true
             volumeAttributes:
+       {{- if (eq .Values.parameterStore.mountAsFile  false)}}
               secretProviderClass: {{ .Release.Name }}-{{ .Chart.Name }}-spc-ssm
+       {{ else }}
+              secretProviderClass: {{.Release.Name}}-{{.Chart.Name}}-spc-ssm-as-file
+       {{ end }}
+       {{ range $key, $value := .Values.parameterStore.dataAsFiles }}
+        - name: {{ $.Release.Name }}-{{ $key }}-parameter-store-secrets-file
+          secret:
+            secretName: {{ $key }}-{{$.Release.Name}}-secret-ssm
+            optional: false
+       {{ end }}
       {{ end }}
       {{- with .Values.deployment.volumes }}
       {{ . | toYaml | nindent 8 }}
