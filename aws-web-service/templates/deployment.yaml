@@ -40,7 +40,7 @@ spec:
         volumeMounts:
          {{- if .Values.parameterStore.mountAsFile }}
          {{ range $key, $value := .Values.parameterStore.dataAsFiles }}
-          - name: {{ $key }}-{{ $.Release.Name }}-parameter-store-secrets-file
+          - name: {{ $.Release.Name }}-{{ $key }}-parameter-store-secrets-file
             mountPath: {{ $value.mountPath }}
             readOnly: true
         {{ end }}
@@ -114,7 +114,7 @@ spec:
               secretProviderClass: {{.Release.Name}}-{{.Chart.Name}}-spc-ssm-as-file
        {{ end }}
        {{ range $key, $value := .Values.parameterStore.dataAsFiles }}
-        - name: {{ $key }}-{{ $.Release.Name }}-parameter-store-secrets-file
+        - name: {{ $.Release.Name }}-{{ $key }}-parameter-store-secrets-file
           secret:
             secretName: {{ $key }}-{{$.Release.Name}}-secret-ssm
             optional: false
