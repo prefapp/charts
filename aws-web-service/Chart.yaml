@@ -2,7 +2,7 @@ apiVersion: v2
 name: aws-web-service
 description: A Helm chart for Kubernetes to deploy a web service using alb annotations and parameter store
 type: application
-version: 0.1.19
+version: 0.1.21
 appVersion: "1.0.0"
 annotations:
   artifacthub.io/links: |
