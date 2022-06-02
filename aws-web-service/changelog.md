@@ -1,5 +1,10 @@
 # Change Log - aws-web-service chart
 
+## v0.1.20 [02/06/2022]
+
+* Add annotations support in deployment.yaml
+
+
 ## v0.1.17 [25/05/2022]
 
 * Add simple command

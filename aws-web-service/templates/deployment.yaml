@@ -4,6 +4,10 @@ metadata:
   name: {{ .Release.Name }}-{{ .Chart.Name }}
   labels:
     app: {{ .Values.deployment.app }}
+  annotations:
+  {{ with .Values.deployment.annotations }}
+  {{ . | toYaml | nindent 4 }}
+  {{ end }}
 spec:
   replicas: {{ .Values.deployment.replicas | default 1 }}
   selector:
