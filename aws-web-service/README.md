@@ -4,6 +4,12 @@
 
 This chart allows you to deploy any webservice on your EKS Cluster to expose it to the internet.
 
+### To install
+```
+helm repo add prefapp https://prefapp.github.io/charts/aws-web-service
+helm repo update
+```
+
 ## Requirements
 
 ### AWS Parameter Store
@@ -16,7 +22,7 @@ You can do it with terraform, where you have your EKS Module.
 
 Example:
 
-```terraform 
+```terraform
 
 #IAM Policy to grant access to
 resource "aws_iam_policy" "iam_policy_parameter_store" {
