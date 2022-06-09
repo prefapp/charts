@@ -1,0 +1,41 @@
+{{- with .Values.ingresses}}
+{{ range $ingress := . }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
+  annotations:
+    {{- if $ingress.alb.enabled }}
+    alb.ingress.kubernetes.io/group.name: {{ $ingress.alb.groupName | quote }}
+    alb.ingress.kubernetes.io/backend-protocol: {{ $ingress.alb.protocol | quote }}
+    alb.ingress.kubernetes.io/listen-ports: {{ $ingress.alb.listenPorts | quote }}
+    alb.ingress.kubernetes.io/scheme: {{ $scheme }}
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+    alb.ingress.kubernetes.io/target-type: 'ip'
+    {{ end }}
+    {{ with $ingress.annotations }}
+    {{ . | toYaml | nindent 4 }}
+    {{ end }}
+spec:
+  tls:
+  {{ range $tls := $ingress.tls }}
+  - hosts: {{ $tls.hosts | toYaml | nindent 6 }}
+    secretName: {{ $tls.secretName }}
+  {{ end }}
+  {{- if  $ingress.ingressClassName }}
+  ingressClassName: {{ $ingress.ingressClassName }}
+  {{ end }}
+  rules:
+  - host: {{ $ingress.host }}
+    http:
+      paths:
+      - pathType: Prefix
+        path: {{ $ingress.path }}
+        backend:
+          service:
+            name: {{ .Release.Name }}-{{ .Chart.Name }}
+            port:
+              number: {{ .Values.service.port }}
+
+{{ end }}
+{{ end }}
