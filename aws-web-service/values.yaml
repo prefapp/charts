@@ -30,7 +30,7 @@ service:
 
 
 ingress:
-  enabled: true
+  enabled: false
   alb:
     #
     # If you want to use AWS Application Load Balancer, first you have to deploy the official ALB chart
