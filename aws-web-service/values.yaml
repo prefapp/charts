@@ -11,7 +11,7 @@ webService:
   # NGINX webserver that serves a simple page containing its hostname, IP address and port
   # https://hub.docker.com/r/nginxdemos/hello/tags
   #
-  image: nginxdemos/hello:0.3
+  image: stefanprodan/podinfo
 
 maintenance_mode: false # The value to true launches the command for maintenance action and cancels the standard command and the entrypointFile
 
