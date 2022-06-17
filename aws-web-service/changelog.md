@@ -1,5 +1,10 @@
 # Change Log - aws-web-service chart
 
+## v0.1.23 [14/06/2022]
+
+* Fix default docker image. The previous one has vulnerabilities.
+
+
 ## v0.1.20 [02/06/2022]
 
 * Add annotations support in deployment.yaml
