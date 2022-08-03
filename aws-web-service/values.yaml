@@ -42,6 +42,8 @@ ingress:
     groupName: default-group
   path: /
   host: site.com
+  ssl:
+    redirect: true
   annotations:
 
 parameterStore:

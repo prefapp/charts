@@ -1,5 +1,9 @@
 # Change Log - aws-web-service chart
 
+## v0.1.25 [03/08/2022]
+
+* Set alb SSL redirec condition in ingress.
+
 ## v0.1.24 [27/07/2022]
 
 * Delete default value in the number of replicas in the deployment.

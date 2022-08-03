@@ -10,7 +10,9 @@ metadata:
     alb.ingress.kubernetes.io/backend-protocol: {{ .Values.ingress.alb.protocol | quote }}
     alb.ingress.kubernetes.io/listen-ports: {{ .Values.ingress.alb.listenPorts | quote }}
     alb.ingress.kubernetes.io/scheme: {{ $scheme }}
+    {{ if .Values.ingress.ssl.redirect }}
     alb.ingress.kubernetes.io/ssl-redirect: '443'
+    {{ end }}
     alb.ingress.kubernetes.io/target-type: 'ip'
     {{ end }}
     {{ with .Values.ingress.annotations }}
