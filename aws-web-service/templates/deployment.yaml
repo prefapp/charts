@@ -22,7 +22,7 @@ spec:
     spec:
       {{- if .Values.deployment.nodeSelector.enabled }}
       nodeSelector:
-      {{- with .Values.deployment.nodeSelector.tags }}
+      {{- with .Values.deployment.nodeSelector.labels }}
       {{ . | toYaml | nindent 10 }}
       {{- end }}
       {{- end }}

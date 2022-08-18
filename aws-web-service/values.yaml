@@ -26,12 +26,12 @@ deployment:
   # Example:
   # nodeSelector:
   #   enabled: true
-  #   tags:
+  #   labels:
   #     type: pro
   #
   nodeSelector:
     enabled: false
-    tags:
+    labels:
 
 service:
   labels:
