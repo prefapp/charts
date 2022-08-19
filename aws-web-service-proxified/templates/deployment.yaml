@@ -1,0 +1,160 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  {{- if .Values.deployment.name }}
+  name: {{ .Values.deployment.name }}
+  {{ else }}
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
+  {{- end -}}
+  {{ if .Values.deployment.annotations }}
+  annotations: {{ .Values.deployment.annotations | toYaml | nindent 4 }}
+  {{ else }}
+  annotations: {}
+  {{ end }}
+  {{- if .Values.labels }}
+  labels: {{- .Values.labels | toYaml | nindent 4 -}}
+  {{ else }}
+  labels:
+    app: proxified
+  {{ end }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels: 
+    {{- if .Values.labels }}
+      {{- .Values.labels | toYaml | nindent 6 -}}
+    {{ else }}
+      app: proxified
+    {{ end }}
+  template:
+    metadata:
+      {{- if .Values.labels }}
+      labels: {{- .Values.labels | toYaml | nindent 8 -}}
+      {{- else }}
+      labels:
+        app: proxified
+      {{ end }}
+    spec:
+      containers:
+      - name: {{ .Values.proxy.name }}
+        image: {{ .Values.proxy.image.registry }}/{{ .Values.proxy.image.repository }}:{{ .Values.proxy.image.tag }}
+        imagePullPolicy: {{ .Values.proxy.imagePullPolicy | default "IfNotPresent" }}
+        env:
+        {{- if or (eq .Values.proxy.cors true) }}
+          - name: CORS_ENABLED
+            value: "true"
+        {{ else }}
+          - name: CORS_ENABLED
+            value: "false"
+        {{ end }}
+          - name: LISTEN_PORT
+            value: "81"
+          - name: PROXY_HOST
+            value: "localhost"
+          - name: PROXY_PORT
+            value: {{ .Values.app.port | quote -}}
+        {{ if .Values.whitelist.enabled }}
+          - name: WHITELIST_IP
+            {{- include "base.utiles.listado_ips_proxy" . | nindent 12 -}}
+        {{ else }}
+          - name: WHITELIST_IP
+            value: "0.0.0.0/0"
+        {{- end }}
+        envFrom:
+        ports:
+          - containerPort: {{ .Values.app.port }}
+            protocol: TCP
+        resources: {{ toYaml .Values.proxy.resources | nindent 10 }}
+        {{ if .Values.proxy.maintenance_mode }}
+        command:
+          - tail
+          - -f
+          - /dev/null
+        {{- else if .Values.proxy.command }}
+        command: {{ .Values.proxy.command | toYaml | nindent 8 }}
+        {{- else -}}
+        command:
+        {{- end }}
+        {{- if .Values.app.args }}
+        args: {{ .Values.app.args | toYaml | nindent 8 }}
+        {{ else }}
+        args:
+        {{- end }}
+      - name: {{ .Values.app.name }}
+        image: {{ .Values.app.image.registry }}/{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}
+        imagePullPolicy: {{ .Values.app.imagePullPolicy | default "IfNotPresent" }}
+        env:
+        envFrom:
+        {{- with .Values.configmap }}
+        - configMapRef:
+            name: {{ $.Release.Name }}-{{ $.Chart.Name -}}
+        {{ end }}
+        {{- with .Values.secrets }}
+        - secretRef:
+            name: {{ $.Release.Name }}-{{ $.Chart.Name -}}
+        {{ end }}
+        ports:
+          - containerPort: {{ .Values.app.port }}
+            protocol: TCP
+        volumeMounts:
+        {{- with .Values.deployment.volumeMounts }}
+        {{- . | toYaml | nindent 10 -}}
+        {{ end }}
+        resources: {{- toYaml .Values.app.resources | nindent 10 }}
+        {{- if .Values.app.livenessProbe.enabled }}
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.app.livenessProbe.path }}
+            port: {{ .Values.app.livenessProbe.port }}
+          initialDelaySeconds: {{ .Values.app.livenessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.app.livenessProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.app.livenessProbe.timeoutSeconds }}
+          failureThreshold: {{ .Values.app.livenessProbe.failureThreshold }}
+          successThreshold: {{ .Values.app.livenessProbe.successThreshold }}
+        {{- end }}
+        {{- if .Values.app.readinessProbe.enabled }}
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.app.readinessProbe.path }}
+            port: {{ .Values.app.readinessProbe.port }}
+          initialDelaySeconds: {{ .Values.app.readinessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.app.readinessProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.app.readinessProbe.timeoutSeconds }}
+          failureThreshold: {{ .Values.app.readinessProbe.failureThreshold }}
+          successThreshold: {{ .Values.app.readinessProbe.successThreshold }}
+        {{- end }}
+        {{- if .Values.app.startupProbe.enabled }}
+        startupProbe:
+          httpGet:
+            path: {{ .Values.app.startupProbe.path }}
+            port: {{ .Values.app.startupProbe.port }}
+          initialDelaySeconds: {{ .Values.app.startupProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.app.startupProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.app.startupProbe.timeoutSeconds }}
+          failureThreshold: {{ .Values.app.startupProbe.failureThreshold }}
+          successThreshold: {{ .Values.app.startupProbe.successThreshold }}
+        {{- end }}
+        {{ if .Values.app.maintenance_mode }}
+        command:
+          - tail
+          - -f
+          - /dev/null
+        {{- else if .Values.app.command }}
+        command: {{ .Values.app.command | toYaml | nindent 8 }}
+        {{- else -}}
+        command:
+        {{- end }}
+        {{- if .Values.app.args }}
+        args: {{ .Values.app.args | toYaml | nindent 8 }}
+        {{ else }}
+        args:
+        {{- end }}
+      {{- with .Values.deployment.nodeSelector }}
+      nodeSelector:
+        type: {{ $.Values.deployment.nodeSelector.type -}}
+      {{ end }}
+      volumes:
+      {{- with .Values.deployment.volumes }}
+      {{- . | toYaml | nindent 8 -}}
+      {{ end }}
