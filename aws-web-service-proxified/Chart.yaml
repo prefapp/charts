@@ -17,7 +17,7 @@ keywords:
   - proxified
   - nginx
 sources:
-  - https://github.com/prefapp/charts/tree/master/proxified
+  - https://github.com/prefapp/charts/tree/master/aws-web-service-proxified
 maintainers:
   - email: gustavo.borragan@prefapp.es
     name: gustavoborragan
