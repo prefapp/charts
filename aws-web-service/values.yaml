@@ -21,6 +21,17 @@ deployment:
   containerPort: 80
   command: {} # Normal command
   entrypointFile: # Command mounted as entrypoint with special values
+  #
+  # Enables the node selector.
+  # Example:
+  # nodeSelector:
+  #   enabled: true
+  #   labels:
+  #     type: pro
+  #
+  nodeSelector:
+    enabled: false
+    labels:
 
 service:
   labels:

@@ -20,6 +20,12 @@ spec:
         app: {{ .Release.Name }}
         chart: {{ .Chart.Name }}
     spec:
+      {{- if .Values.deployment.nodeSelector.enabled }}
+      nodeSelector:
+      {{- with .Values.deployment.nodeSelector.labels }}
+      {{ . | toYaml | nindent 10 }}
+      {{- end }}
+      {{- end }}
       containers:
       - name: {{ .Values.deployment.app }}
         image: {{ .Values.webService.image }}
