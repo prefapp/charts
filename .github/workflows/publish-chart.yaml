@@ -7,6 +7,10 @@ on:
         description: "Name of the package that will be published"
         required: true
         type: string
+      version:
+        description: "Version of the package that will be published"
+        required: true
+        type: string
 jobs:
   pipeline:
     env:
@@ -18,11 +22,11 @@ jobs:
       - uses: actions/checkout@v3
       - name: Calculating branch name
         id: step-branch
-        run: echo "::set-output name=branch::$(echo new-release/${{ github.event.release.tag_name }})"
+        run: echo "::set-output name=branch::$(echo new-release/${{ inputs.package }}-${{ inputs.version }})"
 
       - name: Commit Message
         id: step-commit_message
-        run: echo "::set-output name=commit_message::$(echo New Chart Release '${{ github.event.release.tag_name }}')"
+        run: echo "::set-output name=commit_message::$(echo New Chart Release '${{ inputs.package }}-${{ inputs.version }}')"
 
       - name: Create branch with changes
         run: |
@@ -37,7 +41,7 @@ jobs:
 
       - name: Create Pull Request
         run: |
-          prName="Bump release ${{ github.event.release.tag_name }}"
+          prName="Bump release ${{ inputs.package }}-${{ inputs.version }}"
           docker run -v $(pwd):/repo prefapp/prefapp-cicdpy:sleep-test github.pr_auto_merge \
              token=${{ secrets.GITHUB_TOKEN }} \
              titulo="${prName}" \
