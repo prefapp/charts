@@ -19,6 +19,7 @@ jobs:
           default-branch: master
 
       - run: echo $JSON
+        name: Release Please Output Info
         env:
           JSON: ${{ toJSON(steps.release.outputs) }}
 
