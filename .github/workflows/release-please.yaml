@@ -61,4 +61,4 @@ jobs:
         -H "Accept: application/vnd.github+json" \
         -H "Authorization: Bearer $GITHUB_TOKEN" \
         https://api.github.com/repos/prefapp/charts/actions/workflows/publish-chart.yaml/dispatches \
-        -d '{"ref":"main","inputs":{"package":"${{matrix.result}}"}}'
+        -d '{"ref":"master","inputs":{"package":"${{matrix.result}}"}}'
