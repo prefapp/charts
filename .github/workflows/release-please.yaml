@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       release: ${{ steps.release.outputs.paths_released }}
+      outputs: ${{ steps.release.outputs }}
     steps:
       - uses: google-github-actions/release-please-action@v3
         id: release
@@ -33,11 +34,14 @@ jobs:
         uses: actions/github-script@v4
         env:
           PACKAGES_RELEASES: ${{ needs.release-please.outputs.release }}
+          OUTPUTS_RELEASE_PLEASE: ${{ needs.release-please.outputs }}
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
 
-            const { PACKAGES_RELEASES } = process.env
+            const { PACKAGES_RELEASES, OUTPUTS_RELEASE_PLEASE } = process.env
+            
+            console.log("OUTPUTS_RELEASE_PLEASE >", JSON.stringify(OUTPUTS_RELEASE_PLEASE, null, 4))
 
             const releases = JSON.parse(PACKAGES_RELEASES)
 
@@ -51,6 +55,7 @@ jobs:
     strategy:
       matrix:
         result: ${{fromJson(needs.packages-calculate.outputs.result)}}
+        version: ${{fromJson(needs.packages-calculate.outputs.version)}}
     steps:
     - name: Workflow publish
       env:
@@ -61,4 +66,4 @@ jobs:
         -H "Accept: application/vnd.github+json" \
         -H "Authorization: Bearer $GITHUB_TOKEN" \
         https://api.github.com/repos/prefapp/charts/actions/workflows/publish-chart.yaml/dispatches \
-        -d '{"ref":"master","inputs":{"package":"${{matrix.result}}"}}'
+        -d '{"ref":"master","inputs":{"package":"${{matrix.result}}","version":"${{matrix.version}}"}}'
