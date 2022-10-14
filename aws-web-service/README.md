@@ -1,4 +1,4 @@
-# AWS Web Service chart    
+# AWS Web Service chart     
 
 ## Purpose
 
