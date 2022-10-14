@@ -1,9 +1,11 @@
 apiVersion: v2
 name: aws-web-service
-description: A Helm chart for Kubernetes to deploy a web service using alb annotations and parameter store
+description: >-
+  A Helm chart for Kubernetes to deploy a web service using alb annotations and
+  parameter store
 type: application
-version: 0.1.26
-appVersion: "1.0.0"
+version: 0.1.27
+appVersion: 1.0.0
 annotations:
   artifacthub.io/links: |
     - name: Support
@@ -18,7 +20,6 @@ keywords:
   - web-service
 sources:
   - https://github.com/prefapp/charts/tree/master/aws-web-service
-
 maintainers:
   - email: antonio.rodriguez@prefapp.es
     name: arvegadev
