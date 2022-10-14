@@ -1,0 +1,64 @@
+on:
+  push:
+    branches:
+      - master
+name: Run Release Please
+jobs:
+  release-please:
+    name: Release Please Manifest
+    runs-on: ubuntu-latest
+    outputs:
+      release: ${{ steps.release.outputs.paths_released }}
+    steps:
+      - uses: google-github-actions/release-please-action@v2
+        id: release
+        with:
+          command: manifest
+          token: ${{secrets.RELEASE_PLEASE_TOKEN}}
+          default-branch: master
+
+  packages-calculate:
+    if: needs.release-please.outputs.release != '[]'
+    name: Packages Calculate
+    needs:
+      - release-please
+    runs-on: ubuntu-latest
+    outputs:
+      result: ${{steps.interrogate.outputs.result}}
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - id: interrogate
+        uses: actions/github-script@v4
+        env:
+          PACKAGES_RELEASES: ${{ needs.release-please.outputs.release }}
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+
+            const { PACKAGES_RELEASES } = process.env
+
+            const releases = JSON.parse(PACKAGES_RELEASES)
+
+            return releases
+
+  packages-publish:
+    needs:
+      - packages-calculate
+    name: Yarn Packages Publish
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        result: ${{fromJson(needs.packages-calculate.outputs.result)}}
+    steps:
+    - name: Workflow publish
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      run: |
+       curl \
+        -X POST \
+        -H "Accept: application/vnd.github+json" \
+        -H "Authorization: Bearer $GITHUB_TOKEN" \
+        https://api.github.com/repos/prefapp/charts/actions/workflows/publish-chart.yaml/dispatches \
+        -d '{"ref":"main","inputs":{"package":"${{matrix.result}}"}}'
