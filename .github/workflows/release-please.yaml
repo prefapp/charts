@@ -46,7 +46,7 @@ jobs:
   packages-publish:
     needs:
       - packages-calculate
-    name: Yarn Packages Publish
+    name: Charts Packages Publish
     runs-on: ubuntu-latest
     strategy:
       matrix:
