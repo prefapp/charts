@@ -108,7 +108,7 @@ If you want to use AWS Application Load Balancer, first you have to deploy the [
 | service.port                      | Service port and targetPort unified                                                                                                                                                                     | number  | 80                               |
 | service.labels                    | Common labels for service                                                                                                                                                                               | {}      | {}                               |
 | secrets                           | If you don´t use Parameter Store, you can add your own secrets                                                                                                                                          | {}      | {}                               |
-| webService.image                  | Your Docker Image                                                                                                                                                                                       | string  | nginxdemos/hello:0.3             |
+| webService.image                  | Your Docker Image                                                                                                                                                                                       | string  |   stefanprodan/podinfo            |
 
 ## License
 
