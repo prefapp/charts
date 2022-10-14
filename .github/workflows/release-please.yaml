@@ -9,7 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       release: ${{ steps.release.outputs.paths_released }}
-      outputs: ${{ steps.release.outputs }}
     steps:
       - uses: google-github-actions/release-please-action@v3
         id: release
@@ -17,6 +16,9 @@ jobs:
           command: manifest
           token: ${{secrets.RELEASE_PLEASE_TOKEN}}
           default-branch: master
+
+      - run:  |
+        echo "${{steps.release.outputs}}"
 
   packages-calculate:
     if: needs.release-please.outputs.release != '[]'
@@ -40,7 +42,7 @@ jobs:
           script: |
 
             const { PACKAGES_RELEASES, OUTPUTS_RELEASE_PLEASE } = process.env
-            
+
             console.log("OUTPUTS_RELEASE_PLEASE >", JSON.stringify(OUTPUTS_RELEASE_PLEASE, null, 4))
 
             const releases = JSON.parse(PACKAGES_RELEASES)
