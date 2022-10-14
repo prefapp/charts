@@ -16,7 +16,6 @@ jobs:
           command: manifest
           token: ${{secrets.RELEASE_PLEASE_TOKEN}}
           default-branch: master
-          release-type: helm
 
   packages-calculate:
     if: needs.release-please.outputs.release != '[]'
