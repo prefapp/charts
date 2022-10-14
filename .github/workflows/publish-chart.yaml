@@ -15,7 +15,7 @@ jobs:
       git_email: 'github-actions@github.com'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Calculating branch name
         id: step-branch
         run: echo "::set-output name=branch::$(echo new-release/${{ github.event.release.tag_name }})"
