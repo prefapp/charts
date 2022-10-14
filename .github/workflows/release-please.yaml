@@ -55,7 +55,7 @@ jobs:
             
                result.push(
                 {
-                  name: releasesInfo[`${release}--name`], 
+                  name: releasesInfo[release], 
                   version: releasesInfo[`${release}--version`]
                 }
                )
