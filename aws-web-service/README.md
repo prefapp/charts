@@ -10,7 +10,7 @@ helm repo add prefapp https://prefapp.github.io/charts/aws-web-service
 helm repo update
 ```
 
-## Requirements
+## Requirements 
 
 ### AWS Parameter Store
 
