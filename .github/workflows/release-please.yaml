@@ -17,7 +17,9 @@ jobs:
           token: ${{secrets.RELEASE_PLEASE_TOKEN}}
           default-branch: master
 
-      - run: echo "${{steps.release.outputs}}"
+      - run: echo $JSON
+        env:
+          JSON: ${{ toJSON(steps.release.outputs) }}
 
   packages-calculate:
     if: needs.release-please.outputs.release != '[]'
