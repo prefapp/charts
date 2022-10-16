@@ -71,7 +71,7 @@ deployment:
 ## @ section to define the proxy service behavior
 proxy:
 
-  ## @param A name for the container proxy container service
+  ## @param A name for the container proxy container service 
   name: proxy
 
   ## @param The image to use for the proxy container service
