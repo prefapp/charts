@@ -1,0 +1,11 @@
+{
+  "name": "aws-web-service-proxified",
+  "version": "0.0.0",
+  "description": "a chart",
+  "main": "index.js",
+  "scripts": {
+    "test": "/usr/local/bin/outro/helm template aws-web-service-proxified ."
+  },
+  "author": "",
+  "license": "ISC"
+}

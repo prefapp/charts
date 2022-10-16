@@ -5,7 +5,9 @@
 
     "packages": {
 
-       "aws-web-service": {}
+       "aws-web-service": {},
+
+       "aws-web-service-proxified": {}
 
     }
 
