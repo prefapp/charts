@@ -1,2 +1,4 @@
-{"aws-web-service":"0.1.33"}
-{"aws-web-service-proxified":"1.1.0"}
+{
+  "aws-web-service":"0.1.33",
+  "aws-web-service-proxified":"1.1.0"
+}
