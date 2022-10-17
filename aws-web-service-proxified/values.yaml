@@ -78,7 +78,7 @@ proxy:
   image:
     registry: docker.io
     repository: prefapp/nginx-proxified
-    tag: 0.1.0
+    tag: latest
   
   ## @param The image pull policy to use for the container proxy service
   imagePullPolicy: Always
@@ -124,7 +124,7 @@ app:
   image:
     registry: docker.io
     repository: library/httpd
-    tag: alpine3.16
+    tag: latest
 
   ## @param The image pull policy to use for the container app service
   imagePullPolicy: Always
