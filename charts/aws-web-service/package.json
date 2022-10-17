@@ -1,10 +1,10 @@
 {
-  "name": "aws-web-service-proxified",
+  "name": "aws-web-service",
   "version": "0.0.0",
   "description": "a chart",
   "main": "index.js",
   "scripts": {
-    "test": "helm template aws-web-service-proxified ."
+    "test": "helm template aws-web-service ."
   },
   "author": "",
   "license": "ISC"

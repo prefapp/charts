@@ -1,0 +1,15 @@
+name: Pr verify
+
+on:
+  pull_request:
+
+jobs:
+  pr-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Test charts
+        run: npm run test --workspaces
