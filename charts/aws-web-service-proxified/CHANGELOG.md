@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/prefapp/charts/compare/aws-web-service-proxified-v1.3.0...aws-web-service-proxified-v1.4.0) (2022-10-17)
+
+
+### Features
+
+* () change size icon ([c3ee07e](https://github.com/prefapp/charts/commit/c3ee07e2e026a9fc794b37dec462ba4f8368f6d4))
+
 ## [1.3.0](https://github.com/prefapp/charts/compare/aws-web-service-proxified-v1.2.0...aws-web-service-proxified-v1.3.0) (2022-10-17)
 
 
