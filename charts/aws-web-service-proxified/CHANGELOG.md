@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.2](https://github.com/prefapp/charts/compare/aws-web-service-proxified-v1.4.1...aws-web-service-proxified-v1.4.2) (2022-10-17)
+
+
+### Bug Fixes
+
+* release ([af5f123](https://github.com/prefapp/charts/commit/af5f12362c20e9d9b2dfaccf48ac16e471563d48))
+
 ## [1.4.1](https://github.com/prefapp/charts/compare/aws-web-service-proxified-v1.4.0...aws-web-service-proxified-v1.4.1) (2022-10-17)
 
 
