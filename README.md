@@ -6,70 +6,19 @@ Generic charts for prefapp services
 
 ## Monorepo structure
 ```shell
-charts
-.
-├── aws-web-service                 <- Chart for AWS web service
-│   ├── bin                         --------
-│   ├── changelog.md                       |
-│   ├── CHANGELOG.md                       |
-│   ├── charts                             |
-│   ├── Chart.yaml                         |
-│   ├── .gitignore                         |
-│   ├── .helmignore                        |
-│   ├── README.md                          |
-│   ├── templates                          |
-│   │   ├── configmap_command.yaml         |---> Chart templates
-│   │   ├── configmap.yaml                 |
-│   │   ├── deployment.yaml                |
-│   │   ├── ingresses.yaml                 |
-│   │   ├── ingress.yaml                   |
-│   │   ├── secretprovider_file_mount.yaml |
-│   │   ├── secretprovider.yaml            |
-│   │   ├── secret.yaml                    |
-│   │   ├── serviceaccount.yaml            |
-│   │   └── service.yaml                   |
-│   └── values.yaml                 --------
-├── docs                            <- Documentation and tgzs
-│   └── aws-web-service             --------
-│       ├── aws-web-service-0.1.0.tgz      |
-│       ├── aws-web-service-0.1.10.tgz     |
-│       ├── aws-web-service-0.1.11.tgz     |
-│       ├── aws-web-service-0.1.12.tgz     |
-│       ├── aws-web-service-0.1.13.tgz     |
-│       ├── aws-web-service-0.1.14.tgz     |
-│       ├── aws-web-service-0.1.15.tgz     |
-│       ├── aws-web-service-0.1.16.tgz     |
-│       ├── aws-web-service-0.1.17.tgz     |
-│       ├── aws-web-service-0.1.18.tgz     |
-│       ├── aws-web-service-0.1.19.tgz     |
-│       ├── aws-web-service-0.1.20.tgz     |
-│       ├── aws-web-service-0.1.21.tgz     |---> Chart tgz for ArtifactHub
-│       ├── aws-web-service-0.1.22.tgz     |
-│       ├── aws-web-service-0.1.23.tgz     |
-│       ├── aws-web-service-0.1.24.tgz     |
-│       ├── aws-web-service-0.1.25.tgz     |
-│       ├── aws-web-service-0.1.26.tgz     |
-│       ├── aws-web-service-0.1.27.tgz     |
-│       ├── aws-web-service-0.1.2.tgz      |
-│       ├── aws-web-service-0.1.4.tgz      |
-│       ├── aws-web-service-0.1.5.tgz      |
-│       ├── aws-web-service-0.1.6.tgz      |
-│       ├── aws-web-service-0.1.7.tgz      |
-│       ├── aws-web-service-0.1.8.tgz      |
-│       ├── aws-web-service-0.1.9.tgz      |
-│       ├── index.yaml                     |
-│       └── README.md                -------
-├── .env
-
+├── charts
+│   ├── aws-web-service
+│   └── aws-web-service-proxified
+├── docs
+│   ├── aws-web-service
+│   └── aws-web-service-proxified
 ├── .github
 │   └── workflows
-│       ├── publish-chart.yaml      <- Publish chart to ArtifactHub
-│       └── release-please.yaml     <- Release-please workflow
 ├── .gitignore
 ├── package.json
 ├── README.md
-├── release-please-config.json      <- Release-please config
-└── .release-please-manifest.json   <- Release-please manifest
+├── release-please-config.json
+└── .release-please-manifest.json
 ```
 
 ## Steps to add a new Chart
