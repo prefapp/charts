@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/prefapp/charts/compare/aws-web-service-proxified-v1.2.0...aws-web-service-proxified-v1.3.0) (2022-10-17)
+
+
+### Features
+
+* () Change image tags to latest ([#102](https://github.com/prefapp/charts/issues/102)) ([3e126f5](https://github.com/prefapp/charts/commit/3e126f5c052dac51b9122240715e2792dface085))
+
 ## [1.2.0](https://github.com/prefapp/charts/compare/aws-web-service-proxified-v1.1.0...aws-web-service-proxified-v1.2.0) (2022-10-17)
 
 
