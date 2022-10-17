@@ -33,8 +33,8 @@ jobs:
           git config --global user.name ${{ env.git_user }}
           git config --global user.email ${{ env.git_email }}
           git checkout -b ${{ steps.step-branch.outputs.branch }}
-          cd ${{ inputs.package }} && helm package . -d ../docs/${{ inputs.package }}
-          cd ../docs/${{ inputs.package }} && helm repo index .
+          cd charts/${{ inputs.package }} && helm package . -d ../../docs/${{ inputs.package }}
+          cd ../../docs/${{ inputs.package }} && helm repo index .
           git add .
           git commit -m "${{steps.step-commit_message.outputs.commit_message}}"
           git push origin ${{ steps.step-branch.outputs.branch }}

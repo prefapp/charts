@@ -5,10 +5,10 @@
 
     "packages": {
 
-       "aws-web-service": {},
+       "charts/aws-web-service": {},
 
-       "aws-web-service-proxified": {}
+       "charts/aws-web-service-proxified": {}
 
     }
 
-   }
+}

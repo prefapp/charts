@@ -47,20 +47,20 @@ jobs:
             const { PATHS_RELEASED, RELEASES_INFO } = process.env
 
             const releases = JSON.parse(PATHS_RELEASED)
-            
+
             const releasesInfo = JSON.parse(RELEASES_INFO)
-            
+
             const result = []
-            
+
             for(const release of releases){
-            
+
                result.push(
                 {
-                  name: release, 
+                  name: release.split('/')[1],
                   version: releasesInfo[`${release}--version`]
                 }
                )
-            
+
             }
 
             return result

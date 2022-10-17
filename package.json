@@ -9,6 +9,7 @@
     "author": "",
     "license": "ISC",
     "workspaces": [
-      "aws-web-service"
+      "charts/aws-web-service",
+      "charts/aws-web-service-proxified"
     ]
   }

@@ -84,10 +84,11 @@ charts
 
 - Add an initial version to the [manifest](https://github.com/prefapp/charts/blob/master/.release-please-manifest.json)
 
+- Add your chart to the package json workspaces
+
 ## Use conventional commits
 
 - When you commit new changes, start the commit message by the following key words:
   - Increases PATCH ```git commit -m "fix: fixing a bug!"```
   - Increases MINOR ```git commit -m "feat: my chart can render an Ingress now!"```
   - Increases MAYOR ```git commit -m "feat!: my chart is completly new and has breaking changes!"```
-
