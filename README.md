@@ -23,7 +23,7 @@ Generic charts for prefapp services
 
 ## Steps to add a new Chart
 
-- To create a new chart, you should add a new folder in ```charts/<your_chart_name>``
+- To create a new chart, you should add a new folder in ```charts/<your_chart_name>```
 
 - Add your chart templates following the helm standard
 
