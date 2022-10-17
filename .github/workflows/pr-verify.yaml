@@ -11,5 +11,8 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
+      - name: Linting
+        run: npm run lint --workspaces
+
       - name: Test charts
         run: npm run test --workspaces
