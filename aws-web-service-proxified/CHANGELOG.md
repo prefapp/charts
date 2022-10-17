@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.2.0](https://github.com/prefapp/charts/compare/aws-web-service-proxified-v1.1.0...aws-web-service-proxified-v1.2.0) (2022-10-17)
+
+
+### Features
+
+* () Feature/ad chart aws proxified ([#99](https://github.com/prefapp/charts/issues/99)) ([e2e03b0](https://github.com/prefapp/charts/commit/e2e03b0c3f0cee660497f34093e5ef2f8b9ee716))
+* Add chart aws proxified ([#96](https://github.com/prefapp/charts/issues/96)) ([a8572bf](https://github.com/prefapp/charts/commit/a8572bf9c12fea7386aa961eb7aaa4e3763d8584))
+* Test ([#98](https://github.com/prefapp/charts/issues/98)) ([bf94472](https://github.com/prefapp/charts/commit/bf94472a4dcd1f44c35f6854dac1bcb120f4f26f))
+
 ## [1.1.0](https://github.com/prefapp/public-charts/compare/aws-web-service-proxified-v1.0.0...aws-web-service-proxified-v1.1.0) (2022-09-05)
 
 
