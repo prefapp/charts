@@ -7,7 +7,38 @@ entries:
           url: https://github.com/prefapp/charts/issues
     apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-09-05T09:24:30.005780945Z"
+    created: "2022-10-17T07:06:35.589926778Z"
+    description: A Helm chart for Kubernetes to deploy a service proxified via init
+      container with nginx into AWS with alb.
+    digest: 5dc8a13802c3d8d5a06cf932414b8fee5676f4698e47bd21329e24590a49ebc0
+    home: https://github.com/prefapp/charts/tree/master/aws-web-service-proxified
+    icon: https://github.com/prefapp/charts/tree/master/aws-web-service-proxified/icon.png
+    keywords:
+    - service
+    - generic
+    - proxified
+    - nginx
+    - alb
+    - web-service
+    maintainers:
+    - email: gustavo.borragan@prefapp.es
+      name: gustavoborragan
+    - email: charts@prefapp.es
+      name: Info
+    name: aws-web-service-proxified
+    sources:
+    - https://github.com/prefapp/charts/tree/master/aws-web-service-proxified
+    type: application
+    urls:
+    - aws-web-service-proxified-1.2.0.tgz
+    version: 1.2.0
+  - annotations:
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/prefapp/charts/issues
+    apiVersion: v2
+    appVersion: 1.16.0
+    created: "2022-10-17T07:06:35.588513889Z"
     description: A Helm chart for Kubernetes to deploy a service proxified via init
       container with nginx into AWS with alb.
     digest: bad8fa0f1326ef467f3a0dde41d10241dffea2a2afac0338d1de8b3d9a24b322
@@ -38,7 +69,7 @@ entries:
           url: https://github.com/prefapp/charts/issues
     apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-09-05T09:24:30.004286662Z"
+    created: "2022-10-17T07:06:35.587086801Z"
     description: A Helm chart for Kubernetes to deploy a service proxified via init
       container with nginx into AWS with alb.
     digest: f32207bb2974fc2d1d4f6d1085d486ae3ff0ae3d3f2fc4d4a661cb7d493e204a
@@ -63,4 +94,4 @@ entries:
     urls:
     - aws-web-service-proxified-1.0.0.tgz
     version: 1.0.0
-generated: "2022-09-05T09:24:30.00247024Z"
+generated: "2022-10-17T07:06:35.585453413Z"
