@@ -40,4 +40,4 @@ Generic charts for prefapp services
 - When you commit new changes, start the commit message by the following key words:
   - Increases PATCH ```git commit -m "fix: fixing a bug!"```
   - Increases MINOR ```git commit -m "feat: my chart can render an Ingress now!"```
-  - Increases MAYOR ```git commit -m "feat!: my chart is completly new and has breaking changes!"```
+  - Increases MAYOR ```git commit -m "feat!: my chart is completely new and has breaking changes!"```
