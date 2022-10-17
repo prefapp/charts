@@ -27,7 +27,7 @@ Generic charts for prefapp services
 
 - Add your chart templates following the helm standard
 
-- Create another folder in docs/<your_chart_name>
+- Create another folder in ```docs/<your_chart_name>```
 
 - Add your chart to the [configuration](https://github.com/prefapp/charts/blob/master/release-please-config.json)
 
