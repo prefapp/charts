@@ -1,3 +1,6 @@
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/aws-web-service)](https://artifacthub.io/packages/search?repo=aws-web-service)
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/aws-web-service-proxified)](https://artifacthub.io/packages/search?repo=aws-web-service-proxified)
+
 # Charts
 Generic charts for prefapp services
 
