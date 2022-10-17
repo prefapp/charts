@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.34](https://github.com/prefapp/charts/compare/aws-web-service-v0.1.33...aws-web-service-v0.1.34) (2022-10-17)
+
+
+### Bug Fixes
+
+* test ([d0bbe7c](https://github.com/prefapp/charts/commit/d0bbe7ce381fa59f475b6c73b711f2ba4f02cea4))
+
 ## [0.1.33](https://github.com/prefapp/charts/compare/aws-web-service-v0.1.32...aws-web-service-v0.1.33) (2022-10-14)
 
 
