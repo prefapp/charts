@@ -4,7 +4,7 @@
   "description": "a chart",
   "main": "index.js",
   "scripts": {
-    "test": "helm test aws-web-service ."
+    "test": "helm template aws-web-service ."
   },
   "author": "",
   "license": "ISC"

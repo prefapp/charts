@@ -11,8 +11,5 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
-      - name: npm-install
-        run: npm install
-
-      - name: Unit-Test
-        run: npm run test --workspaces 
+      - name: Test charts
+        run: npm run test --workspaces
