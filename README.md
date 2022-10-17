@@ -33,7 +33,7 @@ Generic charts for prefapp services
 
 - Add an initial version to the [manifest](https://github.com/prefapp/charts/blob/master/.release-please-manifest.json)
 
-- Add your chart to the package json workspaces
+- Add your chart to the package.json workspaces
 
 ## Use conventional commits
 
