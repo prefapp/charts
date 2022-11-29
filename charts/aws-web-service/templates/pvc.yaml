@@ -1,0 +1,20 @@
+{{ with .Values.vpc }}
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ $.Release.Name }}-{{ $.Chart.Name }}-pvc
+  labels:
+    app: {{ .Values.deployment.app }}
+  {{ with .Values.vpc.labels }}
+  {{ . | toYaml | nindent 6 }}
+  {{ end }}
+spec:
+  storageClassName: {{ .Values.pvc.storageClass }}
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.pvc.storageSize }}
+
+{{ end }}
