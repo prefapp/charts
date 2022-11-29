@@ -100,9 +100,34 @@ parameterStore:
   #     fileName: myfile.yaml
   dataAsFiles:
 
-
 #
 # Set secret values that will be stored in a Secret artifact and passed
 # to de pods using an envFrom section
 #
 secrets: {}
+
+#
+# Remove comments if you want to create a pv using a pvc you will need to fill in these values.
+#
+pvc:
+  #
+  # You can enter any label you consider necessary
+  #
+  #labels:
+
+  # Remove comment for define the storage class:
+  # storageClass: [ ebs-disk | gcp-disk | azure-disk | azure-file-share |nfs | ...]
+  #
+  #storageClass:
+
+  # 
+  # Remove comment for define the storage capacity in power-of-two equivalents: 
+  # Ei, Pi, Ti, Gi, Mi, Ki. 
+  # You can express storage as a plain integer or as a fixed-point number using one of these suffixes: 
+  # E, P, T, G, M, k.
+  # For example, the following quantities all represent approximately the same value:
+  #    128974848
+  #    129M
+  #    123Mi
+  #
+  #storageSize:
