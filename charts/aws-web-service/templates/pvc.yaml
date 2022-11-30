@@ -1,4 +1,4 @@
-{{ with .Values.vpc }}
+{{ with .Values.pvc }}
 
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -6,7 +6,7 @@ metadata:
   name: {{ $.Release.Name }}-{{ $.Chart.Name }}-pvc
   labels:
     app: {{ .Values.deployment.app }}
-  {{ with .Values.vpc.labels }}
+  {{ with .Values.pvc.labels }}
   {{ . | toYaml | nindent 6 }}
   {{ end }}
 spec:
