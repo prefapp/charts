@@ -140,7 +140,7 @@ spec:
        {{ end }}
 
 
-      {{- if .Values.pvc.enabled }}
+      {{- if .Values.volume.enabled }}
         - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-volume
           persistentVolumeClaim:
             claimName: {{ $.Release.Name }}-{{ $.Chart.Name }}-pvc

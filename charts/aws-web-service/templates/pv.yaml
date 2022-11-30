@@ -1,4 +1,4 @@
-{{- if .Values.pvc.enabled }}
+{{- if .Values.volume.enabled }}
 
 ---
 apiVersion: v1
@@ -7,14 +7,14 @@ metadata:
   name: {{ $.Release.Name }}-{{ $.Chart.Name }}-pv
 spec:
   capacity:
-    storage: {{ .Values.pvc.storageSize }}
+    storage: {{ .Values.volume.storageSize }}
   volumeMode: Filesystem
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: {{ .Values.pvc.storageClass }}
+  storageClassName: {{ .Values.volume.storageClass }}
   csi:
     driver: efs.csi.aws.com
-    volumeHandle: {{ .Values.pvc.efs_id }}
+    volumeHandle: {{ .Values.volume.efs_id }}
 
 {{ end }}

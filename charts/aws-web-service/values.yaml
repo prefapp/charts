@@ -110,7 +110,7 @@ secrets: {}
 # If you want to create a pv using a pvc you will have to: 
 # - Pass the value to "true" of "enable".
 # - Add the values
-pvc:
+volume:
   enabled: false
   #
   # You can enter any label you consider necessary
