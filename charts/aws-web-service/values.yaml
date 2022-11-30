@@ -111,7 +111,7 @@ secrets: {}
 # - Pass the value to "true" of "enable".
 # - Add the values
 volume:
-  enabled: true
+  enabled: false
   #
   # You can enter any label you consider necessary
   # By default, it will have the same deployment
@@ -137,12 +137,12 @@ volume:
   # Sintax: fs-<efsID>::efs-sc
   # Example:
   # efs_id: fs-8af4a940::efs-sc
-  efs_id:
+  efs_id: 
 
   #
   # Example: 
   # mount: /mnt/tools_dev
-  mount: 
+  mount: /var/www/html/
 
   # Value of the permissions given to the point of mounting
   # The command will be this
@@ -152,7 +152,6 @@ volume:
   # Example
   # chown 777
   chown: 
-
   # 
   # Thought in case another command is needed
   # For example, for wordpress need this permissions
