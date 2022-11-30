@@ -144,9 +144,6 @@ spec:
         - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-volume
           persistentVolumeClaim:
             claimName: {{ $.Release.Name }}-{{ $.Chart.Name }}-pvc
-          nfs:
-            server: {{ .Values.pvc.nfs.server }}
-            path: {{ .Values.pvc.nfs.path }}
       {{- end }}
 
 
