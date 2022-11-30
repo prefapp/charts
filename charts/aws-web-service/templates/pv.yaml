@@ -1,0 +1,20 @@
+{{- if .Values.pvc.enabled }}
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ $.Release.Name }}-{{ $.Chart.Name }}-pv
+spec:
+  capacity:
+    storage: {{ .Values.pvc.storageSize }}
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: {{ .Values.pvc.storageClass }}
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: {{ .Values.pvc.efs_id }}
+
+{{ end }}
