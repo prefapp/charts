@@ -10,6 +10,7 @@ metadata:
   {{ . | toYaml | nindent 6 }}
   {{ end }}
 spec:
+  volumeName: {{ $.Release.Name }}-{{ $.Chart.Name }}-volume
   storageClassName: {{ .Values.pvc.storageClass }}
   accessModes:
     - ReadWriteOnce

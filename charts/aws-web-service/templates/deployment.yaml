@@ -72,6 +72,8 @@ spec:
             mountPath: /mnt/parameter-store/parameter-store-volume
             readOnly: true
         {{ end }}
+
+
         {{- with .Values.deployment.volumeMounts }}
         {{ . | toYaml | nindent 8 }}
         {{- end }}
@@ -136,6 +138,18 @@ spec:
             secretName: {{ $key }}-{{$.Release.Name}}-secret-ssm
             optional: false
        {{ end }}
+
+
+      {{- if .Values.pvc.enabled }}
+        - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-volume
+          persistentVolumeClaim:
+            claimName: {{ $.Release.Name }}-{{ $.Chart.Name }}-pvc
+          nfs:
+            server: {{ .Values.pvc.nfs.server }}
+            path: {{ .Values.pvc.nfs.path }}
+      {{- end }}
+
+
       {{ end }}
       {{- with .Values.deployment.volumes }}
       {{ . | toYaml | nindent 8 }}
