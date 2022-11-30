@@ -1,6 +1,4 @@
-{{- if .Values.volume.enabled }}
-
----
+{{ if .Values.volume.enabled }}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -16,5 +14,5 @@ spec:
   csi:
     driver: efs.csi.aws.com
     volumeHandle: {{ .Values.volume.efs_id }}
-
+    
 {{ end }}

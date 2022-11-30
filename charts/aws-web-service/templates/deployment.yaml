@@ -50,8 +50,8 @@ spec:
         {{- end }}
         {{- end }}
         volumeMounts:
-         {{- if .Values.parameterStore.mountAsFile }}
-         {{ range $key, $value := .Values.parameterStore.dataAsFiles }}
+        {{- if .Values.parameterStore.mountAsFile }}
+        {{ range $key, $value := .Values.parameterStore.dataAsFiles }}
           - name: {{ $.Release.Name }}-{{ $key }}-parameter-store-secrets-file
           {{- if $value.mountPathExists | default 0 }}
             mountPath: {{ $value.mountPath }}/{{ $value.fileName }}
@@ -72,11 +72,13 @@ spec:
             mountPath: /mnt/parameter-store/parameter-store-volume
             readOnly: true
         {{ end }}
-
-
         {{- with .Values.deployment.volumeMounts }}
         {{ . | toYaml | nindent 8 }}
         {{- end }}
+        {{ if .Values.volume.enabled }}
+          - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-volume
+            mountPath: {{ .Values.volume.mount }}
+        {{ end }}
         {{ if .Values.maintenance_mode | default 0 }}
         command:
           - tail
@@ -91,6 +93,10 @@ spec:
         {{ else }}
         command:
         {{- end }}
+        {{ if .Values.volume.enabled }}
+        command: ["/bin/sh", "-c", "chmod -R {{ .Values.volume.mount }} {{ .Values.volume.mount }}"]	
+        command: ["/bin/sh", "-c", "{{ .Values.volume.otherCommands }}"]
+        {{- end -}}
         ports:
         - containerPort: {{ .Values.deployment.containerPort }}
         imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
@@ -127,26 +133,22 @@ spec:
             driver: secrets-store.csi.k8s.io
             readOnly: true
             volumeAttributes:
-       {{- if (eq .Values.parameterStore.mountAsFile  false)}}
+      {{- if (eq .Values.parameterStore.mountAsFile  false)}}
               secretProviderClass: {{ .Release.Name }}-{{ .Chart.Name }}-spc-ssm
-       {{ else }}
+      {{ else }}
               secretProviderClass: {{.Release.Name}}-{{.Chart.Name}}-spc-ssm-as-file
-       {{ end }}
-       {{ range $key, $value := .Values.parameterStore.dataAsFiles }}
+      {{ end }}
+      {{ range $key, $value := .Values.parameterStore.dataAsFiles }}
         - name: {{ $.Release.Name }}-{{ $key }}-parameter-store-secrets-file
           secret:
             secretName: {{ $key }}-{{$.Release.Name}}-secret-ssm
             optional: false
-       {{ end }}
-
-
-      {{- if .Values.volume.enabled }}
+      {{ end }}
+      {{ if .Values.volume.enabled }}
         - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-volume
           persistentVolumeClaim:
             claimName: {{ $.Release.Name }}-{{ $.Chart.Name }}-pvc
-      {{- end }}
-
-
+      {{ end }}
       {{ end }}
       {{- with .Values.deployment.volumes }}
       {{ . | toYaml | nindent 8 }}
