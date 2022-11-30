@@ -119,8 +119,8 @@ pvc:
 
   #
   # Remove comment for define the storage class:
-  # storageClass: [ efs-sc  ebs-disk | gcp-disk | azure-disk | azure-file-share |nfs | ...]
-  storageClass: efs-sc
+  # storageClass: [ ebs-disk | gcp-disk | azure-disk | azure-file-share |nfs | ...]
+  storageClass: nfs
 
   # 
   # Remove comment for define the storage capacity in power-of-two equivalents: 
