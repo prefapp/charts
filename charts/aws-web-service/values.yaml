@@ -100,6 +100,7 @@ parameterStore:
   #     fileName: myfile.yaml
   dataAsFiles:
 
+
 #
 # Set secret values that will be stored in a Secret artifact and passed
 # to de pods using an envFrom section
@@ -153,9 +154,13 @@ volume:
   # chown 777
   chown: 
   # 
-  # Thought in case another command is needed
+  # Thought in case another command is needed.
+  # IMPORTANT: Indent correctly
   # For example, for wordpress need this permissions
-  # sudo find . -type d -exec chmod 775 '{}' && \
-  # sudo find . -type f -exec chmod 664 '{}' && \
-  # sudo chmod 664 wp-config.php
-  otherCommand:
+  #   otherCommands:
+  #     sudo find . -type d -exec chmod 775 '{}' && \
+  #     sudo find . -type f -exec chmod 664 '{}' && \
+  #     sudo chmod 664 wp-config.php
+  otherCommands: 
+    sudo find . -type d -exec chmod 775 '{}' &&
+    sudo find . -type f -exec chmod 664 '{}'
