@@ -79,6 +79,7 @@ spec:
           - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-volume
             mountPath: {{ .Values.volume.mount }}
         {{ end }}
+
         {{ if .Values.maintenance_mode | default 0 }}
         command:
           - tail
@@ -94,9 +95,13 @@ spec:
         command:
         {{- end }}
         {{ if .Values.volume.enabled }}
-        command: ["/bin/sh", "-c", "chmod -R {{ .Values.volume.mount }} {{ .Values.volume.mount }}"]	
-        command: ["/bin/sh", "-c", "{{ .Values.volume.otherCommands }}"]
-        {{- end -}}
+        {{ if .Values.volume.chown }}
+        command: ["/bin/sh", "-c", "chmod -R {{ .Values.volume.chown }} {{ .Values.volume.mount }}"]
+        {{ else }}
+        command: ["/bin/sh", "-c", " {{ .Values.volume.otherCommands }} "]
+        {{ end }}
+        {{ end }}
+        
         ports:
         - containerPort: {{ .Values.deployment.containerPort }}
         imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
