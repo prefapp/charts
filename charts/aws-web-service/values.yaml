@@ -145,22 +145,10 @@ volume:
   # mount: /mnt/tools_dev
   mount: /var/www/html/
 
-  # Value of the permissions given to the point of mounting
-  # The command will be this
-  #      chmod -R {{ .Values.volume.mount }} {{ .Values.volume.mount }}
-  # Therefore, this value must be one of the common ones.
-  #      chmod 777, chmod 644, chmod 755, chmod 700, chmod 666
-  # Example
-  # chown 777
-  chown: 
+  #
+  # securityContext 
+  # https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+  # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#securitycontext-v1-core
   # 
-  # Thought in case another command is needed.
-  # IMPORTANT: Indent correctly
-  # For example, for wordpress need this permissions
-  #   otherCommands:
-  #     sudo find . -type d -exec chmod 775 '{}' && \
-  #     sudo find . -type f -exec chmod 664 '{}' && \
-  #     sudo chmod 664 wp-config.php
-  otherCommands: 
-    sudo find . -type d -exec chmod 775 '{}' &&
-    sudo find . -type f -exec chmod 664 '{}'
+  runAsGroup: 0
+  runAsUser: 1000140000
