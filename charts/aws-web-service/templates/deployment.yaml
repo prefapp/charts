@@ -145,11 +145,11 @@ spec:
             secretName: {{ $key }}-{{$.Release.Name}}-secret-ssm
             optional: false
       {{ end }}
+      {{ end }}
       {{ if .Values.volume.enabled }}
         - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-volume
           persistentVolumeClaim:
             claimName: {{ $.Release.Name }}-{{ $.Chart.Name }}-pvc
-      {{ end }}
       {{ end }}
       {{- with .Values.deployment.volumes }}
       {{ . | toYaml | nindent 8 }}

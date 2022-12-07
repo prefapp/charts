@@ -147,8 +147,16 @@ volume:
 
   #
   # securityContext 
+  # The GID and UID to run the entrypoint of the container process.
+  # Uses runtime default if unset.
+  # If set the value specified in SecurityContext takes precedence.
   # https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
   # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#securitycontext-v1-core
   # 
   runAsGroup: 0
   runAsUser: 1000140000
+
+  #
+  #
+  # Add storage permissions
+  directoryPerms: "700"
