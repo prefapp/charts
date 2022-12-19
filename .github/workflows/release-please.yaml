@@ -15,7 +15,7 @@ jobs:
         id: release
         with:
           command: manifest
-          token: ${{secrets.RELEASE_PLEASE_TOKEN}}
+          token: ${{secrets.GITHUB_TOKEN}}
           default-branch: master
 
       - run: echo $JSON
