@@ -10,7 +10,7 @@ helm repo add prefapp https://prefapp.github.io/charts/aws-web-service
 helm repo update
 ```
 
-## Requirements 
+## Requirements
 
 ### AWS Parameter Store
 
@@ -108,7 +108,15 @@ If you want to use AWS Application Load Balancer, first you have to deploy the [
 | service.port                      | Service port and targetPort unified                                                                                                                                                                     | number  | 80                               |
 | service.labels                    | Common labels for service                                                                                                                                                                               | {}      | {}                               |
 | secrets                           | If you don´t use Parameter Store, you can add your own secrets                                                                                                                                          | {}      | {}                               |
-| webService.image                  | Your Docker Image                                                                                                                                                                                       | string  |   stefanprodan/podinfo            |
+| volume.directoryPerms             | Add storage permissions                                                                                                                                                                                 | string  | ""                               |
+| volume.efs_id                     | For add the `volumeHandle`. Must be the same value as in StorageClass of the pod you want to link to.                                                                                                   | string  | efs-sc                           |
+| volume.enabled                    | Enables/Disables the volume (EFS). If the volumes are enabled, the remaining values are required.                                                                                                       | boolean | true                             |
+| volume.labels                     | Common labels for pvc                                                                                                                                                                                   | {}      | {}                               |
+| volume.mount                      | Mount point for `mountPath`.                                                                                                                                                                            | string  | ""                               |
+| volume.runAsGroup                 | The GID to run the entrypoint of the container process. Uses runtime default if unset. If set the value specified in SecurityContext takes precedence.                                                  | string  | ""                               |
+| volume.runAsUser                  | The UID to run the entrypoint of the container process. Uses runtime default if unset. If set the value specified in SecurityContext takes precedence.                                                  | string  | ""                               |
+| volume.storageSize                | Define the storage capacity in  Ei, Pi, Ti, Gi, Mi, Ki or  E, P, T, G, M, k                                                                                                                             | string  | ""                               |
+| webService.image                  | Your Docker Image                                                                                                                                                                                       | string  |   stefanprodan/podinfo           |
 
 ## License
 
