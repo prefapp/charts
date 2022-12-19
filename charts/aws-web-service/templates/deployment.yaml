@@ -76,7 +76,7 @@ spec:
         {{ . | toYaml | nindent 8 }}
         {{- end }}
         {{ if .Values.volume.enabled }}
-          - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-volume
+          - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-pv
             mountPath: {{ .Values.volume.mount }}
         securityContext:
           runAsGroup: {{ .Values.volume.runAsGroup }}
@@ -97,7 +97,7 @@ spec:
         {{ else }}
         command:
         {{- end }}
-                
+
         ports:
         - containerPort: {{ .Values.deployment.containerPort }}
         imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
@@ -147,7 +147,7 @@ spec:
       {{ end }}
       {{ end }}
       {{ if .Values.volume.enabled }}
-        - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-volume
+        - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-pv
           persistentVolumeClaim:
             claimName: {{ $.Release.Name }}-{{ $.Chart.Name }}-pvc
       {{ end }}

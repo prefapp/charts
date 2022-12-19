@@ -1,5 +1,4 @@
 {{ if .Values.volume.enabled }}
-
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -10,12 +9,11 @@ metadata:
   {{ . | toYaml | nindent 6 }}
   {{ end }}
 spec:
-  volumeName: {{ $.Release.Name }}-{{ $.Chart.Name }}-volume
-  storageClassName: {{ .Values.volume.storageClass }}
+  volumeName: {{ $.Release.Name }}-{{ $.Chart.Name }}-pv
+  storageClassName: ""
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: {{ .Values.volume.storageSize }}
-
 {{ end }}

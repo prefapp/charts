@@ -10,7 +10,7 @@ helm repo add prefapp https://prefapp.github.io/charts/aws-web-service
 helm repo update
 ```
 
-## Requirements 
+## Requirements
 
 ### AWS Parameter Store
 
@@ -115,7 +115,6 @@ If you want to use AWS Application Load Balancer, first you have to deploy the [
 | volume.mount                      | Mount point for `mountPath`.                                                                                                                                                                            | string  | ""                               |
 | volume.runAsGroup                 | The GID to run the entrypoint of the container process. Uses runtime default if unset. If set the value specified in SecurityContext takes precedence.                                                  | string  | ""                               |
 | volume.runAsUser                  | The UID to run the entrypoint of the container process. Uses runtime default if unset. If set the value specified in SecurityContext takes precedence.                                                  | string  | ""                               |
-| volume.storageClass               | Define the storage class: `[ efs-sc, ebs-disk, gcp-disk, azure-disk, azure-file-share,nfs...]`                                                                                                          | string  | efs-sc                           |
 | volume.storageSize                | Define the storage capacity in  Ei, Pi, Ti, Gi, Mi, Ki or  E, P, T, G, M, k                                                                                                                             | string  | ""                               |
 | webService.image                  | Your Docker Image                                                                                                                                                                                       | string  |   stefanprodan/podinfo           |
 

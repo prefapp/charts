@@ -108,7 +108,7 @@ parameterStore:
 secrets: {}
 
 #
-# If you want to create a pv using a pvc you will have to: 
+# If you want to create a pv using a pvc you will have to:
 # - Pass the value to "true" of "enable".
 # - Add the values
 volume:
@@ -119,40 +119,35 @@ volume:
   labels:
 
   #
-  # Remove comment for define the storage class:
-  # storageClass: [ ebs-disk | gcp-disk | azure-disk | azure-file-share |nfs | ...]
-  storageClass: efs-sc
-
-  # 
-  # Remove comment for define the storage capacity in power-of-two equivalents: 
-  # Ei, Pi, Ti, Gi, Mi, Ki. 
-  # You can express storage as a plain integer or as a fixed-point number using one of these suffixes: 
+  # Remove comment for define the storage capacity in power-of-two equivalents:
+  # Ei, Pi, Ti, Gi, Mi, Ki.
+  # You can express storage as a plain integer or as a fixed-point number using one of these suffixes:
   # E, P, T, G, M, k.
   # For example, the following quantities all represent approximately the same value:
   #    128974848
   #    129M
   #    123Mi
-  storageSize: 
+  storageSize:
 
   #
   # Sintax: fs-<efsID>::efs-sc
   # Example:
   # efs_id: fs-8af4a940::efs-sc
-  efs_id: 
+  efs_id:
 
   #
-  # Example: 
+  # Example:
   # mount: /mnt/tools_dev
   mount: /var/www/html/
 
   #
-  # securityContext 
+  # securityContext
   # The GID and UID to run the entrypoint of the container process.
   # Uses runtime default if unset.
   # If set the value specified in SecurityContext takes precedence.
   # https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
   # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#securitycontext-v1-core
-  # 
+  #
   runAsGroup: 0
   runAsUser: 1000140000
 
