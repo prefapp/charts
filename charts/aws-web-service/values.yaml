@@ -130,9 +130,9 @@ volume:
   storageSize:
 
   #
-  # Sintax: fs-<efsID>::efs-sc
+  # Sintax: fs-<efsID>
   # Example:
-  # efs_id: fs-8af4a940::efs-sc
+  # efs_id: fs-8af4a940:
   efs_id:
 
   #
