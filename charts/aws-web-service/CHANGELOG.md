@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/prefapp/charts/compare/aws-web-service-v0.1.35...aws-web-service-v0.2.0) (2022-12-19)
+
+
+### Features
+
+* add pvc template ([#120](https://github.com/prefapp/charts/issues/120)) ([04b073a](https://github.com/prefapp/charts/commit/04b073a4ec19149ce1ef8d74f5b279b70d22b38d))
+
 ## [0.1.35](https://github.com/prefapp/charts/compare/aws-web-service-v0.1.34...aws-web-service-v0.1.35) (2022-10-17)
 
 
