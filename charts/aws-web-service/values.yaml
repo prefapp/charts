@@ -150,8 +150,3 @@ volume:
   #
   runAsGroup: 0
   runAsUser: 1000140000
-
-  #
-  #
-  # Add storage permissions
-  directoryPerms: "700"
