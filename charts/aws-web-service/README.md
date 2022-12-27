@@ -73,6 +73,10 @@ resource "aws_iam_role_policy_attachment" "iam_role_parameter_store_attachment" 
 
 If you want to use AWS Application Load Balancer, first you have to deploy the [official ALB chart](https://artifacthub.io/packages/helm/aws/aws-load-balancer-controller).
 
+### AWS Storage
+
+Enabling the `volume.enabled` flag will enable the options to add a volume. The Chart has the necessary values prepared to link an AWS EFS but you can also connect other types of storage.
+
 ## Values
 
 | Name                              | Description                                                                                                                                                                                             | Type    | Default                          |
@@ -108,7 +112,6 @@ If you want to use AWS Application Load Balancer, first you have to deploy the [
 | service.port                      | Service port and targetPort unified                                                                                                                                                                     | number  | 80                               |
 | service.labels                    | Common labels for service                                                                                                                                                                               | {}      | {}                               |
 | secrets                           | If you don´t use Parameter Store, you can add your own secrets                                                                                                                                          | {}      | {}                               |
-| volume.directoryPerms             | Add storage permissions                                                                                                                                                                                 | string  | ""                               |
 | volume.efs_id                     | For add the `volumeHandle`. Must be the same value as in StorageClass of the pod you want to link to.                                                                                                   | string  | efs-sc                           |
 | volume.enabled                    | Enables/Disables the volume (EFS). If the volumes are enabled, the remaining values are required.                                                                                                       | boolean | true                             |
 | volume.labels                     | Common labels for pvc                                                                                                                                                                                   | {}      | {}                               |
