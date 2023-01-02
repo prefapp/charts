@@ -20,6 +20,19 @@ deployment:
   replicas: 1
   containerPort: 80
   command: {} # Normal command
+  #
+  # Resources limits and requests.
+  # This are the default values.
+  # The values are in millicores and megabytes.
+  # This values are required to run the pod.
+  #
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
   entrypointFile: # Command mounted as entrypoint with special values
   #
   # Enables the node selector.
