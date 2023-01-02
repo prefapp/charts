@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/prefapp/charts/compare/aws-web-service-v0.2.0...aws-web-service-v0.3.0) (2023-01-02)
+
+
+### Features
+
+* Feature/add limits and requests ([#124](https://github.com/prefapp/charts/issues/124)) ([2e1d5f4](https://github.com/prefapp/charts/commit/2e1d5f4654923c85f43fa3df184cd09b7034483f))
+
 ## [0.2.0](https://github.com/prefapp/charts/compare/aws-web-service-v0.1.35...aws-web-service-v0.2.0) (2022-12-19)
 
 
