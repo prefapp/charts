@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/prefapp/charts/compare/aws-web-service-v0.3.0...aws-web-service-v0.3.1) (2023-01-11)
+
+
+### Bug Fixes
+
+* default-parameter-store-availability ([#128](https://github.com/prefapp/charts/issues/128)) ([9cfcc4b](https://github.com/prefapp/charts/commit/9cfcc4bddc477c4a188e6e2b7e3aded97f83a052))
+
 ## [0.3.0](https://github.com/prefapp/charts/compare/aws-web-service-v0.2.0...aws-web-service-v0.3.0) (2023-01-02)
 
 
