@@ -16,9 +16,9 @@ webService:
 maintenance_mode: false # The value to true launches the command for maintenance action and cancels the standard command and the entrypointFile
 
 deployment:
-  app:
+  app: example
   replicas: 1
-  containerPort: 80
+  containerPort: 9898
   command: {} # Normal command
   #
   # Resources limits and requests.
