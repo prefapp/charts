@@ -74,7 +74,7 @@ parameterStore:
   # Link here: https://artifacthub.io/packages/helm/aws/csi-secrets-store-provider-aws
   # Besides that, you have to create a new policy and a role for the service account to provide the secrets to the pods.
   #
-  enabled: true
+  enabled: false
 
   #
   # If you want to mount your secret as a file, set this value to true.
