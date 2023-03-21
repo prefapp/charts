@@ -1,0 +1,24 @@
+{{- if .Values.services -}}
+{{- range $key, $value := .Values.services }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-{{ .Chart.Name }}-{{ $value.name }}
+  labels:
+  {{ with $values.service.labels }}
+  {{ . | toYaml | nindent 6 }}
+  {{ end }}
+spec:
+  type: {{ $value.service.type }}
+  selector:
+    app: {{ .Release.Name }}
+    chart: {{ .Chart.Name }}
+  ports:
+  {{ - range $key, $value := $value.ports }}
+  - name: {{ $value.name }}
+    port: {{ $value.port }}
+    targetPort: {{ $value.targetPort }}
+    protocol: {{ $value.protocol }}
+  {{- end }}
+{{- end }}
+{{- end }}

@@ -1,0 +1,163 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
+  labels:
+    app: {{ .Values.deployment.app }}
+  annotations:
+  {{ with .Values.deployment.annotations }}
+  {{ . | toYaml | nindent 4 }}
+  {{ end }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+      chart: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+        chart: {{ .Chart.Name }}
+    spec:
+      {{- if .Values.deployment.nodeSelector.enabled }}
+      nodeSelector:
+      {{- with .Values.deployment.nodeSelector.labels }}
+      {{ . | toYaml | nindent 10 }}
+      {{- end }}
+      {{- end }}
+      containers:
+      - name: {{ .Values.deployment.app }}
+        image: {{ .Values.webService.image }}
+        resources:
+          limits:
+            cpu: {{ .Values.deployment.resources.limits.cpu }}
+            memory: {{ .Values.deployment.resources.limits.memory }}
+          requests:
+            cpu: {{ .Values.deployment.resources.requests.cpu }}
+            memory: {{ .Values.deployment.resources.requests.memory }}
+        {{- if eq .Values.maintenance_mode false }}
+        {{- if .Values.deployment.livenessProbe }}
+        livenessProbe:
+        {{- with .Values.deployment.livenessProbe }}
+        {{ . | toYaml | nindent 10 }}
+        {{- end }}
+        {{- end }}
+        {{- if .Values.deployment.readinessProbe }}
+        readinessProbe:
+        {{- with .Values.deployment.readinessProbe }}
+        {{ . | toYaml | nindent 10 }}
+        {{- end }}
+        {{- end }}
+        {{- if .Values.deployment.startupProbe }}
+        startupProbe:
+        {{- with .Values.deployment.startupProbe }}
+        {{ . | toYaml | nindent 10 }}
+        {{- end }}
+        {{- end }}
+        {{- end }}
+        volumeMounts:
+        {{- if .Values.parameterStore.mountAsFile }}
+        {{ range $key, $value := .Values.parameterStore.dataAsFiles }}
+          - name: {{ $.Release.Name }}-{{ $key }}-parameter-store-secrets-file
+          {{- if $value.mountPathExists | default 0 }}
+            mountPath: {{ $value.mountPath }}/{{ $value.fileName }}
+            subPath: {{ $value.fileName }}
+          {{- else }}
+            mountPath: {{ $value.mountPath }}
+          {{- end }}
+            readOnly: true
+        {{ end }}
+        {{ end }}
+        {{ with .Values.deployment.entrypointFile }}
+          - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-command
+            mountPath: /entrypoint
+            readOnly: true
+        {{ end }}
+        {{- if .Values.parameterStore.enabled }}
+          - name: parameter-store-volume
+            mountPath: /mnt/parameter-store/parameter-store-volume
+            readOnly: true
+        {{ end }}
+        {{- with .Values.deployment.volumeMounts }}
+        {{ . | toYaml | nindent 8 }}
+        {{- end }}
+        {{ if .Values.volume.enabled }}
+          - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-pv
+            mountPath: {{ .Values.volume.mount }}
+        securityContext:
+          runAsGroup: {{ .Values.volume.runAsGroup }}
+          runAsUser: {{ .Values.volume.runAsUser }}
+        {{ end }}
+
+        {{ if .Values.maintenance_mode | default 0 }}
+        command:
+          - tail
+          - -f
+          - /dev/null
+        {{- else if .Values.deployment.command }}
+        command: {{ .Values.deployment.command | toYaml | nindent 8 }}
+        {{- else if .Values.deployment.entrypointFile}}
+        command:
+          - "sh"
+          - "/entrypoint/entrypoint.sh"
+        {{ else }}
+        command:
+        {{- end }}
+
+        ports:
+        - containerPort: {{ .Values.deployment.containerPort }}
+        imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
+        envFrom:
+        {{- if and .Values.parameterStore.enabled (eq .Values.parameterStore.mountAsFile false) }}
+          - secretRef:
+              name: {{ .Release.Name }}-secret-ssm
+        {{ end }}
+        {{ with .Values.secrets }}
+          - secretRef:
+              name: {{ $.Release.Name }}-{{ $.Chart.Name }}
+        {{ end }}
+        {{ with .Values.configmap }}
+          - configMapRef:
+              name: {{ $.Release.Name }}-{{ $.Chart.Name }}
+        {{ end }}
+        {{ with .Values.deployment.entrypointFile }}
+          - configMapRef:
+              name: {{ $.Release.Name }}-{{ $.Chart.Name }}-command
+        {{ end }}
+      {{- if .Values.parameterStore.enabled }}
+      serviceAccount: {{ .Values.parameterStore.secrets_scm_sa }}
+      serviceAccountName: {{ .Values.parameterStore.secrets_scm_sa }}
+      {{- end }}
+      volumes:
+      {{ with .Values.deployment.entrypointFile }}
+        - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-command
+          configMap:
+            name: {{ $.Release.Name }}-{{ $.Chart.Name }}-command
+      {{ end }}
+      {{- if .Values.parameterStore.enabled }}
+        - name: parameter-store-volume
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+      {{- if (eq .Values.parameterStore.mountAsFile  false)}}
+              secretProviderClass: {{ .Release.Name }}-{{ .Chart.Name }}-spc-ssm
+      {{ else }}
+              secretProviderClass: {{.Release.Name}}-{{.Chart.Name}}-spc-ssm-as-file
+      {{ end }}
+      {{ range $key, $value := .Values.parameterStore.dataAsFiles }}
+        - name: {{ $.Release.Name }}-{{ $key }}-parameter-store-secrets-file
+          secret:
+            secretName: {{ $key }}-{{$.Release.Name}}-secret-ssm
+            optional: false
+      {{ end }}
+      {{ end }}
+      {{ if .Values.volume.enabled }}
+        - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-pv
+          persistentVolumeClaim:
+            claimName: {{ $.Release.Name }}-{{ $.Chart.Name }}-pvc
+      {{ end }}
+      {{- with .Values.deployment.volumes }}
+      {{ . | toYaml | nindent 8 }}
+      {{- end }}
