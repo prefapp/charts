@@ -80,7 +80,7 @@ spec:
             readOnly: true
         {{ end }}
         {{- with .Values.deployment.volumeMounts }}
-        {{ . | toYaml | nindent 8 }}
+        {{ . | toYaml | nindent 10 }}
         {{- end }}
         {{ if .Values.volume.enabled }}
           - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-pv
