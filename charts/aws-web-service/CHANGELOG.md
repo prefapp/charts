@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.3](https://github.com/prefapp/charts/compare/aws-web-service-v0.3.2...aws-web-service-v0.3.3) (2023-03-23)
+
+
+### Bug Fixes
+
+* Fix/identation ([#138](https://github.com/prefapp/charts/issues/138)) ([ea88ecf](https://github.com/prefapp/charts/commit/ea88ecf227e1bb86d47c8a8e625466e679a8fdd3))
+
 ## [0.3.2](https://github.com/prefapp/charts/compare/aws-web-service-v0.3.1...aws-web-service-v0.3.2) (2023-01-11)
 
 
