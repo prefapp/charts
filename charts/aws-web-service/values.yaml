@@ -162,4 +162,4 @@ volume:
   # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#securitycontext-v1-core
   #
   runAsGroup: 0
-  runAsUser: 1000140000
+  runAsUser: 1001
