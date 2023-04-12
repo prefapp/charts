@@ -5,14 +5,13 @@ metadata:
   name: {{ $.Release.Name }}-{{ $.Chart.Name }}-pvc
   labels:
     app: {{ .Values.deployment.app }}
-  {{ with .Values.volume.labels }}
-  {{ . | toYaml | nindent 6 }}
-  {{ end }}
+    chart: {{ .Chart.Name }}
+    env: {{ .Release.Namespace}}
 spec:
   volumeName: {{ $.Release.Name }}-{{ $.Chart.Name }}-pv
   storageClassName: ""
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: {{ .Values.volume.storageSize }}

@@ -3,12 +3,16 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: {{ $.Release.Name }}-{{ $.Chart.Name }}-pv
+  labels:
+    app: {{ .Values.deployment.app }}
+    chart: {{ .Chart.Name }}
+    env: {{ .Release.Namespace}}
 spec:
   capacity:
     storage: {{ .Values.volume.storageSize }}
   volumeMode: Filesystem
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: efs.csi.aws.com

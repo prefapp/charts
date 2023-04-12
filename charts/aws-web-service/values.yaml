@@ -126,10 +126,6 @@ secrets: {}
 # - Add the values
 volume:
   enabled: false
-  #
-  # You can enter any label you consider necessary
-  # By default, it will have the same deployment
-  labels:
 
   #
   # Remove comment for define the storage capacity in power-of-two equivalents:
@@ -140,7 +136,7 @@ volume:
   #    128974848
   #    129M
   #    123Mi
-  storageSize:
+  storageSize: 1Gi
 
   #
   # Sintax: fs-<efsID>
@@ -162,4 +158,4 @@ volume:
   # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#securitycontext-v1-core
   #
   runAsGroup: 0
-  runAsUser: 1000140000
+  runAsUser: 1001
