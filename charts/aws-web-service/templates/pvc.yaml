@@ -11,7 +11,7 @@ spec:
   volumeName: {{ $.Release.Name }}-{{ $.Chart.Name }}-pv
   storageClassName: ""
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: {{ .Values.volume.storageSize }}
