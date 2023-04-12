@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.4](https://github.com/prefapp/charts/compare/aws-web-service-v0.3.3...aws-web-service-v0.3.4) (2023-04-12)
+
+
+### Bug Fixes
+
+* Fix errors in volumes of aws-web-service Chart ([#141](https://github.com/prefapp/charts/issues/141)) ([c4c6cc5](https://github.com/prefapp/charts/commit/c4c6cc59a9a1ac5df7d13d474b38d563640971e4))
+
 ## [0.3.3](https://github.com/prefapp/charts/compare/aws-web-service-v0.3.2...aws-web-service-v0.3.3) (2023-03-23)
 
 
