@@ -144,6 +144,9 @@ volume:
   # efs_id: fs-8af4a940:
   efs_id:
 
+  # Storage class name  (default: efs-sc)
+  storageClass: efs-sc
+
   #
   # Example:
   # mount: /mnt/tools_dev
