@@ -9,7 +9,8 @@ metadata:
     env: {{ .Release.Namespace}}
 spec:
   volumeName: {{ $.Release.Name }}-{{ $.Chart.Name }}-pv
-  storageClassName: ""
+  storageClassName: {{ .Values.volume.storageClass }}
+  volumeMode: Filesystem
   accessModes:
     - ReadWriteMany
   resources:
