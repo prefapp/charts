@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.5](https://github.com/prefapp/charts/compare/aws-web-service-v0.3.4...aws-web-service-v0.3.5) (2023-04-14)
+
+
+### Bug Fixes
+
+* Add storageClassName ([#145](https://github.com/prefapp/charts/issues/145)) ([49d29ef](https://github.com/prefapp/charts/commit/49d29ef7d7f121d6d4e5dc934e2cb648864c1271))
+
 ## [0.3.4](https://github.com/prefapp/charts/compare/aws-web-service-v0.3.3...aws-web-service-v0.3.4) (2023-04-12)
 
 
