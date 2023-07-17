@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/prefapp/charts/compare/aws-web-service-v0.3.5...aws-web-service-v0.4.0) (2023-07-17)
+
+
+### Features
+
+* [aws-web-service] CPU Limits not mandatory ([#148](https://github.com/prefapp/charts/issues/148)) ([8301773](https://github.com/prefapp/charts/commit/830177379f9dbfd6e1acd6f39608d8f004263242))
+
 ## [0.3.5](https://github.com/prefapp/charts/compare/aws-web-service-v0.3.4...aws-web-service-v0.3.5) (2023-04-14)
 
 
