@@ -10,10 +10,11 @@ Generic charts for prefapp services
 ├── charts
 │   ├── aws-web-service
 │   └── aws-web-service-proxified
-|   
+│   └── datadog_helpers
 ├── docs
 │   ├── aws-web-service
 │   └── aws-web-service-proxified
+│   └── datadog_helpers
 ├── .github
 │   └── workflows
 ├── .gitignore
