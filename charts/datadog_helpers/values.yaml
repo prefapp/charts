@@ -1,0 +1,29 @@
+# Datadog configuration
+datadog:
+
+  # Enable or disable apm
+  apm:
+
+    # Enable or disable apm
+    active: false # (true|false) | default: false
+
+    # Enable inject library by init container
+    inject_library:
+      # Set a language to inject the APM libraries
+      language: "js" # (js|python|ruby) | default: js
+
+      # Version library to inject libraries according to the language
+      version: "v4.0.0" # (js: v4.0.0 | python: v1.15.0 | ruby: v1.12.1) | default: v4.0.0
+
+    # Enable or disable profiling
+    profiler: false # (true|false) | default: false
+
+    # Enable or disable correlate logs
+    correlate_logs: true # (true|false) | default: true
+
+    # Enable or disable trace sample rate to only keep traces relevant to your business and your observability
+    trace_sample_rate:
+      active: false # (true|false) | default: false
+
+      # Set the sample rate for traces
+      rate: 1 # (0.0-1.0) | default: 1

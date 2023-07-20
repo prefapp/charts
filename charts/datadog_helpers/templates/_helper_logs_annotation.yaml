@@ -1,0 +1,31 @@
+{{- define "helper.datadog.logs_annotation" -}}
+
+{{/*
+Inject the environment environment variables DD_ADMISSION_CONTROLLER_MUTATE_UNLABELLED for the admission controller
+https://docs.datadoghq.com/containers/cluster_agent/admission_controller/?tab=helm#apm-and-dogstatsd
+*/}}
+
+{{ $env := .Release.Namespace | splitList "-" | last }}
+{{ $service := .Chart.Name }}
+{{ $version := .Values.image | splitList ":" | last }}
+{{ $dc := .Values.global.datacenter }}
+
+ad.datadoghq.com/{{ .Release.Name }}-{{ .Chart.Name }}.logs: |
+  "
+    [
+      {
+        'source':'{{ .Release.Name }}-{{ .Chart.Name }}',
+        'service':'{{ .Chart.Name }}'
+      }
+    ]
+  "
+ad.datadoghq.com/tags: |
+  "
+    {
+      'env': '{{ $env }}',
+      'service': '{{ $service}}',
+      'version': '{{ $version }}',
+      'datacenter': '{{ $dc }}'
+    }
+  "
+{{- end -}}
