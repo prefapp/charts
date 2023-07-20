@@ -18,6 +18,8 @@ keywords:
   - library
   - generic
   - apm
+  - profiler
+  - profiling
   - labels
 sources:
   - >-
