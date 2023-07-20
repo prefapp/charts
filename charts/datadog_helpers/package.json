@@ -4,7 +4,7 @@
   "description": "Library to help with Datadog integration",
   "main": "index.js",
   "scripts": {
-    "test": "helm template datadog_helpe",
+    "test": "helm template datadog_helpe .",
     "lint": "helm lint"
   },
   "author": "",
