@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/prefapp/charts/compare/aws-web-service-v0.5.0...aws-web-service-v0.5.1) (2023-07-31)
+
+
+### Bug Fixes
+
+* rendering level of imagePullSecrets ([#159](https://github.com/prefapp/charts/issues/159)) ([831d697](https://github.com/prefapp/charts/commit/831d697d02238b4edf4b3f960dc02d9bb90433b4))
+
 ## [0.5.0](https://github.com/prefapp/charts/compare/aws-web-service-v0.4.0...aws-web-service-v0.5.0) (2023-07-31)
 
 
