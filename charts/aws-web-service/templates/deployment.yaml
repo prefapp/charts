@@ -31,7 +31,9 @@ spec:
         image: {{ .Values.webService.image }}
         resources:
           limits:
+            {{- if .Values.deployment.resources.limits.cpu }}
             cpu: {{ .Values.deployment.resources.limits.cpu }}
+            {{- end }}
             memory: {{ .Values.deployment.resources.limits.memory }}
           requests:
             cpu: {{ .Values.deployment.resources.requests.cpu }}
