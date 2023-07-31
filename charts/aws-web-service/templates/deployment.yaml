@@ -110,9 +110,6 @@ spec:
         ports:
         - containerPort: {{ .Values.deployment.containerPort }}
         imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
-        {{- with .Values.deployment.imagePullSecrets }}
-        imagePullSecrets: {{ . | toYaml | nindent 8 }}
-        {{- end }}
         envFrom:
         {{- if and .Values.parameterStore.enabled (eq .Values.parameterStore.mountAsFile false) }}
           - secretRef:
@@ -130,6 +127,9 @@ spec:
           - configMapRef:
               name: {{ $.Release.Name }}-{{ $.Chart.Name }}-command
         {{ end }}
+      {{- with .Values.deployment.imagePullSecrets }}
+      imagePullSecrets: {{ . | toYaml | nindent 6 }}
+      {{- end }}
       {{- if .Values.parameterStore.enabled }}
       serviceAccount: {{ .Values.parameterStore.secrets_scm_sa }}
       serviceAccountName: {{ .Values.parameterStore.secrets_scm_sa }}
