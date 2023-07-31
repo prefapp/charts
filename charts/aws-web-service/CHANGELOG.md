@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/prefapp/charts/compare/aws-web-service-v0.4.0...aws-web-service-v0.5.0) (2023-07-31)
+
+
+### Features
+
+* add support imagePullSecrets ([#155](https://github.com/prefapp/charts/issues/155)) ([01059d6](https://github.com/prefapp/charts/commit/01059d64af23415a68ee379b2f5ccea5f032e036))
+
 ## [0.4.0](https://github.com/prefapp/charts/compare/aws-web-service-v0.3.5...aws-web-service-v0.4.0) (2023-07-17)
 
 
