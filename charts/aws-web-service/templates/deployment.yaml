@@ -110,6 +110,9 @@ spec:
         ports:
         - containerPort: {{ .Values.deployment.containerPort }}
         imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
+        {{- with .Values.deployment.imagePullSecrets }}
+        imagePullSecrets: {{ . | toYaml | nindent 8 }}
+        {{- end }}
         envFrom:
         {{- if and .Values.parameterStore.enabled (eq .Values.parameterStore.mountAsFile false) }}
           - secretRef:

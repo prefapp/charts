@@ -45,6 +45,8 @@ deployment:
   nodeSelector:
     enabled: false
     labels:
+  # imagePullSecrets:
+  #   - name: dockerconfigjson-github-com
 
 service:
   labels:
