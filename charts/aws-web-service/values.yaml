@@ -45,15 +45,14 @@ deployment:
   nodeSelector:
     enabled: false
     labels:
-  #imagePullSecrets:
-  #  - name: dockerconfigjson-github-com
+  # imagePullSecrets:
+  #   - name: dockerconfigjson-github-com
 
 service:
   labels:
   type:
   #Your app port
   port: 80
-
 
 ingress:
   enabled: false
@@ -87,7 +86,6 @@ parameterStore:
   # Once you use mountAsFile, you need a path for your file
   #
 
-
   #
   # Parameters use to be separated by a dot, slash... so you can modify this splitter depeding on the format of your parameters in AWS.
   #
@@ -114,7 +112,6 @@ parameterStore:
   #     mountPath: /my/parameter/mount
   #     fileName: myfile.yaml
   dataAsFiles:
-
 
 #
 # Set secret values that will be stored in a Secret artifact and passed

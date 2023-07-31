@@ -108,11 +108,8 @@ spec:
         ports:
         - containerPort: {{ .Values.deployment.containerPort }}
         imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
-        {{- if .Values.deployment.imagePullSecrets }}
-        imagePullSecrets:
         {{- with .Values.deployment.imagePullSecrets }}
-        {{ . | toYaml | nindent 8 }}
-        {{- end }}
+        imagePullSecrets: {{ . | toYaml | nindent 8 }}
         {{- end }}
         envFrom:
         {{- if and .Values.parameterStore.enabled (eq .Values.parameterStore.mountAsFile false) }}
