@@ -19,6 +19,9 @@ spec:
       labels:
         app: {{ .Release.Name }}
         chart: {{ .Chart.Name }}
+        {{- with .Values.deployment.additionalLabels }}
+        {{ . | toYaml | nindent 8 }}
+        {{- end }}
     spec:
       {{- if .Values.deployment.nodeSelector.enabled }}
       nodeSelector:
