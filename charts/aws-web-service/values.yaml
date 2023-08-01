@@ -20,6 +20,14 @@ deployment:
   replicas: 1
   containerPort: 9898
   command: {} # Normal command
+
+  #
+  # Additional labels for the deployment
+  #
+  # additionalLabels:
+  #   environment: staging
+  #   region: eu-west-1
+
   #
   # Resources limits and requests.
   # This are the default values.
