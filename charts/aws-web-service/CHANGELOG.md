@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.1](https://github.com/prefapp/charts/compare/aws-web-service-v0.6.0...aws-web-service-v0.6.1) (2023-08-01)
+
+
+### Bug Fixes
+
+* [aws-web-service] deployment labels ([#165](https://github.com/prefapp/charts/issues/165)) ([c325d85](https://github.com/prefapp/charts/commit/c325d8530121c4b68a12fea44d2743c098182689))
+
 ## [0.6.0](https://github.com/prefapp/charts/compare/aws-web-service-v0.5.1...aws-web-service-v0.6.0) (2023-08-01)
 
 
