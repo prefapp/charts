@@ -4,6 +4,9 @@ metadata:
   name: {{ .Release.Name }}-{{ .Chart.Name }}
   labels:
     app: {{ .Values.deployment.app }}
+    {{- with .Values.deployment.additionalLabels }}
+    {{ . | toYaml | nindent 4 }}
+    {{- end }}
   annotations:
   {{ with .Values.deployment.annotations }}
   {{ . | toYaml | nindent 4 }}
@@ -21,11 +24,7 @@ spec:
         chart: {{ .Chart.Name }}
         {{- with .Values.deployment.additionalLabels }}
         {{ . | toYaml | nindent 8 }}
-<<<<<<< Updated upstream
         {{- end }}
-=======
-        {{ end }}
->>>>>>> Stashed changes
     spec:
       {{- if .Values.deployment.nodeSelector.enabled }}
       nodeSelector:
