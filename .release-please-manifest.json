@@ -1,5 +1,5 @@
 {
-  "charts/aws-web-service": "0.6.1",
+  "charts/aws-web-service": "0.6.2",
   "charts/aws-web-service-proxified": "1.4.2",
   "charts/datadog_helpers": "1.1.0"
 }
