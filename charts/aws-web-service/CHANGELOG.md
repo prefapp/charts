@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/prefapp/charts/compare/aws-web-service-v0.6.2...aws-web-service-v0.7.0) (2023-10-11)
+
+
+### Features
+
+* update SecretProviderClass apiVersion ([#136](https://github.com/prefapp/charts/issues/136)) ([11aed20](https://github.com/prefapp/charts/commit/11aed203c05fec97294ee94b79163b6c48d0f105))
+
 ## [0.6.2](https://github.com/prefapp/charts/compare/aws-web-service-v0.6.1...aws-web-service-v0.6.2) (2023-08-11)
 
 
