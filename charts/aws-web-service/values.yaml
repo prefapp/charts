@@ -20,6 +20,14 @@ deployment:
   replicas: 1
   containerPort: 9898
   command: {} # Normal command
+
+  #
+  # Additional labels for the deployment
+  #
+  # additionalLabels:
+  #   environment: staging
+  #   region: eu-west-1
+
   #
   # Resources limits and requests.
   # This are the default values.
@@ -28,7 +36,7 @@ deployment:
   #
   resources:
     limits:
-      cpu: 100m
+      # cpu: 100m Optional
       memory: 128Mi
     requests:
       cpu: 100m
@@ -45,13 +53,14 @@ deployment:
   nodeSelector:
     enabled: false
     labels:
+  # imagePullSecrets:
+  #   - name: dockerconfigjson-github-com
 
 service:
   labels:
   type:
   #Your app port
   port: 80
-
 
 ingress:
   enabled: false
@@ -85,7 +94,6 @@ parameterStore:
   # Once you use mountAsFile, you need a path for your file
   #
 
-
   #
   # Parameters use to be separated by a dot, slash... so you can modify this splitter depeding on the format of your parameters in AWS.
   #
@@ -113,7 +121,6 @@ parameterStore:
   #     fileName: myfile.yaml
   dataAsFiles:
 
-
 #
 # Set secret values that will be stored in a Secret artifact and passed
 # to de pods using an envFrom section
@@ -126,10 +133,6 @@ secrets: {}
 # - Add the values
 volume:
   enabled: false
-  #
-  # You can enter any label you consider necessary
-  # By default, it will have the same deployment
-  labels:
 
   #
   # Remove comment for define the storage capacity in power-of-two equivalents:
@@ -140,13 +143,16 @@ volume:
   #    128974848
   #    129M
   #    123Mi
-  storageSize:
+  storageSize: 1Gi
 
   #
   # Sintax: fs-<efsID>
   # Example:
   # efs_id: fs-8af4a940:
   efs_id:
+
+  # Storage class name  (default: efs-sc)
+  storageClass: efs-sc
 
   #
   # Example:
@@ -162,4 +168,4 @@ volume:
   # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#securitycontext-v1-core
   #
   runAsGroup: 0
-  runAsUser: 1000140000
+  runAsUser: 1001

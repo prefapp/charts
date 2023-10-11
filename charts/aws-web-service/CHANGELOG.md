@@ -1,5 +1,68 @@
 # Changelog
 
+## [0.6.2](https://github.com/prefapp/charts/compare/aws-web-service-v0.6.1...aws-web-service-v0.6.2) (2023-08-11)
+
+
+### Bug Fixes
+
+* labels ([#169](https://github.com/prefapp/charts/issues/169)) ([88bc930](https://github.com/prefapp/charts/commit/88bc9305c30e67bd9db4385c7e7a119baba83cb5))
+
+## [0.6.1](https://github.com/prefapp/charts/compare/aws-web-service-v0.6.0...aws-web-service-v0.6.1) (2023-08-01)
+
+
+### Bug Fixes
+
+* [aws-web-service] deployment labels ([#165](https://github.com/prefapp/charts/issues/165)) ([c325d85](https://github.com/prefapp/charts/commit/c325d8530121c4b68a12fea44d2743c098182689))
+
+## [0.6.0](https://github.com/prefapp/charts/compare/aws-web-service-v0.5.1...aws-web-service-v0.6.0) (2023-08-01)
+
+
+### Features
+
+* [aws-web-service] Additional labels  for deployment ([#162](https://github.com/prefapp/charts/issues/162)) ([884715f](https://github.com/prefapp/charts/commit/884715f35051e72d7a13d2f2845440306a4b23ae))
+
+## [0.5.1](https://github.com/prefapp/charts/compare/aws-web-service-v0.5.0...aws-web-service-v0.5.1) (2023-07-31)
+
+
+### Bug Fixes
+
+* rendering level of imagePullSecrets ([#159](https://github.com/prefapp/charts/issues/159)) ([831d697](https://github.com/prefapp/charts/commit/831d697d02238b4edf4b3f960dc02d9bb90433b4))
+
+## [0.5.0](https://github.com/prefapp/charts/compare/aws-web-service-v0.4.0...aws-web-service-v0.5.0) (2023-07-31)
+
+
+### Features
+
+* add support imagePullSecrets ([#155](https://github.com/prefapp/charts/issues/155)) ([01059d6](https://github.com/prefapp/charts/commit/01059d64af23415a68ee379b2f5ccea5f032e036))
+
+## [0.4.0](https://github.com/prefapp/charts/compare/aws-web-service-v0.3.5...aws-web-service-v0.4.0) (2023-07-17)
+
+
+### Features
+
+* [aws-web-service] CPU Limits not mandatory ([#148](https://github.com/prefapp/charts/issues/148)) ([8301773](https://github.com/prefapp/charts/commit/830177379f9dbfd6e1acd6f39608d8f004263242))
+
+## [0.3.5](https://github.com/prefapp/charts/compare/aws-web-service-v0.3.4...aws-web-service-v0.3.5) (2023-04-14)
+
+
+### Bug Fixes
+
+* Add storageClassName ([#145](https://github.com/prefapp/charts/issues/145)) ([49d29ef](https://github.com/prefapp/charts/commit/49d29ef7d7f121d6d4e5dc934e2cb648864c1271))
+
+## [0.3.4](https://github.com/prefapp/charts/compare/aws-web-service-v0.3.3...aws-web-service-v0.3.4) (2023-04-12)
+
+
+### Bug Fixes
+
+* Fix errors in volumes of aws-web-service Chart ([#141](https://github.com/prefapp/charts/issues/141)) ([c4c6cc5](https://github.com/prefapp/charts/commit/c4c6cc59a9a1ac5df7d13d474b38d563640971e4))
+
+## [0.3.3](https://github.com/prefapp/charts/compare/aws-web-service-v0.3.2...aws-web-service-v0.3.3) (2023-03-23)
+
+
+### Bug Fixes
+
+* Fix/identation ([#138](https://github.com/prefapp/charts/issues/138)) ([ea88ecf](https://github.com/prefapp/charts/commit/ea88ecf227e1bb86d47c8a8e625466e679a8fdd3))
+
 ## [0.3.2](https://github.com/prefapp/charts/compare/aws-web-service-v0.3.1...aws-web-service-v0.3.2) (2023-01-11)
 
 

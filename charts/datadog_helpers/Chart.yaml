@@ -1,0 +1,31 @@
+name: datadog_helpers
+apiVersion: v2
+appVersion: "1.16.0"
+description: >-
+  Library to help with Datadog integration
+type: library
+version: 1.1.0
+home: https://github.com/prefapp/charts/tree/master/charts/datadog_helpers
+icon: >-
+  https://github.com/prefapp/charts/tree/master/charts/datadog_helpers/icon.png
+annotations:
+  artifacthub.io/links: |
+    - name: Support
+      url: https://github.com/prefapp/charts/issues
+keywords:
+  - helpers
+  - datadog
+  - library
+  - generic
+  - apm
+  - profiler
+  - profiling
+  - labels
+sources:
+  - >-
+    https://github.com/prefapp/charts/tree/master/charts/datadog_helpers
+maintainers:
+  - email: gustavo.borragan@prefapp.es
+    name: gustavoborragan
+  - email: charts@prefapp.es
+    name: Info

@@ -4,6 +4,9 @@ metadata:
   name: {{ .Release.Name }}-{{ .Chart.Name }}
   labels:
     app: {{ .Values.deployment.app }}
+    {{- with .Values.deployment.additionalLabels }}
+    {{ . | toYaml | nindent 4 }}
+    {{- end }}
   annotations:
   {{ with .Values.deployment.annotations }}
   {{ . | toYaml | nindent 4 }}
@@ -19,6 +22,9 @@ spec:
       labels:
         app: {{ .Release.Name }}
         chart: {{ .Chart.Name }}
+        {{- with .Values.deployment.additionalLabels }}
+        {{ . | toYaml | nindent 8 }}
+        {{- end }}
     spec:
       {{- if .Values.deployment.nodeSelector.enabled }}
       nodeSelector:
@@ -31,7 +37,9 @@ spec:
         image: {{ .Values.webService.image }}
         resources:
           limits:
+            {{- if .Values.deployment.resources.limits.cpu }}
             cpu: {{ .Values.deployment.resources.limits.cpu }}
+            {{- end }}
             memory: {{ .Values.deployment.resources.limits.memory }}
           requests:
             cpu: {{ .Values.deployment.resources.requests.cpu }}
@@ -80,7 +88,7 @@ spec:
             readOnly: true
         {{ end }}
         {{- with .Values.deployment.volumeMounts }}
-        {{ . | toYaml | nindent 8 }}
+        {{ . | toYaml | nindent 10 }}
         {{- end }}
         {{ if .Values.volume.enabled }}
           - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-pv
@@ -125,6 +133,9 @@ spec:
           - configMapRef:
               name: {{ $.Release.Name }}-{{ $.Chart.Name }}-command
         {{ end }}
+      {{- with .Values.deployment.imagePullSecrets }}
+      imagePullSecrets: {{ . | toYaml | nindent 6 }}
+      {{- end }}
       {{- if .Values.parameterStore.enabled }}
       serviceAccount: {{ .Values.parameterStore.secrets_scm_sa }}
       serviceAccountName: {{ .Values.parameterStore.secrets_scm_sa }}

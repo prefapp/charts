@@ -1,5 +1,6 @@
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/aws-web-service)](https://artifacthub.io/packages/search?repo=aws-web-service)
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/aws-web-service-proxified)](https://artifacthub.io/packages/search?repo=aws-web-service-proxified)
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/datadog-helpers)](https://artifacthub.io/packages/search?repo=datadog-helpers)
 
 # Charts
 Generic charts for prefapp services
@@ -9,9 +10,11 @@ Generic charts for prefapp services
 ├── charts
 │   ├── aws-web-service
 │   └── aws-web-service-proxified
+│   └── datadog_helpers
 ├── docs
 │   ├── aws-web-service
 │   └── aws-web-service-proxified
+│   └── datadog_helpers
 ├── .github
 │   └── workflows
 ├── .gitignore
