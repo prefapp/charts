@@ -1,5 +1,7 @@
 # AWS Web Service chart
 
+![](./pic/diagram-aws-web-service.png)
+
 ## Purpose
 
 This chart allows you to deploy any webservice on your EKS Cluster to expose it to the internet.
