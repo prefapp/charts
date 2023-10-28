@@ -1,0 +1,12 @@
+{
+  "name": "aws-web-service",
+  "version": "0.0.0",
+  "description": "a chart",
+  "main": "index.js",
+  "scripts": {
+    "test": "helm template aws-web-service .",
+    "lint": "helm lint"
+  },
+  "author": "",
+  "license": "ISC"
+}
