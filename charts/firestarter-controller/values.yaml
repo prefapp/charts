@@ -1,0 +1,43 @@
+imagePullPolicy: Always
+
+# Additional environment variables for the Firestarter controller
+env:
+  DEBUG: "firestarter:*" # Enable debug logging
+  NODE_TLS_REJECT_UNAUTHORIZED: "0" # Disable TLS certificate validation
+  OPERATOR_KIND_LIST: "terraformmodules,githubgroups,githubmemberships,githubrepositories,githubrepositoryfeatures" # List of kinds to manage
+  FIRESTARTER_IMAGE_KIND: "full" # Use the full image for the Firestarter controller, instead of the slim image
+  OPERATOR_IGNORE_LEASE: "true" # Ignore the lease, if enabled multiple instances of the Firestarter controller can run in the same namespace
+  # OPERATOR_DUMMY_EXEC: "true" 
+
+# Map of additional labels to add to the Firestarter controller pod
+labels:
+  app: firestarter-controller
+  concern: controller
+
+# Controller docker image
+image: ghcr.io/prefapp/gitops-k8s:latest
+
+# Controller docker image entrypoint
+command:
+  - ./run.sh
+  - operator
+  - --start
+  - controller
+
+# Azure OIDC configuration
+# azureIdentity:
+#   enabled: true
+#   clientID: <CLIENT_ID> # The client ID of the Azure AD application
+#   tenantID: <TENANT_ID>
+# extraVolumeMounts:
+#   - name: azure-identity-volume # Mount the Azure identity token
+#     mountPath: /var/run/secrets/azure-identity
+#     readOnly: true
+# extraVolumes:
+#   - name: azure-identity-volume # Create a volume for the Azure identity token
+#     projected:
+#       sources:
+#         - serviceAccountToken:
+#             path: azure-identity-token
+#             expirationSeconds: 3000
+#             audience: api://AzureADTokenExchange
