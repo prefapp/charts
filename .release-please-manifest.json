@@ -1,5 +1,6 @@
 {
-  "charts/aws-web-service": "0.7.0",
-  "charts/aws-web-service-proxified": "1.4.2",
-  "charts/datadog_helpers": "1.1.0"
+  "charts/aws-web-service": "0.8.0",
+  "charts/aws-web-service-proxified": "1.5.0",
+  "charts/datadog_helpers": "1.2.0",
+  "charts/firestarter-controller": "1.0.0"
 }
