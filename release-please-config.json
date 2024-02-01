@@ -9,7 +9,9 @@
 
        "charts/aws-web-service-proxified": {},
 
-       "charts/datadog_helpers": {}
+       "charts/datadog_helpers": {},
+
+       "charts/firestarter-controller": {}
 
     }
 
