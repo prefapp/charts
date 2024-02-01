@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.8.0](https://github.com/prefapp/charts/compare/aws-web-service-v0.7.0...aws-web-service-v0.8.0) (2024-02-01)
+
+
+### Features
+
+* Add diagram to README ([#174](https://github.com/prefapp/charts/issues/174)) ([3108e99](https://github.com/prefapp/charts/commit/3108e99c54c9731758d8e7b82431f10048a5a7d3))
+* provision CODEOWNERS file ([a677b67](https://github.com/prefapp/charts/commit/a677b67a8645c950fc06a763eaae18ba1909719e))
+
 ## [0.7.0](https://github.com/prefapp/charts/compare/aws-web-service-v0.6.2...aws-web-service-v0.7.0) (2023-10-11)
 
 

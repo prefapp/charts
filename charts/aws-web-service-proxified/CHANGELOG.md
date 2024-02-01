@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/prefapp/charts/compare/aws-web-service-proxified-v1.4.2...aws-web-service-proxified-v1.5.0) (2024-02-01)
+
+
+### Features
+
+* provision CODEOWNERS file ([a677b67](https://github.com/prefapp/charts/commit/a677b67a8645c950fc06a763eaae18ba1909719e))
+
 ## [1.4.2](https://github.com/prefapp/charts/compare/aws-web-service-proxified-v1.4.1...aws-web-service-proxified-v1.4.2) (2022-10-17)
 
 
