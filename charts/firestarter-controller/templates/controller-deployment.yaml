@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {{ .Values.labels | toYaml | nindent 6 }}
+  template:
+    metadata:
+      labels: {{ .Values.labels | toYaml | nindent 8 }}
+        name: {{ .Release.Name }}
+    spec:
+      serviceAccountName: {{ .Release.Name }}-{{ .Chart.Name }}
+      {{ if .Values.imageCredentials }}
+      imagePullSecrets:
+        - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-ghcr
+      {{ end }}
+      containers:
+      - name: controller
+        image: {{ .Values.image }}
+        imagePullPolicy: {{ default "Always" .Values.imagePullPolicy }}
+        env:
+          - name: OPERATOR_NAMESPACE
+            value: {{ .Release.Namespace }}
+        {{- range $k, $v := .Values.env }}
+          - name: {{ $k }}
+            value: {{ $v | quote -}}
+        {{ end }}
+        command: {{ .Values.command | toYaml | nindent 10 }}
+        {{ with .Values.extraVolumeMounts }}
+        volumeMounts: {{ . | toYaml | nindent 10 }}
+        {{ end }}
+      {{ with .Values.extraVolumes }}
+      volumes: {{ . | toYaml | nindent 8 }}
+      {{ end }}
+
+                    
