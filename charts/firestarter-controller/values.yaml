@@ -4,7 +4,7 @@ imagePullPolicy: Always
 env:
   DEBUG: "firestarter:*" # Enable debug logging
   NODE_TLS_REJECT_UNAUTHORIZED: "0" # Disable TLS certificate validation
-  OPERATOR_KIND_LIST: "terraformmodules,githubgroups,githubmemberships,githubrepositories,githubrepositoryfeatures" # List of kinds to manage
+  OPERATOR_KIND_LIST: "terraformworkspaces,githubgroups,githubmemberships,githubrepositories,githubrepositoryfeatures" # List of kinds to manage
   FIRESTARTER_IMAGE_KIND: "full" # Use the full image for the Firestarter controller, instead of the slim image
   OPERATOR_IGNORE_LEASE: "true" # Ignore the lease, if enabled multiple instances of the Firestarter controller can run in the same namespace
   # OPERATOR_DUMMY_EXEC: "true" 
