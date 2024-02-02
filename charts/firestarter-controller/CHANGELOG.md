@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/prefapp/charts/compare/firestarter-controller-v1.0.0...firestarter-controller-v1.0.1) (2024-02-02)
+
+
+### Bug Fixes
+
+* fix controller OIDC config when azureIdentity is not present ([#181](https://github.com/prefapp/charts/issues/181)) ([0457435](https://github.com/prefapp/charts/commit/0457435b99fc154c8a1fe93cf6cff65301a9039e))
+
 ## 1.0.0 (2024-02-01)
 
 
