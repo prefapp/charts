@@ -3,12 +3,13 @@ kind: Deployment
 metadata:
   name: {{ .Release.Name }}-{{ .Chart.Name }}
 spec:
-  replicas: 1
+  replicas: {{ default 1 .Values.replicas }}
   selector:
     matchLabels: {{ .Values.labels | toYaml | nindent 6 }}
   template:
     metadata:
       labels: {{ .Values.labels | toYaml | nindent 8 }}
+        azure.workload.identity/use: "true"
         name: {{ .Release.Name }}
     spec:
       serviceAccountName: {{ .Release.Name }}-{{ .Chart.Name }}
@@ -16,23 +17,33 @@ spec:
       imagePullSecrets:
         - name: {{ $.Release.Name }}-{{ $.Chart.Name }}-ghcr
       {{ end }}
-      containers:
+      containers:      
       - name: controller
         image: {{ .Values.image }}
         imagePullPolicy: {{ default "Always" .Values.imagePullPolicy }}
-        env:
-          - name: OPERATOR_NAMESPACE
-            value: {{ .Release.Namespace }}
-        {{- range $k, $v := .Values.env }}
-          - name: {{ $k }}
-            value: {{ $v | quote -}}
-        {{ end }}
+        envFrom:
+          - configMapRef:
+              name: {{ .Release.Name }}-{{ .Chart.Name }}
+          - secretRef:
+              name: {{ .Release.Name }}-{{ .Chart.Name }}-secret-ssm
+        
         command: {{ .Values.command | toYaml | nindent 10 }}
+        
+        volumeMounts:
+        - name: csi-secrets-store
+          mountPath: "/mnt/secrets-store"
+          readOnly: true
         {{ with .Values.extraVolumeMounts }}
-        volumeMounts: {{ . | toYaml | nindent 10 }}
+        {{ . | toYaml | nindent 10 }}
         {{ end }}
-      {{ with .Values.extraVolumes }}
-      volumes: {{ . | toYaml | nindent 8 }}
-      {{ end }}
 
-                    
+      volumes: 
+      - name: csi-secrets-store
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: {{ .Release.Name }}-{{ .Chart.Name }}
+      {{ with .Values.extraVolumes }}
+      {{ . | toYaml | nindent 8 }}
+      {{ end }}
