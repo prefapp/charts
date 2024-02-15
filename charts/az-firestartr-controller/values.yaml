@@ -1,0 +1,34 @@
+config:
+  githubApp:
+    id: <id_number> # Replace with the GitHub App ID
+    installationId: <installation_id> # Replace with the GitHub App Installation ID
+    installationIdPrefapp: <installation_id_prefapp> # Replace with the GitHub App Installation ID Prefapp
+    pemSecretRef: <pem_secret_ref> # Replace with the GitHub App PEM Secret Reference
+  
+  ignoreLease: "false" # Set to "true" to ignore lease
+  
+  kindList: 
+   - terraformworkspaces
+   - githubgroups
+   - githubmemberships
+   - githubrepositories 
+   - githubrepositoryfeatures
+
+  keyvaultName: <keyvault_name> # Replace with the Key Vault Name
+
+  azureIdentity:
+    clientID: <client_id> # Replace with the Azure Identity Client ID
+    tenantID: <tenant_id> # Replace with the Azure Identity Tenant ID
+
+command:
+  - ./run.sh
+  - operator
+  - --start
+  - controller
+
+image: ghcr.io/prefapp/gitops-k8s:latest
+
+imagePullPolicy: Always
+labels:
+  app: firestartr-controller
+  concern: controller

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
+data:
+  OPERATOR_NAMESPACE: '{{ .Release.Namespace }}'
+  DEBUG: '{{ default "firestartr:*" .Values.debug }}'
+  GITHUB_APP_ID: '{{ required ".Values.config.githubApp.id is required" .Values.config.githubApp.id }}'
+  GITHUB_APP_INSTALLATION_ID: '{{ required ".Values.config.githubApp.installationId is required" .Values.config.githubApp.installationId }}'
+  GITHUB_APP_INSTALLATION_ID_PREFAPP: '{{ required ".Values.config.githubApp.installationIdPrefapp" .Values.config.githubApp.installationIdPrefapp }}'
+  OPERATOR_IGNORE_LEASE: '{{ default "false" .Values.ignoreLease }}'
+  OPERATOR_KIND_LIST: '{{  join "," .Values.config.kindList  }}'
+  NODE_TLS_REJECT_UNAUTHORIZED: "0"
+  {{- with .Values.extraConfig }}
+  {{ . | toYaml | nindent 2 }}
+  {{- end }}
