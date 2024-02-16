@@ -32,3 +32,18 @@ imagePullPolicy: Always
 labels:
   app: firestartr-controller
   concern: controller
+
+
+providers:
+  #- name: azure-azapi-provider-corpme
+  #  source: azure/azapi
+  #  type: azurerm
+  #  version: '>=1.12.0'
+  #  inline: |
+  #    provider "azapi" {
+  #      use_oidc = true
+  #      oidc_token_file_path = "/var/run/secrets/azure/tokens/azure-identity-token"
+  #      tenant_id = "ca5a6690-2f48-4776-91dd-8fde1d02e7e8"
+  #      client_id = "13c618ab-b471-44a1-8c07-80fcbccb1875"
+  #      subscription_id = "a152aa4d-7a6d-4535-893d-f11a70b27033"
+  #    }

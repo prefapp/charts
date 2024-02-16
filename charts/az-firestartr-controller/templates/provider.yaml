@@ -1,0 +1,32 @@
+{{- define "provider-config.render" -}}
+
+{{ $provider := .Values.render.provider }}
+
+apiVersion: firestartr.dev/v1
+kind: FirestartrProviderConfig
+metadata:
+  name: {{ $provider.name }}
+spec:
+  config: '{}'
+  {{ with $provider.inline }}
+  inline: | 
+    {{ . | nindent 4}}
+  {{ end }}
+  source: {{ $provider.source }}
+  type:  {{ $provider.type }}
+  version: {{ $provider.version | quote }}
+
+{{- end -}}
+
+{{ range $provider := .Values.providers }}
+
+{{ $_ := set $.Values "render" (dict)}}
+
+{{ $_ := set $.Values.render "provider" $provider }}
+
+---
+{{ include "provider-config.render" $ }}
+
+{{ $_ := unset $.Values "render" }}
+
+{{ end }}
