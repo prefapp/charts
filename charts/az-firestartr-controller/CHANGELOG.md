@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/prefapp/charts/compare/firestartr-controller-v1.1.0...firestartr-controller-v1.2.0) (2024-02-16)
+
+
+### Features
+
+* az firestarter argo-cd config chart ([#187](https://github.com/prefapp/charts/issues/187)) ([0e36459](https://github.com/prefapp/charts/commit/0e364595c002fccc77649b79955d54827d42ce70))
+
 ## [1.1.0](https://github.com/prefapp/charts/compare/firestartr-controller-v1.0.0...firestartr-controller-v1.1.0) (2024-02-15)
 
 
