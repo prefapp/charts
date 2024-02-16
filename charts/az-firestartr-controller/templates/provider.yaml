@@ -24,6 +24,7 @@ spec:
 
 {{ $_ := set $.Values.render "provider" $provider }}
 
+---
 {{ include "provider-config.render" $ }}
 
 {{ $_ := unset $.Values "render" }}
