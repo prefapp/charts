@@ -32,3 +32,10 @@ imagePullPolicy: Always
 labels:
   app: firestartr-controller
   concern: controller
+
+
+providers:
+  - name: azure-azapi-provider-corpme
+    source: azure/azapi
+    type: azurerm
+    version: '>=1.12.0'

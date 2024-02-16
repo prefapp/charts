@@ -1,0 +1,21 @@
+{{- define "provider-config.render" -}}
+
+{{ $provider := .Values.render.provider }}
+spec:
+  source: {{ $provider.source }}
+  type:  {{ $provider.type }}
+  version: {{ $provider.version }}
+
+{{- end -}}
+
+{{ range $provider := .Values.providers }}
+
+{{ $_ := set $.Values "render" (dict)}}
+
+{{ $_ := set $.Values.render "provider" $provider }}
+
+{{ include "provider-config.render" $ }}
+
+{{ $_ := unset $.Values "render" }}
+
+{{ end }}
