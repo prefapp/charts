@@ -11,7 +11,9 @@
 
        "charts/datadog_helpers": {},
 
-       "charts/az-firestartr-controller": {}
+       "charts/az-firestartr-controller": {},
+
+       "charts/az-argocd-firestarter-config": {}
 
     }
 

@@ -1,0 +1,17 @@
+config:
+  githubApp:
+    id: <id_number> # Replace with the GitHub App ID
+    installationId: <installation_id> # Replace with the GitHub App Installation ID
+    pemSecretRef: <pem_secret_ref> # Replace with the GitHub App PEM Secret Reference
+
+  orgUrl: "https://github.com/<org_name>"
+  keyvaultName: <keyvault_name> # Replace with the Key Vault Name
+
+  azureIdentity:
+    clientID: <client_id> # Replace with the Azure Identity Client ID
+    tenantID: <tenant_id> # Replace with the Azure Identity Tenant ID
+
+repos:
+  - type: git
+    url: https://github.com/<org_name>/<repo_name>.git
+    name: <repo_name>
