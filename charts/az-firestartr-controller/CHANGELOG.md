@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/prefapp/charts/compare/firestartr-controller-v1.2.0...firestartr-controller-v1.3.0) (2024-02-16)
+
+
+### Features
+
+* [az-firestartr-controller] providers support ([#191](https://github.com/prefapp/charts/issues/191)) ([c91d2be](https://github.com/prefapp/charts/commit/c91d2be7e3f352a86863115d47fe472f0996e902))
+
 ## [1.2.0](https://github.com/prefapp/charts/compare/firestartr-controller-v1.1.0...firestartr-controller-v1.2.0) (2024-02-16)
 
 
