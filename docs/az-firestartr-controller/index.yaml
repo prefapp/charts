@@ -3,7 +3,17 @@ entries:
   firestartr-controller:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-02-15T10:13:45.54644987Z"
+    created: "2024-02-16T15:57:06.624436863Z"
+    description: A Helm chart for Kubernetes
+    digest: 43fd81dd316850ba77eacd0c009a269dcded48bcfceb785be4aadfd5e6cb0007
+    name: firestartr-controller
+    type: application
+    urls:
+    - firestartr-controller-1.2.0.tgz
+    version: 1.2.0
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-02-16T15:57:06.62415111Z"
     description: A Helm chart for Kubernetes
     digest: e9d2dddeb732436ca0f1ae339d051f3af5e1c7053e0932feb19dd322d361961d
     name: firestartr-controller
@@ -11,4 +21,4 @@ entries:
     urls:
     - firestartr-controller-1.1.0.tgz
     version: 1.1.0
-generated: "2024-02-15T10:13:45.54606455Z"
+generated: "2024-02-16T15:57:06.623736876Z"
