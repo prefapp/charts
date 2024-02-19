@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://github.com/prefapp/charts/compare/firestartr-controller-v1.3.1...firestartr-controller-v1.3.2) (2024-02-19)
+
+
+### Bug Fixes
+
+* identation sources providers ([#197](https://github.com/prefapp/charts/issues/197)) ([c45eb5d](https://github.com/prefapp/charts/commit/c45eb5d610e8c53703a849a897cd0343ddfcf7be))
+
 ## [1.3.1](https://github.com/prefapp/charts/compare/firestartr-controller-v1.3.0...firestartr-controller-v1.3.1) (2024-02-19)
 
 
