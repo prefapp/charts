@@ -16,7 +16,8 @@ spec:
   {{ with $provider.inline }}
   inline: | 
     {{ . | nindent 4}}
-  {{- end -}}
+  {{ end }}
+  
   source: {{ $provider.source }}
   type:  {{ $provider.type }}
   version: {{ $provider.version | quote }}
