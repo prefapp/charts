@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/prefapp/charts/compare/firestartr-controller-v1.3.0...firestartr-controller-v1.3.1) (2024-02-19)
+
+
+### Bug Fixes
+
+* provider template ([#194](https://github.com/prefapp/charts/issues/194)) ([50f187c](https://github.com/prefapp/charts/commit/50f187c8a97dc166991df4abbeb05e0e0a8b8b8f))
+
 ## [1.3.0](https://github.com/prefapp/charts/compare/firestartr-controller-v1.2.0...firestartr-controller-v1.3.0) (2024-02-16)
 
 
