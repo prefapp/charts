@@ -7,11 +7,16 @@ kind: FirestartrProviderConfig
 metadata:
   name: {{ $provider.name }}
 spec:
-  config: '{}'
+  config: | 
+  {{- with $provider.config }}
+    {{- . | nindent 4 -}}
+  {{ else }}
+    {}
+  {{ end }}
   {{ with $provider.inline }}
   inline: | 
     {{ . | nindent 4}}
-  {{ end }}
+  {{- end -}}
   source: {{ $provider.source }}
   type:  {{ $provider.type }}
   version: {{ $provider.version | quote }}
