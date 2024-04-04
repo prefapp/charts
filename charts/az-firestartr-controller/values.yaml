@@ -1,3 +1,4 @@
+replicas: 1
 config:
   githubApp:
     id: <id_number> # Replace with the GitHub App ID
