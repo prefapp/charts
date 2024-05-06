@@ -1,0 +1,15 @@
+{{ define "helper.datadog.extra_env" }}
+
+{{ $datacenter := .Values.global.datacenter }}
+{{ $tenant := .Values.global.tenant }}
+{{ $application := .Values.global.application }}
+{{ $env := .Release.Namespace | splitList "-" | last }}
+{{ $service := .Chart.Name }}
+{{ $version := .Values.image | splitList ":" | last }}
+{{ $chart_version := .Values.global.chart_version }}
+{{ $source := .Values.global.source }}
+
+DD_RUNTIME_METRICS_ENABLED: "true"
+DD_TAGS: {{ printf "datacenter:%s,tenant:%s,application:%s,env:%s,service:%s,version:%s,chart_version:%s,source:%s" $datacenter $tenant $application $env $service $version $chart_version $source }}
+
+{{ end }}

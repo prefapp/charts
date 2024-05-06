@@ -1,16 +1,3 @@
-{{/*
-
-Define the standard labels for Datadog based on seven coordinates:
-  - datacenter # The location of the infra resources associated with the event
-  - tenant # The tenant to which the application belongs.
-  - application # Release of the set of services.
-  - env # Deployment environment.
-  - service # Service name.
-  - version # Service version (tag of the image related to the deployment)
-  - source # Technology of the service (js, go, python, nginx, ingress-controller...), to match with the ingestion pipeline.
-
-*/}}
-
 {{- define "helper.datadog.labels" -}}
 datacenter: {{ .Values.global.datacenter }}
 tenant: {{ .Release.Namespace | splitList "-" | first }}
@@ -18,6 +5,7 @@ application: {{ .Release.Name }}
 tags.datadoghq.com/env: {{ .Release.Namespace | splitList "-" | last }}
 tags.datadoghq.com/service: {{ .Chart.Name }}
 tags.datadoghq.com/version: {{ .Values.image | splitList ":" | last }}
+chart_version: {{ .Values.global.chart_version }}
 {{ if .Values.source }}
 source: {{ .Values.source }}
 {{ else }}

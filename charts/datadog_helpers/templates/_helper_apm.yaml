@@ -1,14 +1,3 @@
-{{/*
-
-Global documentation:
-  - DataDog - https://docs.datadoghq.com/
-  - ddtrace configuration - https://ddtrace.readthedocs.io/en/stable/configuration.html
-
-*/}}
-
-
-
-{{/* Admision controller by annotation | https://docs.datadoghq.com/containers/cluster_agent/admission_controller/?tab=operator#helm */}}
 {{ define "helper.datadog.apm.admision_controller" }}
 
 {{ if .Values.datadog.apm.active }}
@@ -19,7 +8,7 @@ admission.datadoghq.com/enabled: "true"
 
 
 
-{{/* Inject library | https://docs.datadoghq.com/containers/cluster_agent/admission_controller/?tab=operator#helm */}}
+
 {{ define "helper.datadog.apm.inject_library" }}
 
 {{ $library := "" }}
@@ -29,7 +18,7 @@ admission.datadoghq.com/enabled: "true"
 {{ else if eq .Values.datadog.apm.inject_library.language "python" }}
   {{ $library = "python-lib.version" }}
 {{ else if eq .Values.datadog.apm.inject_library.language "ruby" }}
-  {{ $library = "ruby-lib.version" }}
+  {{ $library = "ruby-lib.version" }} 
 {{ end }}
 
 {{ if .Values.datadog.apm.active }}
@@ -40,7 +29,7 @@ admission.datadoghq.com/{{ $library }}: {{ .Values.datadog.apm.inject_library.ve
 
 
 
-{{/* Active profiler by environment variables | https://docs.datadoghq.com/profiler/enabling/ */}}
+
 {{ define "helper.datadog.apm.profiler" }}
 
 {{ if and .Values.datadog.apm.active .Values.datadog.apm.profiler }}
@@ -57,7 +46,7 @@ DD_VERSION: {{ .Values.image | splitList ":" | last }}
 
 
 
-{{/* Correlate logs by environment variables | https://docs.datadoghq.com/tracing/other_telemetry/connect_logs_and_traces/ */}}
+
 {{ define "helper.datadog.apm.correlate_logs" }}
 
 {{ if and .Values.datadog.apm.active .Values.datadog.apm.correlate_logs }}
@@ -68,18 +57,19 @@ DD_LOGS_INJECTION: "true"
 
 
 
-{{/* Trace sample rate by environment variables | https://docs.datadoghq.com/tracing/setup_overview/setup/go/#trace-sample-rate */}}
+
 {{ define "helper.datadog.apm.trace_sample_rate" -}}
 
 {{ if and .Values.datadog.apm.active .Values.datadog.apm.trace_sample_rate.active }}
 DD_TRACE_SAMPLE_RATE: {{ .Values.datadog.apm.trace_sample_rate.rate }}
+DD_TRACE_RATE_LIMIT: {{ default 100 .Values.datadog.apm.trace_sample_rate.limit  }}
 {{ end }}
 
 {{ end }}
 
 
 
-{{/* Active apm for go applications | https://docs.datadoghq.com/tracing/setup_overview/setup/go/#instrumentation */}}
+
 {{ define "helper.datadog.apm.go.volumes" }}
 
 {{ if .Values.datadog.apm.active }}
@@ -90,6 +80,9 @@ DD_TRACE_SAMPLE_RATE: {{ .Values.datadog.apm.trace_sample_rate.rate }}
 
 {{ end }}
 
+
+
+
 {{ define "helper.datadog.apm.go.volumeMounts" }}
 
 {{ if .Values.datadog.apm.active }}
@@ -98,6 +91,9 @@ DD_TRACE_SAMPLE_RATE: {{ .Values.datadog.apm.trace_sample_rate.rate }}
 {{ end }}
 
 {{ end }}
+
+
+
 
 {{ define "helper.datadog.apm.go.env" }}
 
