@@ -5,27 +5,34 @@ Inject the environment environment variables DD_ADMISSION_CONTROLLER_MUTATE_UNLA
 https://docs.datadoghq.com/containers/cluster_agent/admission_controller/?tab=helm#apm-and-dogstatsd
 */}}
 
+{{ $datacenter := .Values.global.datacenter }}
+{{ $tenant := .Release.Namespace | splitList "-" | first }}
+{{ $application := .Release.Name }}
 {{ $env := .Release.Namespace | splitList "-" | last }}
 {{ $service := .Chart.Name }}
 {{ $version := .Values.image | splitList ":" | last }}
-{{ $dc := .Values.global.datacenter }}
+{{ $chartVersion := .Values.global.chart_version }}
+{{ $containerNameTMP := print .Release.Name "-" .Chart.Name }}
+{{ $containerName := default $containerNameTMP .Values.dd_container_name }}
+{{ $source := .Values.global.source }}
 
-ad.datadoghq.com/{{ .Release.Name }}-{{ .Chart.Name }}.logs: |
-  "
+ad.datadoghq.com/{{ $containerName }}.logs: |
     [
       {
-        'source':'{{ .Release.Name }}-{{ .Chart.Name }}',
-        'service':'{{ .Chart.Name }}'
+        "source":"{{ $source }}",
+        "service":"{{ $service }}"
       }
     ]
-  "
+
 ad.datadoghq.com/tags: |
-  "
     {
-      'env': '{{ $env }}',
-      'service': '{{ $service}}',
-      'version': '{{ $version }}',
-      'datacenter': '{{ $dc }}'
+      "datacenter": "{{ $datacenter }}"
+      "tenant": "{{ $tenant }}"
+      "application": "{{ $application }}",
+      "env": "{{ $env }}",
+      "service": "{{ $service}}",
+      "version": "{{ $version }}",
+      "chart_version": "{{ $chartVersion }}",
+      "source": "{{ $source }}"
     }
-  "
 {{- end -}}
