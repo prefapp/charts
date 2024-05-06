@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/prefapp/charts/compare/datadog_helpers-v1.3.0...datadog_helpers-v1.3.1) (2024-05-06)
+
+
+### Bug Fixes
+
+* Update Chart.yaml ([#206](https://github.com/prefapp/charts/issues/206)) ([b674303](https://github.com/prefapp/charts/commit/b674303d23994d6fe05f5a9f2d00ea5606bd4437))
+
 ## [1.3.0](https://github.com/prefapp/charts/compare/datadog_helpers-v1.2.0...datadog_helpers-v1.3.0) (2024-05-06)
 
 
