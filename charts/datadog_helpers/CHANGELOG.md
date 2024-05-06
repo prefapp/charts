@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/prefapp/charts/compare/datadog_helpers-v1.2.0...datadog_helpers-v1.3.0) (2024-05-06)
+
+
+### Features
+
+* Add more metadata ([#203](https://github.com/prefapp/charts/issues/203)) ([1a35308](https://github.com/prefapp/charts/commit/1a3530863c36f45d87eb1a1a130b18bc3d0964f6))
+
 ## [1.2.0](https://github.com/prefapp/charts/compare/datadog_helpers-v1.1.0...datadog_helpers-v1.2.0) (2024-02-01)
 
 
