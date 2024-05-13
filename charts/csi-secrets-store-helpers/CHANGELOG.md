@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/prefapp/charts/compare/csi-secrets-store-helpers-v0.2.0...csi-secrets-store-helpers-v0.2.1) (2024-05-13)
+
+
+### Bug Fixes
+
+* secret name ([#212](https://github.com/prefapp/charts/issues/212)) ([b5ae4c4](https://github.com/prefapp/charts/commit/b5ae4c4f81cacb631a6572b50e368e8fc67846b2))
+
 ## [0.2.0](https://github.com/prefapp/charts/compare/csi-secrets-store-helpers-v0.1.0...csi-secrets-store-helpers-v0.2.0) (2024-05-13)
 
 
