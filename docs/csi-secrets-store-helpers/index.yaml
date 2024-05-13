@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  csi-secrets-store-helpers:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-05-13T13:14:32.917398326Z"
+    description: A Helm chart for Kubernetes
+    digest: 47822563c6ee37897c49bb96c2f318dcf64498ba94fb90101f70ef685e4c2253
+    name: csi-secrets-store-helpers
+    type: library
+    urls:
+    - csi-secrets-store-helpers-0.2.0.tgz
+    version: 0.2.0
+generated: "2024-05-13T13:14:32.917133232Z"
