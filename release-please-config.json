@@ -13,7 +13,9 @@
 
        "charts/az-firestartr-controller": {},
 
-       "charts/az-argocd-firestarter-config": {}
+       "charts/az-argocd-firestarter-config": {},
+
+       "charts/csi-secrets-store-helpers": {}
 
     }
 

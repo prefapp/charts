@@ -1,0 +1,11 @@
+{{ define "helper.csi-secrets-driver.sa-az" -}}
+{{ range $key, $value := .Values.serviceAccount.annotations -}}
+{{ $key }}: {{ $value }}
+{{ end -}}
+{{ if .Values.csiSecretsStoreConfig.clientId -}}
+azure.workload.identity/client-id: {{ .Values.csiSecretsStoreConfig.clientId -}}
+{{ end -}}
+{{ if .Values.csiSecretsStoreConfig.tenantId }}
+azure.workload.identity/tenant-id: {{ .Values.csiSecretsStoreConfig.tenantId -}}
+{{ end -}}
+{{ end }}
