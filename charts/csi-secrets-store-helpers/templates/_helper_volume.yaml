@@ -1,0 +1,18 @@
+{{ define "csi-secrets-store-helpers.helper_volume_mounts" }}
+{{- range $index, $element := .Values.kvSecrets }}
+- name: {{ $element.kv }}-secret-volume
+  mountPath: /mnt/secrets-store/{{ $element.kv }}
+  readOnly: true
+{{ end}}
+{{ end }}
+{{ define "csi-secrets-store-helpers.helper_volumes" }}
+{{- range $index, $element := .Values.kvSecrets }}
+- name: {{ $element.kv }}-secret-volume
+  csi:
+    driver: secrets-store.csi.k8s.io
+    readOnly: true
+    volumeAttributes:
+      secretProviderClass: {{ $.Release.Name }}-{{ $.Chart.Name }}-{{ $element.kv }}
+{{ end}}
+{{ end }}
+
