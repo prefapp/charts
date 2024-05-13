@@ -3,7 +3,17 @@ entries:
   csi-secrets-store-helpers:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-05-13T13:14:32.917398326Z"
+    created: "2024-05-13T15:17:33.264550057Z"
+    description: A Helm chart for Kubernetes
+    digest: 2b93e862d82851e8168f552a33e55f2918de95b0a7151caf3b15f5ede1373f3c
+    name: csi-secrets-store-helpers
+    type: library
+    urls:
+    - csi-secrets-store-helpers-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-05-13T15:17:33.264401949Z"
     description: A Helm chart for Kubernetes
     digest: 47822563c6ee37897c49bb96c2f318dcf64498ba94fb90101f70ef685e4c2253
     name: csi-secrets-store-helpers
@@ -11,4 +21,4 @@ entries:
     urls:
     - csi-secrets-store-helpers-0.2.0.tgz
     version: 0.2.0
-generated: "2024-05-13T13:14:32.917133232Z"
+generated: "2024-05-13T15:17:33.264132453Z"
