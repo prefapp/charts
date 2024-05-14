@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/prefapp/charts/compare/csi-secrets-store-helpers-v0.2.1...csi-secrets-store-helpers-v0.3.0) (2024-05-14)
+
+
+### Features
+
+* globals compatibility ([#215](https://github.com/prefapp/charts/issues/215)) ([6a5043a](https://github.com/prefapp/charts/commit/6a5043a03609aebd853873b1ec05f6f6e4cca489))
+
 ## [0.2.1](https://github.com/prefapp/charts/compare/csi-secrets-store-helpers-v0.2.0...csi-secrets-store-helpers-v0.2.1) (2024-05-13)
 
 
