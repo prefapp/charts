@@ -2,10 +2,11 @@
 {{ range $key, $value := .Values.serviceAccount.annotations -}}
 {{ $key }}: {{ $value }}
 {{ end -}}
-{{ if .Values.csiSecretsStoreConfig.clientId -}}
-azure.workload.identity/client-id: {{ .Values.csiSecretsStoreConfig.clientId -}}
-{{ end -}}
-{{ if .Values.csiSecretsStoreConfig.tenantId }}
-azure.workload.identity/tenant-id: {{ .Values.csiSecretsStoreConfig.tenantId -}}
+{{ $managedIdentity := coalesce .Values.managedIdentity .Values.global.managedIdentity -}}
+{{ if $managedIdentity.tenantId -}}
+azure.workload.identity/tenant-id: {{ $managedIdentity.tenantId -}}
+{{ end }}
+{{ if $managedIdentity.clientId -}}
+azure.workload.identity/client-id: {{ $managedIdentity.clientId -}}
 {{ end -}}
 {{ end }}
