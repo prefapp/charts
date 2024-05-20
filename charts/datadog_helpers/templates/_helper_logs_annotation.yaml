@@ -26,8 +26,8 @@ ad.datadoghq.com/{{ $containerName }}.logs: |
 
 ad.datadoghq.com/tags: |
     {
-      "datacenter": "{{ $datacenter }}"
-      "tenant": "{{ $tenant }}"
+      "datacenter": "{{ $datacenter }}",
+      "tenant": "{{ $tenant }}",
       "application": "{{ $application }}",
       "env": "{{ $env }}",
       "service": "{{ $service}}",
