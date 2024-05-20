@@ -14,7 +14,7 @@ https://docs.datadoghq.com/containers/cluster_agent/admission_controller/?tab=he
 {{ $chartVersion := .Values.global.chart_version }}
 {{ $containerNameTMP := print .Release.Name "-" .Chart.Name }}
 {{ $containerName := default $containerNameTMP .Values.dd_container_name }}
-{{ $source := .Values.global.source }}
+{{ $source := default .Values.global.source .Values.source }}
 
 ad.datadoghq.com/{{ $containerName }}.logs: |
     [
