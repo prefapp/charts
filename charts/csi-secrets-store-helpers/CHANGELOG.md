@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/prefapp/charts/compare/csi-secrets-store-helpers-v0.3.0...csi-secrets-store-helpers-v0.4.0) (2024-05-22)
+
+
+### Features
+
+* remove uppercase ([#222](https://github.com/prefapp/charts/issues/222)) ([7f65eb4](https://github.com/prefapp/charts/commit/7f65eb4323d3473f969e109a02d2a182d50816db))
+
 ## [0.3.0](https://github.com/prefapp/charts/compare/csi-secrets-store-helpers-v0.2.1...csi-secrets-store-helpers-v0.3.0) (2024-05-14)
 
 
