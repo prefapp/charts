@@ -9,7 +9,7 @@ metadata:
     alb.ingress.kubernetes.io/group.name: {{ .Values.ingress.alb.groupName | quote }}
     alb.ingress.kubernetes.io/backend-protocol: {{ .Values.ingress.alb.protocol | quote }}
     alb.ingress.kubernetes.io/listen-ports: {{ .Values.ingress.alb.listenPorts | quote }}
-    alb.ingress.kubernetes.io/scheme: {{ $scheme }}
+    alb.ingress.kubernetes.io/scheme: {{ $scheme | quote }}
     alb.ingress.kubernetes.io/ssl-redirect: '443'
     alb.ingress.kubernetes.io/target-type: 'ip'
     {{ end }}
@@ -17,23 +17,45 @@ metadata:
     {{ . | toYaml | nindent 4 }}
     {{ end }}
 spec:
+  {{- if .Values.ingress.tls }}
   tls:
-  {{ range $tls := .Values.ingress.tls }}
-  - hosts: {{ $tls.hosts | toYaml | nindent 6 }}
-    secretName: {{ $tls.secretName }}
-  {{ end }}
-  {{- if  .Values.ingress.ingressClassName }}
+    {{- range .Values.ingress.tls }}
+    - hosts:
+      {{- if kindIs "slice" .hosts }}
+      {{- .hosts | toYaml | nindent 6 }}
+      {{- else }}
+      - {{ .hosts }}
+      {{- end }}
+      secretName: {{ .secretName }}
+    {{- end }}
+  {{- end }}
+  {{- if .Values.ingress.ingressClassName }}
   ingressClassName: {{ .Values.ingress.ingressClassName }}
-  {{ end }}
+  {{- end }}
   rules:
+  {{- if kindIs "slice" .Values.ingress.host }}
+  {{- range .Values.ingress.host }}
+  - host: {{ . }}
+    http:
+      paths:
+      - pathType: Prefix
+        path: {{ $.Values.ingress.path | default "/" }}
+        backend:
+          service:
+            name: {{ $.Release.Name }}-{{ $.Chart.Name }}
+            port:
+              number: {{ $.Values.service.port }}
+  {{- end }}
+  {{- else }}
   - host: {{ .Values.ingress.host }}
     http:
       paths:
       - pathType: Prefix
-        path: {{ .Values.ingress.path }}
+        path: {{ .Values.ingress.path | default "/" }}
         backend:
           service:
             name: {{ .Release.Name }}-{{ .Chart.Name }}
             port:
               number: {{ .Values.service.port }}
-{{ end }}
+  {{- end }}
+{{- end }}

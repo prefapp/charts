@@ -1,5 +1,5 @@
-{{- with .Values.ingresses}}
-{{ range $ingress := . }}
+{{- with .Values.ingresses }}
+{{- range $ingress := . }}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -10,7 +10,7 @@ metadata:
     alb.ingress.kubernetes.io/group.name: {{ $ingress.alb.groupName | quote }}
     alb.ingress.kubernetes.io/backend-protocol: {{ $ingress.alb.protocol | quote }}
     alb.ingress.kubernetes.io/listen-ports: {{ $ingress.alb.listenPorts | quote }}
-    alb.ingress.kubernetes.io/scheme: {{ $ingress.alb.scheme }}
+    alb.ingress.kubernetes.io/scheme: {{ $ingress.alb.scheme | quote }}
     alb.ingress.kubernetes.io/ssl-redirect: '443'
     alb.ingress.kubernetes.io/target-type: 'ip'
     {{ end }}
@@ -18,18 +18,27 @@ metadata:
     {{ . | toYaml | nindent 4 }}
     {{ end }}
 spec:
+{{ range $tls := $ingress.tls }}
   tls:
-  {{ range $tls := $ingress.tls }}
   - hosts: {{ $tls.hosts | toYaml | nindent 6 }}
     secretName: {{ $tls.secretName }}
-  {{ end }}
-  {{- if  $ingress.ingressClassName }}
+  {{- end }}
+  {{- if $ingress.ingressClassName }}
   ingressClassName: {{ $ingress.ingressClassName }}
   {{ end }}
   rules:
   - host: {{ $ingress.host }}
     http:
       paths:
+      {{- if not $ingress.paths }}
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: {{ $.Release.Name }}-{{ $.Chart.Name }}
+            port:
+              number: {{ $.Values.service.port }}
+      {{- else }}
       {{ range $path := $ingress.paths }}
       - pathType: Prefix
         path: {{ $path }}
@@ -38,6 +47,7 @@ spec:
             name: {{ $.Release.Name }}-{{ $.Chart.Name }}
             port:
               number: {{ $.Values.service.port }}
-      {{ end }}
+      {{- end }}
+      {{- end }}
 {{ end }}
 {{ end }}
