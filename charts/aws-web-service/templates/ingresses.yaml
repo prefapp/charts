@@ -18,7 +18,7 @@ metadata:
     {{ . | toYaml | nindent 4 }}
     {{ end }}
 spec:
-{{ range $tls := $ingress.tls }}
+  {{ range $tls := $ingress.tls }}
   tls:
   - hosts: {{ $tls.hosts | toYaml | nindent 6 }}
     secretName: {{ $tls.secretName }}
@@ -27,6 +27,32 @@ spec:
   ingressClassName: {{ $ingress.ingressClassName }}
   {{ end }}
   rules:
+  {{- if kindIs "slice" $ingress.host }}
+  {{- range $host := $ingress.host }}
+  - host: {{ $host }}
+    http:
+      paths:
+      {{- if not $ingress.paths }}
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: {{ $.Release.Name }}-{{ $.Chart.Name }}
+            port:
+              number: {{ $.Values.service.port }}
+      {{- else }}
+      {{- range $path := $ingress.paths }}
+      - pathType: Prefix
+        path: {{ $path }}
+        backend:
+          service:
+            name: {{ $.Release.Name }}-{{ $.Chart.Name }}
+            port:
+              number: {{ $.Values.service.port }}
+      {{- end }}
+      {{- end }}
+  {{- end }}
+  {{- else }}
   - host: {{ $ingress.host }}
     http:
       paths:
@@ -39,7 +65,7 @@ spec:
             port:
               number: {{ $.Values.service.port }}
       {{- else }}
-      {{ range $path := $ingress.paths }}
+      {{- range $path := $ingress.paths }}
       - pathType: Prefix
         path: {{ $path }}
         backend:
@@ -49,5 +75,6 @@ spec:
               number: {{ $.Values.service.port }}
       {{- end }}
       {{- end }}
-{{ end }}
-{{ end }}
+  {{- end }}
+{{- end }}
+{{- end }}
