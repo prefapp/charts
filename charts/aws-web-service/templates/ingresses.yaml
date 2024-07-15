@@ -52,15 +52,15 @@ spec:
   {{- with $ingress.extraHosts }}
   {{- range . }}
   - host: {{ .hostPath }}
-    http-{{ .name }}:
+    http:
       paths:
-      - path: {{ .extraPath | default "/" }}
+      - path: {{ .Path | default "/" }}
         pathType: Prefix
         backend:
           service:
             name: {{ $.Release.Name }}-{{ $.Chart.Name }}-{{ .name }}
             port:
-              number: {{ .extraPort | default $.Values.service.port }}
+              number: {{ .Port | default $.Values.service.port }}
   {{- end }}
   {{- end }}
 {{- end }}

@@ -18,8 +18,8 @@ spec:
       name: http
     {{- if .Values.ingress.extraHosts }}
     {{- range $host := .Values.ingress.extraHosts }}
-    - port: {{ $host.extraPort | default $.Values.service.port }}
-      targetPort: {{ $host.extraPort | default $.Values.service.port }}
+    - port: {{ $host.Port | default $.Values.service.port }}
+      targetPort: {{ $host.Port | default $.Values.service.port }}
       protocol: TCP
       name: http-{{ $host.name }}
     {{- end }}
@@ -29,8 +29,8 @@ spec:
     {{- range $ingress := . }}
     {{- if $ingress.extraHosts }}
     {{- range $host := $ingress.extraHosts }}
-    - port: {{ $host.extraPort | default $.Values.service.port }}
-      targetPort: {{ $host.extraPort | default $.Values.service.port }}
+    - port: {{ $host.Port | default $.Values.service.port }}
+      targetPort: {{ $host.Port | default $.Values.service.port }}
       protocol: TCP
       name: http-{{ $host.name }}
     {{- end }}
