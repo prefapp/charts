@@ -34,28 +34,28 @@ spec:
   ingressClassName: {{ .Values.ingress.ingressClassName }}
   {{ end }}
   rules:
-    - host: {{ .Values.ingress.host }}
-      http:
-        paths:
-        - pathType: Prefix
-          path: {{ .Values.ingress.path }}
-          backend:
-            service:
-              name: {{ .Release.Name }}-{{ .Chart.Name }}
-              port:
-                number: {{ .Values.service.port }}
-    {{- with .Values.ingress.extraHosts }}
-    {{- range . }}
-    - host: {{ .hostPath }}
-      http-{{ .name }}:
-        paths:
-        - path: {{ .extraPath | default "/" }}
-          pathType: Prefix
-          backend:
-            service:
-              name: {{ $.Release.Name }}-{{ $.Chart.Name }}-{{ .name }}
-              port:
-                number: {{ .extraPort | default $.Values.service.port }}
-    {{- end }}
-    {{- end }}
+  - host: {{ .Values.ingress.host }}
+    http:
+      paths:
+      - pathType: Prefix
+        path: {{ .Values.ingress.path }}
+        backend:
+          service:
+            name: {{ .Release.Name }}-{{ .Chart.Name }}
+            port:
+              number: {{ .Values.service.port }}
+  {{- with .Values.ingress.extraHosts }}
+  {{- range . }}
+  - host: {{ .hostPath }}
+    http-{{ .name }}:
+      paths:
+      - path: {{ .extraPath | default "/" }}
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ $.Release.Name }}-{{ $.Chart.Name }}-{{ .name }}
+            port:
+              number: {{ .extraPort | default $.Values.service.port }}
+  {{- end }}
+  {{- end }}
 {{ end }}
