@@ -24,3 +24,16 @@ spec:
       name: http-{{ $host.name }}
     {{- end }}
     {{- end }}
+
+    {{- with .Values.ingresses }}
+    {{- range $ingress := . }}
+    {{- if $ingress.extraHosts }}
+    {{- range $host := $ingress.extraHosts }}
+    - port: {{ $host.extraPort | default $.Values.service.port }}
+      targetPort: {{ $host.extraPort | default $.Values.service.port }}
+      protocol: TCP
+      name: http-{{ $host.name }}
+    {{- end }}
+    {{- end }}
+    {{- end }}
+    {{- end }}

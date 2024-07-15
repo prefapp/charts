@@ -27,32 +27,6 @@ spec:
   ingressClassName: {{ $ingress.ingressClassName }}
   {{ end }}
   rules:
-  {{- if kindIs "slice" $ingress.host }}
-  {{- range $host := $ingress.host }}
-  - host: {{ $host }}
-    http:
-      paths:
-      {{- if not $ingress.paths }}
-      - pathType: Prefix
-        path: /
-        backend:
-          service:
-            name: {{ $.Release.Name }}-{{ $.Chart.Name }}
-            port:
-              number: {{ $.Values.service.port }}
-      {{- else }}
-      {{- range $path := $ingress.paths }}
-      - pathType: Prefix
-        path: {{ $path }}
-        backend:
-          service:
-            name: {{ $.Release.Name }}-{{ $.Chart.Name }}
-            port:
-              number: {{ $.Values.service.port }}
-      {{- end }}
-      {{- end }}
-  {{- end }}
-  {{- else }}
   - host: {{ $ingress.host }}
     http:
       paths:
@@ -75,6 +49,19 @@ spec:
               number: {{ $.Values.service.port }}
       {{- end }}
       {{- end }}
+  {{- with $ingress.extraHosts }}
+  {{- range . }}
+  - host: {{ .hostPath }}
+    http-{{ .name }}:
+      paths:
+      - path: {{ .extraPath | default "/" }}
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ $.Release.Name }}-{{ $.Chart.Name }}-{{ .name }}
+            port:
+              number: {{ .extraPort | default $.Values.service.port }}
+  {{- end }}
   {{- end }}
 {{- end }}
 {{- end }}
