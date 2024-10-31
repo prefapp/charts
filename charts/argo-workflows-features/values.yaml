@@ -1,0 +1,43 @@
+---
+global:
+  managed_identity:
+    client_id: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+    tenant_id: "YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY"
+  subscription_id: "ZZZZZZZZ-ZZZZ-ZZZZ-ZZZZ-ZZZZZZZZZZZZ"
+features:
+  - name: aks-toggle-cluster
+    schedule: "0 0 * * *"
+    subscription_id: "00000000-0000-0000-0000-000000000000"
+    resource_group: "myResourceGroup"
+    cluster_name: "myAKSCluster"
+    action: "start"
+    managed_identity:
+      client_id: "00000000-0000-0000-0000-000000000000"
+      tenant_id: "00000000-0000-0000-0000-000000000000"
+  - name: aks-toggle-cluster
+    schedule: "0 0 * * *"
+    resource_group: "myResourceGroup"
+    cluster_name: "myAKSCluster"
+    action: "stop"
+    managed_identity:
+      client_id: "00000000-0000-0000-0000-000000000000"
+      tenant_id: "00000000-0000-0000-0000-000000000000"
+  - name: aks-toggle-cluster
+    schedule: "0 0 * * *"
+    subscription_id: "00000000-0000-0000-0000-000000000000"
+    resource_group: "myResourceGroup"
+    cluster_name: "myAKSCluster"
+  - name: vmss-scale-instances
+    schedule: "0 0 * * *"
+    resource_group: "myResourceGroup"
+    vmss_name: "myVMSS"
+    instances: 1
+    managed_identity:
+      client_id: "00000000-0000-0000-0000-000000000000"
+      tenant_id: "00000000-0000-0000-0000-000000000000"
+  - name: vmss-scale-instances
+    schedule: "0 0 * * *"
+    subscription_id: "00000000-0000-0000-0000-000000000000"
+    resource_group: "myResourceGroup"
+    vmss_name: "myVMSS"
+    instances: 2

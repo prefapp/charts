@@ -1,0 +1,15 @@
+---
+{{- /*
+Define a dynamic name for the Role based on the feature name and other properties.
+This template handles different feature names and constructs a unique name accordingly.
+*/ -}}
+{{- define "argo-workflows-features.dynamic-name" -}}
+  {{- $baseName := .feature.name -}}
+  {{- if eq .feature.name "aks-toggle-cluster" -}}
+    {{ printf "%s-%s-%s" $baseName .feature.resource_group .feature.cluster_name | trunc 60 | trimSuffix "-" }}
+  {{- else if eq .feature.name "vmss-scale-instances" -}}
+    {{ printf "%s-%s-%s" $baseName .feature.vmss_name .feature.vmss_name | trunc 60 | trimSuffix "-" }}
+  {{- else -}}
+    {{ $baseName }}
+  {{- end -}}
+{{- end }}

@@ -1,0 +1,14 @@
+---
+{{- /*
+Load the allowed features from the features-allowed.yaml file.
+*/ -}}
+{{- $allowedFeatures := fromYaml (include "argo-workflows-features/templates/features-allowed.yaml" .) -}}
+
+{{- /*
+Validate that the feature.name is one of the allowed values.
+*/ -}}
+{{- range .Values.features }}
+  {{- if not (has .name $allowedFeatures.allowedFeatures) -}}
+    {{- fail (printf "Feature name '%s' is not allowed. Allowed feature names are:\n- %s" .name (join "\n- " $allowedFeatures.allowedFeatures)) -}}
+  {{- end -}}
+{{- end }}

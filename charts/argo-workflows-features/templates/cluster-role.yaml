@@ -1,0 +1,50 @@
+---
+{{- /*
+Define the rules for the Role resource for the argo-workflows-features chart.
+This template is called for each feature defined and fixes rules for the Role.
+*/ -}}
+{{ define "argo-workflows-features.rules" }}
+{{- if or (eq .feature.name "aks-toggle-cluster") (eq .feature.name "aks-toggle-cluster") (eq .feature.name "vmss-scale-instances") -}}
+- apiGroups:
+  - ""
+  verbs:
+    - get
+    - list
+    - watch
+    - patch
+  resources:
+    - pods
+    - pods/exec
+    - secrets
+- apiGroups: ["firestartr.dev"]
+  resources: ["terraformworkspaces"]
+  verbs:
+    - get
+    - list
+    - watch
+{{- end -}}
+{{ end }}
+
+{{- /*
+Define the Role resource for the argo-workflows-features chart.
+The name of the Role is dynamically generated using the "argo-workflows-features.dynamic-name" template.
+*/ -}}
+{{ define "argo-workflows-features.role" }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ include "argo-workflows-features.dynamic-name" . }}-r
+  namespace: "firestartr"
+rules:
+{{ include "argo-workflows-features.rules" . | indent 2 }}
+{{ end }}
+
+{{- /*
+Iterate over the features defined in the values file and create a Role for each feature.
+The root context and the current feature are passed to the "argo-workflows-features.role" template.
+*/ -}}
+{{- $root := . -}}
+{{- range .Values.features }}
+  {{- include "argo-workflows-features.role" (dict "root" $root "feature" .) -}}
+{{- end }}

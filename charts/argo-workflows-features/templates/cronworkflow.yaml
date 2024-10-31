@@ -1,0 +1,58 @@
+---
+{{- /*
+Define the parameters for the Workflow resource for the argo-workflows-features chart.
+This template is called for each feature defined and fixes parameters for the Workflow.
+*/ -}}
+{{ define "argo-workflows-features.parameters" }}
+{{- if or (eq .feature.name "aks-toggle-cluster") (eq .feature.name "aks-toggle-cluster") -}}
+- name: subscription-id
+  value: {{ if hasKey .feature "subscription_id" }}{{ .feature.subscription_id }}{{ else }}{{ .global.subscription_id }}{{ end }}
+- name: cluster-name
+  value: {{ .feature.cluster_name }}
+- name: resource-group
+  value: {{ .feature.resource_group }}
+- name: action
+  value: {{ .feature.action }}
+{{- end -}}
+{{- if eq .feature.name "vmss-scale-instances" -}}
+- name: subscription-id
+  value: {{ if hasKey .feature "subscription_id" }}{{ .feature.subscription_id }}{{ else }}{{ .global.subscription_id }}{{ end }}
+- name: vmss-name
+  value: {{ .feature.vmss_name }}
+- name: resource-group
+  value: {{ .feature.resource_group }}
+- name: instances
+  value: {{ .feature.instances }}
+{{- end -}}
+{{ end }}
+
+{{- /*
+Define the Workflow resource for the argo-workflows-features chart.
+The name of the Workflow is dynamically generated using the "argo-workflows-features.dynamic-name" template.
+*/ -}}
+{{ define "argo-workflows-features.workflow" }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: {{ include "argo-workflows-features.dynamic-name" . }}-cw
+  namespace: "firestartr"
+spec:
+  entrypoint: main
+  schedulu: {{ .feature.schedule }}
+  serviceAccountName: {{ include "argo-workflows-features.dynamic-name" . }}-sa
+  workflowTemplateRef:
+    name: {{ .feature.name }}
+  arguments:
+    parameters:
+{{ include "argo-workflows-features.parameters" . | indent 6 }}
+{{ end }}
+
+{{- /*
+Iterate over the features defined in the values file and create a Workflow for each feature.
+The root context and the current feature are passed to the "argo-workflows-features.workflow" template.
+*/ -}}
+{{- $root := . -}}
+{{- range .Values.features }}
+  {{- include "argo-workflows-features.workflow" (dict "root" $root "feature" . "global" $root.Values.global) -}}
+{{- end }}
