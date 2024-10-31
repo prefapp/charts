@@ -18,10 +18,10 @@ This template is called for each feature defined and fixes parameters for the Wo
   value: {{ if and (hasKey .feature.inputs "action") (or (eq .feature.inputs.action "start") (eq .feature.inputs.action "stop")) }}{{ .feature.inputs.action }}{{ else }}{{ fail (printf (printf "%s (Only 'start' or 'stop' value)" $errorMsg) "action") }}{{ end }}
 
 {{- end -}}
-{{- if eq .feature.name "vmss-scale-instances" -}}
+{{- if eq .feature.name "vmss-scale-instances_count" -}}
 
 
-{{- $errorMsg := "\n\nThe %s is required in the vmss-scale-instances feature. The minimal schema is:\n  vmss-scale-instances:\n    resource_group: string\n    vmss_name: string\n    instances: int" -}}
+{{- $errorMsg := "\n\nThe %s is required in the vmss-scale-instances_count feature. The minimal schema is:\n  vmss-scale-instances_count:\n    resource_group: string\n    vmss_name: string\n    instances_count: int" -}}
 
 - name: subscription-id
   value: {{ if hasKey .feature "subscription_id" }}{{ .feature.subscription_id }}{{ else }}{{ .global.subscription_id }}{{ end }}
@@ -29,8 +29,8 @@ This template is called for each feature defined and fixes parameters for the Wo
   value: {{ if hasKey .feature.inputs "resource_group" }}{{ .feature.inputs.resource_group }}{{ else }}{{ fail (printf $errorMsg "resource_group") }}{{ end }}
 - name: vmss-name
   value: {{ if hasKey .feature.inputs "vmss_name" }}{{ .feature.inputs.vmss_name }}{{ else }}{{ fail (printf $errorMsg "vmss_name") }}{{ end }}
-- name: instances
-  value: {{ if hasKey .feature.inputs "instances" }}{{ .feature.inputs.instances }}{{ else }}{{ fail (printf $errorMsg "instances") }}{{ end }}
+- name: instances_count
+  value: {{ if hasKey .feature.inputs "instances_count" }}{{ .feature.inputs.instances_count }}{{ else }}{{ fail (printf $errorMsg "instances_count") }}{{ end }}
 
 {{- end -}}
 {{ end }}

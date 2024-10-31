@@ -1,4 +1,4 @@
 ---
 allowed_features:
   - aks-start-stop-cluster
-  - vmss-scale-instances
+  - vmss-scale-instances_count

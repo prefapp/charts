@@ -19,19 +19,19 @@
 #       cluster_name: "myAKSCluster"
 #       action: "stop"
 
-#   - name: vmss-scale-instances
+#   - name: vmss-scale-instances_count
 #     cron: "0 0 * * *"
 #     inputs:
 #       resource_group: "myResourceGroup"
 #       vmss_name: "myVMSS"
-#       instances: 1
+#       instances_count: 1
 
-#   - name: vmss-scale-instances
+#   - name: vmss-scale-instances_count
 #     cron: "0 0 * * *"
 #     inputs:
 #       resource_group: "myResourceGroup"
 #       vmss_name: "myVMSS"
-#       instances: 2
+#       instances_count: 2
 
 #   - name: aks-start-stop-cluster
 #     cron: "0 0 * * *"

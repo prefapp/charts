@@ -12,7 +12,7 @@ The `argo-workflows-operations` Helm chart is designed to manage and automate op
 
 The chart supports the following features:
 - `aks-start-stop-cluster`: Start or stop an AKS cluster.
-- `vmss-scale-instances`: Scale the number of instances in a VMSS.
+- `vmss-scale-instances_count`: Scale the number of instances_count in a VMSS.
 
 ## Values File Structure
 
@@ -44,12 +44,12 @@ The `aks-start-stop-cluster` feature should define the following input parameter
 - `cluster_name`: The name of the AKS cluster.
 - `action`: The action to perform on the AKS cluster (`start` or `stop`).
 
-#### Inputs Configuration for `vmss-scale-instances`
+#### Inputs Configuration for `vmss-scale-instances_count`
 
-The `vmss-scale-instances` feature should define the following input parameters:
+The `vmss-scale-instances_count` feature should define the following input parameters:
 - `resource_group`: The name of the resource group containing the VMSS.
 - `vmss_name`: The name of the VMSS.
-- `instances`: The number of instances to scale (or descale) the VMSS to.
+- `instances_count`: The number of instances_count to scale (or descale) the VMSS to.
 
 ### Example Values File
 
@@ -76,19 +76,19 @@ features:
       cluster_name: "myAKSCluster"
       action: "stop"
 
-  - name: vmss-scale-instances
+  - name: vmss-scale-instances_count
     cron: "0 0 * * *"
     inputs:
       resource_group: "myResourceGroup"
       vmss_name: "myVMSS"
-      instances: 1
+      instances_count: 1
 
-  - name: vmss-scale-instances
+  - name: vmss-scale-instances_count
     cron: "0 0 * * *"
     inputs:
       resource_group: "myResourceGroup"
       vmss_name: "myVMSS"
-      instances: 2
+      instances_count: 2
 
   - name: aks-start-stop-cluster
     cron: "0 0 * * *"

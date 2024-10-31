@@ -7,7 +7,7 @@ This template handles different feature names and constructs a unique name accor
   {{- $baseName := .feature.name -}}
   {{- if eq .feature.name "aks-start-stop-cluster" -}}
     {{ printf "%s-%s-%s" $baseName .feature.inputs.resource_group .feature.inputs.cluster_name | trunc 60 | trimSuffix "-" }}
-  {{- else if eq .feature.inputs.name "vmss-scale-instances" -}}
+  {{- else if eq .feature.inputs.name "vmss-scale-instances_count" -}}
     {{ printf "%s-%s-%s" $baseName .feature.inputs.resource_group .feature.inputs.vmss_name | trunc 60 | trimSuffix "-" }}
   {{- else -}}
     {{ $baseName }}
