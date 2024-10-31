@@ -1,0 +1,31 @@
+---
+{{- /*
+Define the Workflow resource for the argo-workflows-operations chart.
+The name of the Workflow is dynamically generated using the "argo-workflows-operations.dynamic-name" template.
+*/ -}}
+{{ define "argo-workflows-operations.workflow" }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: {{ include "argo-workflows-operations.dynamic-name" . }}-cw
+  namespace: "firestartr"
+spec:
+  entrypoint: main
+  schedulu: {{ .feature.schedule }}
+  serviceAccountName: {{ include "argo-workflows-operations.dynamic-name" . }}-sa
+  workflowTemplateRef:
+    name: {{ .feature.name }}
+  arguments:
+    parameters:
+{{ include "argo-workflows-operations.parameters" . | indent 6 }}
+{{ end }}
+
+{{- /*
+Iterate over the features defined in the values file and create a Workflow for each feature.
+The root context and the current feature are passed to the "argo-workflows-operations.workflow" template.
+*/ -}}
+{{- $root := . -}}
+{{- range .Values.features }}
+  {{- include "argo-workflows-operations.workflow" (dict "root" $root "feature" . "global" $root.Values.global) -}}
+{{- end }}

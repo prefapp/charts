@@ -1,4 +1,0 @@
----
-allowedFeatures:
-  - aks-toggle-cluster
-  - vmss-scale-instances

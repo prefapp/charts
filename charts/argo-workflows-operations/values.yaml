@@ -1,0 +1,45 @@
+# ---
+# global:
+#   managed_identity:
+#     client_id: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+#     tenant_id: "YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY"
+#   subscription_id: "ZZZZZZZZ-ZZZZ-ZZZZ-ZZZZ-ZZZZZZZZZZZZ"
+# features:
+#   - name: aks-start-stop-cluster
+#     cron: "0 0 * * *"
+#     inputs:
+#       resource_group: "myResourceGroup"
+#       cluster_name: "myAKSCluster"
+#       action: "start"
+
+#   - name: aks-start-stop-cluster
+#     cron: "0 0 * * *"
+#     inputs:
+#       resource_group: "myResourceGroup"
+#       cluster_name: "myAKSCluster"
+#       action: "stop"
+
+#   - name: vmss-scale-instances
+#     cron: "0 0 * * *"
+#     inputs:
+#       resource_group: "myResourceGroup"
+#       vmss_name: "myVMSS"
+#       instances: 1
+
+#   - name: vmss-scale-instances
+#     cron: "0 0 * * *"
+#     inputs:
+#       resource_group: "myResourceGroup"
+#       vmss_name: "myVMSS"
+#       instances: 2
+
+#   - name: aks-start-stop-cluster
+#     cron: "0 0 * * *"
+#     subscription_id: "00000000-0000-0000-0000-000000000000"
+#     managed_identity:
+#       client_id: "00000000-0000-0000-0000-000000000000"
+#       tenant_id: "00000000-0000-0000-0000-000000000000"
+#     inputs:
+#       resource_group: "myResourceGroup"
+#       cluster_name: "myAKSCluster"
+#       action: "start"
