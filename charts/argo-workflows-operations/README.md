@@ -25,12 +25,14 @@ The global configuration should define the following properties:
   - `client_id`: The Azure service principal client ID.
   - `tenant_id`: The Azure service principal tenant ID.
 - `subscription_id`: The Azure subscription ID.
+- `timezone`: The timezone for the cron schedule.
 
 ### Features Configuration
 
 The features configuration should define a list of features. Each feature should specify the following properties:
 - `name`: The name of the feature.
 - `cron`: The cron schedule for the operation.
+- `timezone` (optional, replaces the global configuration): The timezone for the cron schedule.
 - `managed_identity` (optional, replaces the global configuration): The managed identity properties for the Azure service principal.
   - `client_id`: The Azure service principal client ID.
   - `tenant_id`: The Azure service principal tenant ID.
@@ -60,6 +62,7 @@ global:
     client_id: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
     tenant_id: "YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY"
   subscription_id: "ZZZZZZZZ-ZZZZ-ZZZZ-ZZZZ-ZZZZZZZZZZZZ"
+  timezone: "America/New_York"
 
 features:
   - name: aks-start-stop-cluster
@@ -78,6 +81,7 @@ features:
 
   - name: vmss-scale-instances_count
     cron: "0 0 * * *"
+    timezone: "Europe/Paris"
     inputs:
       resource_group: "myResourceGroup"
       vmss_name: "myVMSS"

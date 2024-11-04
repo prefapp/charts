@@ -4,6 +4,7 @@
 #     client_id: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
 #     tenant_id: "YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY"
 #   subscription_id: "ZZZZZZZZ-ZZZZ-ZZZZ-ZZZZ-ZZZZZZZZZZZZ"
+#   timezone: "Europe/Madrid"
 # features:
 #   - name: aks-start-stop-cluster
 #     cron: "0 0 * * *"
@@ -28,6 +29,7 @@
 
 #   - name: vmss-scale-instances_count
 #     cron: "0 0 * * *"
+#     timezone: "America/New_York"
 #     inputs:
 #       resource_group: "myResourceGroup"
 #       vmss_name: "myVMSS"

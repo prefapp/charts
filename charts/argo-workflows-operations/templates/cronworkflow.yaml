@@ -12,7 +12,8 @@ metadata:
   namespace: "firestartr"
 spec:
   entrypoint: main
-  schedulu: {{ .feature.schedule }}
+  schedule: {{ .feature.cron }}
+  timezone: {{ if hasKey .feature "timezone" }}{{ .feature.timezone | default .global.timezone }}{{ else }}{{ .global.timezone }}{{ end }} 
   serviceAccountName: {{ include "argo-workflows-operations.dynamic-name" . }}-sa
   workflowTemplateRef:
     name: {{ .feature.name }}
