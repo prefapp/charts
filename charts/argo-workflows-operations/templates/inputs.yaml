@@ -4,10 +4,9 @@ Define the parameters for the Workflow resource for the argo-workflows-operation
 This template is called for each feature defined and fixes parameters for the Workflow.
 */ -}}
 {{ define "argo-workflows-operations.parameters" }}
+
 {{- if or (eq .feature.name "aks-start-stop-cluster") (eq .feature.inputs.name "aks-start-stop-cluster") -}}
-
 {{- $errorMsg := "\n\nThe %s is required in the aks-start-stop-cluster feature. The minimal schema is:\n  aks-start-stop-cluster:\n    resource_group: string\n    cluster_name: string\n    action: string" -}}
-
 - name: subscription-id
   value: {{ if hasKey .feature "subscription_id" }}{{ .feature.subscription_id }}{{ else }}{{ .global.subscription_id }}{{ end }}
 - name: resource-group
@@ -16,13 +15,10 @@ This template is called for each feature defined and fixes parameters for the Wo
   value: {{ if hasKey .feature.inputs "cluster_name" }}{{ .feature.inputs.cluster_name }}{{ else }}{{ fail (printf $errorMsg "cluster_name") }}{{ end }}
 - name: action
   value: {{ if and (hasKey .feature.inputs "action") (or (eq .feature.inputs.action "start") (eq .feature.inputs.action "stop")) }}{{ .feature.inputs.action }}{{ else }}{{ fail (printf (printf "%s (Only 'start' or 'stop' value)" $errorMsg) "action") }}{{ end }}
-
 {{- end -}}
+
 {{- if eq .feature.name "vmss-scale-instances_count" -}}
-
-
 {{- $errorMsg := "\n\nThe %s is required in the vmss-scale-instances_count feature. The minimal schema is:\n  vmss-scale-instances_count:\n    resource_group: string\n    vmss_name: string\n    instances_count: int" -}}
-
 - name: subscription-id
   value: {{ if hasKey .feature "subscription_id" }}{{ .feature.subscription_id }}{{ else }}{{ .global.subscription_id }}{{ end }}
 - name: resource-group
@@ -31,6 +27,34 @@ This template is called for each feature defined and fixes parameters for the Wo
   value: {{ if hasKey .feature.inputs "vmss_name" }}{{ .feature.inputs.vmss_name }}{{ else }}{{ fail (printf $errorMsg "vmss_name") }}{{ end }}
 - name: instances_count
   value: {{ if hasKey .feature.inputs "instances_count" }}{{ .feature.inputs.instances_count }}{{ else }}{{ fail (printf $errorMsg "instances_count") }}{{ end }}
-
 {{- end -}}
+
+{{- if eq .feature.name "flexible-server-start-stop-postgresql" -}}
+{{- $errorMsg := "\n\nThe %s is required in the flexible-server-start-stop-postgresql feature. The minimal schema is:\n  flexible-server-start-stop-postgresql:\n    resource_group: string\n    server_name: string\n    action: string" -}}
+- name: subscription-id
+  value: {{ if hasKey .feature "subscription_id" }}{{ .feature.subscription_id }}{{ else }}{{ .global.subscription_id }}{{ end }}
+- name: resource-group
+  value: {{ if hasKey .feature.inputs "resource_group" }}{{ .feature.inputs.resource_group }}{{ else }}{{ fail (printf $errorMsg "resource_group") }}{{ end }}
+- name: vmss-name
+  value: {{ if hasKey .feature.inputs "server_name" }}{{ .feature.inputs.server_name }}{{ else }}{{ fail (printf $errorMsg "server_name") }}{{ end }}
+- name: instances_count
+  value: {{ if hasKey .feature.inputs "action" }}{{ .feature.inputs.action }}{{ else }}{{ fail (printf $errorMsg "action") }}{{ end }}
+{{- end -}}
+
+{{- if eq .feature.name "mongodb-atlas-start-pause-cluster" -}}
+{{- $errorMsg := "\n\nThe %s is required in the mongodb-atlas-start-pause-cluster feature. The minimal schema is:\n  mongodb-atlas-start-pause-cluster:\n    secret_namespace: string\n    secret_name: string\n    organization_id: string\n    project_id: string\n    cluster_name: string\n    action: string" -}}
+- name: secret-namespace
+  value: {{ if hasKey .feature.inputs "secret_namespace" }}{{ .feature.inputs.secret_namespace }}{{ else }}{{ fail (printf $errorMsg "secret_namespace") }}{{ end }}
+- name: secret-name
+  value: {{ if hasKey .feature.inputs "secret_name" }}{{ .feature.inputs.secret_name }}{{ else }}{{ fail (printf $errorMsg "secret_name") }}{{ end }}
+- name: organization-id
+  value: {{ if hasKey .feature.inputs "organization_id" }}{{ .feature.inputs.organization_id }}{{ else }}{{ fail (printf $errorMsg "organization_id") }}{{ end }}
+- name: project-id
+  value: {{ if hasKey .feature.inputs "project_id" }}{{ .feature.inputs.project_id }}{{ else }}{{ fail (printf $errorMsg "project_id") }}{{ end }}
+- name: cluster-name
+  value: {{ if hasKey .feature.inputs "cluster_name" }}{{ .feature.inputs.cluster_name }}{{ else }}{{ fail (printf $errorMsg "cluster_name") }}{{ end }}
+- name: action
+  value: {{ if and (hasKey .feature.inputs "action") (or (eq .feature.inputs.action "start") (eq .feature.inputs.action "pause")) }}{{ .feature.inputs.action }}{{ else }}{{ fail (printf (printf "%s (Only 'start' or 'pause' value)" $errorMsg) "action") }}{{ end }}
+{{- end -}}
+
 {{ end }}

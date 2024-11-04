@@ -5,43 +5,61 @@
 #     tenant_id: "YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY"
 #   subscription_id: "ZZZZZZZZ-ZZZZ-ZZZZ-ZZZZ-ZZZZZZZZZZZZ"
 #   timezone: "Europe/Madrid"
+
 # features:
-#   - name: aks-start-stop-cluster
-#     cron: "0 0 * * *"
-#     inputs:
-#       resource_group: "myResourceGroup"
-#       cluster_name: "myAKSCluster"
-#       action: "start"
+  # - name: aks-start-stop-cluster
+  #   cron: "0 0 * * *"
+  #   inputs:
+  #     resource_group: "myResourceGroup"
+  #     cluster_name: "myAKSCluster"
+  #     action: "start"
 
-#   - name: aks-start-stop-cluster
-#     cron: "0 0 * * *"
-#     inputs:
-#       resource_group: "myResourceGroup"
-#       cluster_name: "myAKSCluster"
-#       action: "stop"
+  # - name: aks-start-stop-cluster
+  #   cron: "0 0 * * *"
+  #   inputs:
+  #     resource_group: "myResourceGroup"
+  #     cluster_name: "myAKSCluster"
+  #     action: "stop"
 
-#   - name: vmss-scale-instances_count
-#     cron: "0 0 * * *"
-#     inputs:
-#       resource_group: "myResourceGroup"
-#       vmss_name: "myVMSS"
-#       instances_count: 1
+  # - name: vmss-scale-instances_count
+  #   cron: "0 0 * * *"
+  #   inputs:
+  #     resource_group: "myResourceGroup"
+  #     vmss_name: "myVMSS"
+  #     instances_count: 1
 
-#   - name: vmss-scale-instances_count
-#     cron: "0 0 * * *"
-#     timezone: "America/New_York"
-#     inputs:
-#       resource_group: "myResourceGroup"
-#       vmss_name: "myVMSS"
-#       instances_count: 2
+  # - name: vmss-scale-instances_count
+  #   cron: "0 0 * * *"
+  #   timezone: "America/New_York"
+  #   inputs:
+  #     resource_group: "myResourceGroup"
+  #     vmss_name: "myVMSS"
+  #     instances_count: 2
 
-#   - name: aks-start-stop-cluster
-#     cron: "0 0 * * *"
-#     subscription_id: "00000000-0000-0000-0000-000000000000"
-#     managed_identity:
-#       client_id: "00000000-0000-0000-0000-000000000000"
-#       tenant_id: "00000000-0000-0000-0000-000000000000"
-#     inputs:
-#       resource_group: "myResourceGroup"
-#       cluster_name: "myAKSCluster"
-#       action: "start"
+  # - name: aks-start-stop-cluster
+  #   cron: "0 0 * * *"
+  #   subscription_id: "00000000-0000-0000-0000-000000000000"
+  #   managed_identity:
+  #     client_id: "00000000-0000-0000-0000-000000000000"
+  #     tenant_id: "00000000-0000-0000-0000-000000000000"
+  #   inputs:
+  #     resource_group: "myResourceGroup"
+  #     cluster_name: "myAKSCluster"
+  #     action: "start"
+
+  # - name: flexible-server-start-stop-postgresql
+  #   cron: "0 0 * * *"
+  #   inputs:
+  #     resource_group: "myResourceGroup"
+  #     server_name: "myFlexibleServer"
+  #     action: "start"
+
+  # - name: mongodb-atlas-start-pause-cluster
+  #   cron: "0 0 * * *"
+  #   inputs:
+  #     secret_namespace: "myNamespace"
+  #     secret_name: "mySecretName"
+  #     organization_id: "myOrganizationId"
+  #     project_id: "myProjectId"
+  #     cluster_name: "myClusterName"
+  #     action: "start"

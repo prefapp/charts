@@ -1,3 +1,21 @@
+  # - name: flexible-server-start-stop-postgresql
+  #   cron: "0 0 * * *"
+  #   inputs:
+  #     resource_group: "myResourceGroup"
+  #     server_name: "myFlexibleServer"
+  #     action: "start"
+
+  # - name: mongodb-atlas-start-pause-cluster
+  #   cron: "0 0 * * *"
+  #   inputs:
+  #     secret_namespace: "myNamespace"
+  #     secret_name: "mySecretName"
+  #     organization_id: "myOrganizationId"
+  #     project_id: "myProjectId"
+  #     cluster_name: "myClusterName"
+  #     action: "start"
+****
+
 # Documentation for argo-workflows-operations Helm Chart
 
 ## Overview
@@ -5,6 +23,8 @@
 The `argo-workflows-operations` Helm chart is designed to manage and automate operations on:
 - Azure Kubernetes Service (AKS) clusters
 - Virtual Machine Scale Sets (VMSS)
+- Flexible Servers in Azure Database for PostgreSQL
+- MongoDB Atlas clusters
 
 ...using Argo Workflows. This chart dynamically generates Kubernetes RoleBindings, Roles, CronWorkflows, and ServiceAccounts based on the features defined in the values file.
 
@@ -13,6 +33,8 @@ The `argo-workflows-operations` Helm chart is designed to manage and automate op
 The chart supports the following features:
 - `aks-start-stop-cluster`: Start or stop an AKS cluster.
 - `vmss-scale-instances_count`: Scale the number of instances_count in a VMSS.
+- `flexible-server-start-stop-postgresql`: Start or stop a Flexible Server in Azure Database for PostgreSQL.
+- `mongodb-atlas-start-pause-cluster`: Start or pause a MongoDB Atlas cluster.
 
 ## Values File Structure
 
@@ -52,6 +74,24 @@ The `vmss-scale-instances_count` feature should define the following input param
 - `resource_group`: The name of the resource group containing the VMSS.
 - `vmss_name`: The name of the VMSS.
 - `instances_count`: The number of instances_count to scale (or descale) the VMSS to.
+
+
+#### Inputs Configuration for `flexible-server-start-stop-postgresql`
+
+The `flexible-server-start-stop-postgresql` feature should define the following input parameters:
+- `resource_group`: The name of the resource group containing the Flexible Server.
+- `server_name`: The name of the Flexible Server.
+- `action`: The action to perform on the Flexible Server (`start` or `stop`).
+
+#### Inputs Configuration for `mongodb-atlas-start-pause-cluster`
+
+The `mongodb-atlas-start-pause-cluster` feature should define the following input parameters:
+- `secret_namespace`: The namespace of the Kubernetes secret containing the MongoDB Atlas (public and private) API key.
+- `secret_name`: The name of the Kubernetes secret containing the MongoDB Atlas (public and private) API key.
+- `organization_id`: The organization ID of the MongoDB Atlas project.
+- `project_id`: The project ID of the MongoDB Atlas project.
+- `cluster_name`: The name of the MongoDB Atlas cluster.
+- `action`: The action to perform on the MongoDB Atlas cluster (`start` or `pause`).
 
 ### Example Values File
 
@@ -104,6 +144,23 @@ features:
       resource_group: "myResourceGroup"
       cluster_name: "myAKSCluster"
       action: "start"
+
+  - name: flexible-server-start-stop-postgresql
+    cron: "0 0 * * *"
+    inputs:
+      resource_group: "myResourceGroup"
+      server_name: "myFlexibleServer"
+      action: "start"
+
+  - name: mongodb-atlas-start-pause-cluster
+    cron: "0 0 * * *"
+    inputs:
+      secret_namespace: "myNamespace"
+      secret_name: "mySecretName"
+      organization_id: "myOrganizationId"
+      project_id: "myProjectId"
+      cluster_name: "myClusterName"
+      action: "start"
 ```
 
 ## Usage for developers
@@ -113,9 +170,8 @@ If you wish to add a new feature to the chart, you need to follow these steps:
 1. Add the feature name to the `features-allowed.yaml` file.
 2. Add the feature to the values file with the necessary inputs and schedule.
 3. Add the feature-specific logic to the templates.
-4. Add the feature-specific logic to the `argo-workflows-operations.rules` template.
-5. Add the feature-specific logic to the `argo-workflows-operations.parameters` template.
-6. Add the feature-specific logic to the `argo-workflows-operations.workflow` template.
-7. Add the feature-specific logic to the `argo-workflows-operations.dynamic-name` template.
-8. Add the feature-specific logic to the `argo-workflows-operations.rolebinding` template.
-9. Add the feature-specific logic to the `argo-workflows-operations.role` template.
+4. Add the feature-specific logic to the `argo-workflows-operations.dynamic-name` template.
+5. Add the feature-specific logic to the `argo-workflows-operations.role` template.
+6. Add the feature-specific logic to the `argo-workflows-operations.rules` template.
+7. Add the feature-specific logic to the `argo-workflows-operations.parameters` template.
+8. Add the feature-specific logic to the `argo-workflows-operations.workflow` template.
