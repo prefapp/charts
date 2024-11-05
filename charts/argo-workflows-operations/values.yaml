@@ -6,15 +6,27 @@ allowed_features:
   - vmss-scale-instances_count
   # MongoDB Atlas
   - mongodb-atlas-start-pause-cluster
+  # Datadog
+  - datadog-unmute-mute-monitors
 
 global: {}
   # managed_identity:
-  #   clientf_id: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+  #   client_id: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
   #   tenant_id: "YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY"
   # subscription_id: "ZZZZZZZZ-ZZZZ-ZZZZ-ZZZZ-ZZZZZZZZZZZZ"
   # timezone: "Europe/Madrid"
 
 features: {}
+  # - name: datadog-unmute-mute-monitors
+  #   cron: "0 0 * * *"
+  #   inputs:
+  #     secret_namespace: "myNamespace"
+  #     secret_name: "mySecretName"
+  #     monitor_ids:
+  #       - "19376544"
+  #       - "19376545"
+  #     action: unmute
+
   # - name: aks-start-stop-cluster
   #   cron: "0 0 * * *"
   #   inputs:

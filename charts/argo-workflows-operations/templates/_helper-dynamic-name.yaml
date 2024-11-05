@@ -13,6 +13,8 @@ This template handles different feature names and constructs a unique name accor
     {{ printf "%s-%s-%s" $baseName (.feature.inputs.resource_group | lower) (.feature.inputs.vmss_name | lower) | trunc 60 | trimSuffix "-" }}
   {{- else if eq .feature.name "mongodb-atlas-start-pause-cluster" -}}
     {{ printf "%s-%s-%s" $baseName (.feature.inputs.project_id | lower) (.feature.inputs.cluster_name | lower) | trunc 60 | trimSuffix "-" }}
+  {{- else if eq .feature.name "datadog-unmute-mute-monitors" -}}
+  {{- printf "%s-%s" $baseName (.feature.inputs.action | lower) | trunc 60 | trimSuffix "-" -}}
   {{- else -}}
     {{ $baseName }}
   {{- end -}}

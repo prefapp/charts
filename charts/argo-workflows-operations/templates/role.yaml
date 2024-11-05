@@ -14,7 +14,7 @@ This template is called for each feature defined and fixes rules for the Role.
   verbs: ["get", "list", "watch"]
 {{- end -}}
 
-{{- if eq .feature.name "mongodb-atlas-start-pause-cluster" -}}
+{{- if or (eq .feature.name "mongodb-atlas-start-pause-cluster") (eq .feature.name "datadog-unmute-mute-monitors") -}}
 - apiGroups: [""]
   verbs: ["get", "watch", "list", "patch"]
   resources: ["pods", "pods/exec", "secrets"]
@@ -23,7 +23,7 @@ This template is called for each feature defined and fixes rules for the Role.
   verbs: ["get", "list", "watch"]
 - apiGroups: [""]
   resources: ["secrets"]
-  resourceNames: [{{ .feature.inputs.secret_name }}]
+  resourceNames: [{{ .feature.inputs.secret_name | quote }}]
   verbs: ["get"]
 {{- end -}}
 
