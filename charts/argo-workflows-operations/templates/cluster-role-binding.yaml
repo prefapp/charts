@@ -9,11 +9,11 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: {{ include "argo-workflows-operations.dynamic-name" . }}-rb
-  namespace: {{ .root.Release.Namespace }}
+  namespace: "firestartr"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: {{ include "argo-workflows-operations.dynamic-name" . }}-role
+  name: {{ include "argo-workflows-operations.dynamic-name" . }}-r
 subjects:
   - kind: ServiceAccount
     name: {{ include "argo-workflows-operations.dynamic-name" . }}-sa

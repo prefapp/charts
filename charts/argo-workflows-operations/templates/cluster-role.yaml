@@ -4,53 +4,30 @@ Define the rules for the Role resource for the argo-workflows-operations chart.
 This template is called for each feature defined and fixes rules for the Role.
 */ -}}
 {{ define "argo-workflows-operations.rules" }}
+
 {{- if or (eq .feature.name "aks-start-stop-cluster") (eq .feature.name "flexible-server-start-stop-postgresql") (eq .feature.name "vmss-scale-instances_count") -}}
-- apiGroups:
-  - ""
-  verbs:
-    - get
-    - list
-    - watch
-    - patch
-  resources:
-    - pods
-    - pods/exec
-    - secrets
+- apiGroups: [""]
+  verbs: ["get", "list", "watch", "patch"]
+  resources: ["pods", "pods/exec", "secrets"]
 - apiGroups: ["firestartr.dev"]
   resources: ["terraformworkspaces"]
-  verbs:
-    - get
-    - list
-    - watch
+  verbs: ["get", "list", "watch"]
 {{- end -}}
 
 {{- if eq .feature.name "mongodb-atlas-start-pause-cluster" -}}
-- apiGroups:
-  - ""
-  verbs:
-    - get
-    - list
-    - watch
-    - patch
-  resources:
-    - pods
-    - pods/exec
-    - secrets
+- apiGroups: [""]
+  verbs: ["get", "watch", "list", "patch"]
+  resources: ["pods", "pods/exec", "secrets"]
 - apiGroups: ["firestartr.dev"]
   resources: ["terraformworkspaces"]
-  verbs:
-    - get
-    - list
-    - watch
+  verbs: ["get", "list", "watch"]
 - apiGroups: [""]
   resources: ["secrets"]
   resourceNames: [{{ .feature.inputs.secret_name }}]
-  verbs:
-    - get
-  namespace: [{{ .feature.inputs.secret_namespace }}]
+  verbs: ["get"]
 {{- end -}}
 
-{{ end }}
+{{- end -}}
 
 {{- /*
 Define the Role resource for the argo-workflows-operations chart.

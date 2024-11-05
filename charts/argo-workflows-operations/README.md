@@ -167,7 +167,7 @@ features:
 
 If you wish to add a new feature to the chart, you need to follow these steps:
 
-1. Add the feature name to the `features-allowed.yaml` file.
+1. Add the feature name to the `features-allowed.yaml` into values.yaml file.
 2. Add the feature to the values file with the necessary inputs and schedule.
 3. Add the feature-specific logic to the templates.
 4. Add the feature-specific logic to the `argo-workflows-operations.dynamic-name` template.

@@ -1,8 +1,0 @@
----
-allowed_features:
-  # Azure
-  - aks-start-stop-cluster
-  - flexible-server-start-stop-postgresql
-  - vmss-scale-instances_count
-  # MongoDB Atlas
-  - mongodb-atlas-start-pause-cluster

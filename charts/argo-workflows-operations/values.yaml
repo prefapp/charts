@@ -1,12 +1,20 @@
-# ---
-# global:
-#   managed_identity:
-#     client_id: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
-#     tenant_id: "YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY"
-#   subscription_id: "ZZZZZZZZ-ZZZZ-ZZZZ-ZZZZ-ZZZZZZZZZZZZ"
-#   timezone: "Europe/Madrid"
+---
+allowed_features:
+  # Azure
+  - aks-start-stop-cluster
+  - flexible-server-start-stop-postgresql
+  - vmss-scale-instances_count
+  # MongoDB Atlas
+  - mongodb-atlas-start-pause-cluster
 
-# features:
+global: {}
+  # managed_identity:
+  #   clientf_id: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+  #   tenant_id: "YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY"
+  # subscription_id: "ZZZZZZZZ-ZZZZ-ZZZZ-ZZZZ-ZZZZZZZZZZZZ"
+  # timezone: "Europe/Madrid"
+
+features: {}
   # - name: aks-start-stop-cluster
   #   cron: "0 0 * * *"
   #   inputs:
