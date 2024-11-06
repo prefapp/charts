@@ -1,5 +1,5 @@
 ---
-allowed_features:
+allowed_operations:
   # Azure
   - aks-start-stop-cluster
   - flexible-server-start-stop-postgresql
@@ -16,7 +16,7 @@ global: {}
 #   subscription_id: "ZZZZZZZZ-ZZZZ-ZZZZ-ZZZZ-ZZZZZZZZZZZZ"
 #   timezone: "Europe/Madrid"
 
-features: {}
+operations: {}
   # - name: datadog-unmute-mute-monitors
   #   cron: "0 0 * * *"
   #   managed_identity:

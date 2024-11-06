@@ -1,14 +1,14 @@
 ---
 {{- /*
-Load the allowed features from the values.yaml file.
+Load the allowed operations from the values.yaml file.
 */ -}}
-{{- $allowed_features := .Values.allowed_features -}}
+{{- $allowed_operations := .Values.allowed_operations -}}
 
 {{- /*
 Validate that the feature.name is one of the allowed values.
 */ -}}
-{{- range .Values.features }}
-  {{- if not (has .name $allowed_features) -}}
-    {{- fail (printf "Feature name '%s' is not allowed. Allowed feature names are:\n- %s" .name (join "\n- " $allowed_features)) -}}
+{{- range .Values.operations }}
+  {{- if not (has .name $allowed_operations) -}}
+    {{- fail (printf "Feature name '%s' is not allowed. Allowed feature names are:\n- %s" .name (join "\n- " $allowed_operations)) -}}
   {{- end -}}
 {{- end }}
