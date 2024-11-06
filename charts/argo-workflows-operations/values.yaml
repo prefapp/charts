@@ -10,15 +10,18 @@ allowed_features:
   - datadog-unmute-mute-monitors
 
 global: {}
-  # managed_identity:
-  #   client_id: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
-  #   tenant_id: "YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY"
-  # subscription_id: "ZZZZZZZZ-ZZZZ-ZZZZ-ZZZZ-ZZZZZZZZZZZZ"
-  # timezone: "Europe/Madrid"
+#   managed_identity:
+#     client_id: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+#     tenant_id: "YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY"
+#   subscription_id: "ZZZZZZZZ-ZZZZ-ZZZZ-ZZZZ-ZZZZZZZZZZZZ"
+#   timezone: "Europe/Madrid"
 
 features: {}
   # - name: datadog-unmute-mute-monitors
   #   cron: "0 0 * * *"
+  #   managed_identity:
+  #     client_id: "8891abab-8901-4894-b1b4-1b32eda5be11"
+  #     tenant_id: "ca5a6690-2f48-4776-91dd-8fde1d02e7e8"
   #   inputs:
   #     secret_namespace: "myNamespace"
   #     secret_name: "mySecretName"
