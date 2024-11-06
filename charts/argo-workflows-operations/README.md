@@ -1,21 +1,3 @@
-  # - name: flexible-server-start-stop-postgresql
-  #   cron: "0 0 * * *"
-  #   inputs:
-  #     resource_group: "myResourceGroup"
-  #     server_name: "myFlexibleServer"
-  #     action: "start"
-
-  # - name: mongodb-atlas-start-pause-cluster
-  #   cron: "0 0 * * *"
-  #   inputs:
-  #     secret_namespace: "myNamespace"
-  #     secret_name: "mySecretName"
-  #     organization_id: "myOrganizationId"
-  #     project_id: "myProjectId"
-  #     cluster_name: "myClusterName"
-  #     action: "start"
-****
-
 # Documentation for argo-workflows-operations Helm Chart
 
 ## Overview
@@ -28,7 +10,7 @@ The `argo-workflows-operations` Helm chart is designed to manage and automate op
 
 ...using Argo Workflows. This chart dynamically generates Kubernetes RoleBindings, Roles, CronWorkflows, and ServiceAccounts based on the operations defined in the values file.
 
-## Features
+## Operations
 
 The chart supports the following operations:
 - `aks-start-stop-cluster`: Start or stop an AKS cluster.
@@ -52,6 +34,7 @@ The global configuration should define the following properties:
 ### Features Configuration
 
 The operations configuration should define a list of operations. Each feature should specify the following properties:
+
 - `name`: The name of the feature.
 - `cron`: The cron schedule for the operation.
 - `timezone` (optional, replaces the global configuration): The timezone for the cron schedule.
