@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.0](https://github.com/prefapp/charts/compare/aws-web-service-v0.8.0...aws-web-service-v0.9.0) (2024-11-06)
+
+
+### Features
+
+* Argo workflows operations chart ([#238](https://github.com/prefapp/charts/issues/238)) ([ef99339](https://github.com/prefapp/charts/commit/ef99339eaa1b0c5ebe538033291c58dd3c721156))
+
 ## [0.8.0](https://github.com/prefapp/charts/compare/aws-web-service-v0.7.0...aws-web-service-v0.8.0) (2024-02-01)
 
 
