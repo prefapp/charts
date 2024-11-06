@@ -7,7 +7,38 @@ entries:
           url: https://github.com/prefapp/charts/issues
     apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-05-20T16:56:22.522184818Z"
+    created: "2024-11-06T16:44:03.775684674Z"
+    description: Library to help with Datadog integration
+    digest: 81a5aa7ca5b515b91e7001ed216a0e3f6f2348bb059205be5739b858a1a10deb
+    home: https://github.com/prefapp/charts/tree/master/charts/datadog_helpers
+    keywords:
+    - helpers
+    - datadog
+    - library
+    - generic
+    - apm
+    - profiler
+    - profiling
+    - labels
+    maintainers:
+    - email: gustavo.borragan@prefapp.es
+      name: gustavoborragan
+    - email: charts@prefapp.es
+      name: Info
+    name: datadog_helpers
+    sources:
+    - https://github.com/prefapp/charts/tree/master/charts/datadog_helpers
+    type: library
+    urls:
+    - datadog_helpers-1.4.0.tgz
+    version: 1.4.0
+  - annotations:
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/prefapp/charts/issues
+    apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-11-06T16:44:03.775316148Z"
     description: Library to help with Datadog integration
     digest: 568cd97cc935d29bb4ff85db00a8b7f862d922b83449ad6cd0f609c3001eb2db
     home: https://github.com/prefapp/charts/tree/master/charts/datadog_helpers
@@ -38,7 +69,7 @@ entries:
           url: https://github.com/prefapp/charts/issues
     apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-05-20T16:56:22.521813784Z"
+    created: "2024-11-06T16:44:03.774923017Z"
     description: Library to help with Datadog integration
     digest: c52bafc7b39d6ba829e1292371ae9ce93b0813188655ef73b41788f9771833dc
     home: https://github.com/prefapp/charts/tree/master/charts/datadog_helpers
@@ -69,7 +100,7 @@ entries:
           url: https://github.com/prefapp/charts/issues
     apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-05-20T16:56:22.521262653Z"
+    created: "2024-11-06T16:44:03.774536769Z"
     description: Library to help with Datadog integration
     digest: e65bf6b537bb0c642cebbb4c82e74d760b2674b95965292e2973243ad80a73af
     home: https://github.com/prefapp/charts/tree/master/charts/datadog_helpers
@@ -101,7 +132,7 @@ entries:
           url: https://github.com/prefapp/charts/issues
     apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-05-20T16:56:22.520858728Z"
+    created: "2024-11-06T16:44:03.77412305Z"
     description: Library to help with Datadog integration
     digest: 369cf1cb09fa445f50d7d5ade17afbca47856746497a59d17fd99426d1bd1256
     home: https://github.com/prefapp/charts/tree/master/charts/datadog_helpers
@@ -127,4 +158,4 @@ entries:
     urls:
     - datadog_helpers-1.1.0.tgz
     version: 1.1.0
-generated: "2024-05-20T16:56:22.520243998Z"
+generated: "2024-11-06T16:44:03.77344013Z"
