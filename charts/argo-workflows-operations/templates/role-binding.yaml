@@ -9,7 +9,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: {{ include "argo-workflows-operations.dynamic-name" . }}-rb
-  namespace: "firestartr"
+  namespace: {{ .Release.Namespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -17,14 +17,14 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: {{ include "argo-workflows-operations.dynamic-name" . }}-sa
-    namespace: "firestartr"
+    namespace: {{ .Release.Namespace }}
 {{ end }}
 
 {{- /*
-Iterate over the features defined in the values file and create a RoleBinding for each feature.
+Iterate over the operations defined in the values file and create a RoleBinding for each feature.
 The root context and the current feature are passed to the "argo-workflows-operations.rolebinding" template.
 */ -}}
 {{- $root := . -}}
-{{- range .Values.features }}
-  {{- include "argo-workflows-operations.rolebinding" (dict "root" $root "feature" .) -}}
+{{- range .Values.operations }}
+  {{- include "argo-workflows-operations.rolebinding" (dict "root" $root "feature" . "Release" $root.Release "Values" $root.Values "global" $root.Values.global) -}}
 {{- end }}

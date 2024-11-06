@@ -39,16 +39,16 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: {{ include "argo-workflows-operations.dynamic-name" . }}-r
-  namespace: "firestartr"
+  namespace: {{ .Release.Namespace }}
 rules:
 {{ include "argo-workflows-operations.rules" . | indent 2 }}
 {{ end }}
 
 {{- /*
-Iterate over the features defined in the values file and create a Role for each feature.
+Iterate over the operations defined in the values file and create a Role for each feature.
 The root context and the current feature are passed to the "argo-workflows-operations.role" template.
 */ -}}
 {{- $root := . -}}
-{{- range .Values.features }}
-  {{- include "argo-workflows-operations.role" (dict "root" $root "feature" .) -}}
+{{- range .Values.operations }}
+  {{- include "argo-workflows-operations.role" (dict "root" $root "feature" . "Release" $root.Release "Values" $root.Values "global" $root.Values.global) -}}
 {{- end }}

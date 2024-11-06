@@ -9,7 +9,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: CronWorkflow
 metadata:
   name: {{ include "argo-workflows-operations.dynamic-name" . }}-cw
-  namespace: "firestartr"
+  namespace: {{ .Release.Namespace }}
 spec:
   entrypoint: main
   schedule: {{ .feature.cron }}
@@ -23,10 +23,10 @@ spec:
 {{ end }}
 
 {{- /*
-Iterate over the features defined in the values file and create a Workflow for each feature.
+Iterate over the operations defined in the values file and create a Workflow for each feature.
 The root context and the current feature are passed to the "argo-workflows-operations.workflow" template.
 */ -}}
 {{- $root := . -}}
-{{- range .Values.features }}
-  {{- include "argo-workflows-operations.workflow" (dict "root" $root "feature" . "global" $root.Values.global) -}}
+{{- range .Values.operations }}
+  {{- include "argo-workflows-operations.workflow" (dict "root" $root "feature" . "Release" $root.Release "Values" $root.Values "global" $root.Values.global) -}}
 {{- end }}
