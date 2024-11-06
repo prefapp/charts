@@ -14,7 +14,7 @@ This template is called for each feature defined and fixes rules for the Role.
   verbs: ["get", "list", "watch"]
 {{- end -}}
 
-{{- if or (eq .feature.name "mongodb-atlas-start-pause-cluster") (eq .feature.name "datadog-unmute-mute-monitors") -}}
+{{- if or (eq .feature.name "mongodb-atlas-start-pause-cluster") (eq .feature.name "datadog-unmute-mute-monitors") (eq .feature.name "uptimerobot-resume-pause-monitors") -}}
 - apiGroups: [""]
   verbs: ["get", "watch", "list", "patch"]
   resources: ["pods", "pods/exec", "secrets"]

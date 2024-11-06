@@ -76,6 +76,22 @@ The `mongodb-atlas-start-pause-cluster` feature should define the following inpu
 - `cluster_name`: The name of the MongoDB Atlas cluster.
 - `action`: The action to perform on the MongoDB Atlas cluster (`start` or `pause`).
 
+#### Inputs Configuration for `datadog-unmute-mute-monitors`
+
+The `datadog-unmute-mute-monitors` feature should define the following input parameters:
+- `secret_namespace`: The namespace of the Kubernetes secret containing the Datadog API key and APPLICATION_KEY.
+- `secret_name`: The name of the Kubernetes secret containing the Datadog API key and APPLICATION_KEY.
+- `monitor_ids`: The list of monitor IDs to unmute or mute.
+- `action`: The action to perform on the Datadog monitors (`unmute` or `mute`).
+
+#### Inputs Configuration for `uptimerobot-resume-pause-monitors`
+
+The `uptimerobot-resume-pause-monitors` feature should define the following input parameters:
+- `secret_namespace`: The namespace of the Kubernetes secret containing the UptimeRobot API key.
+- `secret_name`: The name of the Kubernetes secret containing the UptimeRobot API key.
+- `monitor_ids`: The list of monitor IDs to resume or pause.
+- `action`: The action to perform on the UptimeRobot monitors (`resume` or `pause`).
+
 ### Example Values File
 
 ```yaml
