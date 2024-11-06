@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/prefapp/charts/compare/argocd-firestarter-config-v0.2.0...argocd-firestarter-config-v0.3.0) (2024-11-06)
+
+
+### Features
+
+* Argo workflows operations chart ([#238](https://github.com/prefapp/charts/issues/238)) ([ef99339](https://github.com/prefapp/charts/commit/ef99339eaa1b0c5ebe538033291c58dd3c721156))
+
 ## [0.2.0](https://github.com/prefapp/charts/compare/argocd-firestarter-config-v0.1.0...argocd-firestarter-config-v0.2.0) (2024-02-16)
 
 

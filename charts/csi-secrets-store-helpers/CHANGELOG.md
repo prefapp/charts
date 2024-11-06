@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/prefapp/charts/compare/csi-secrets-store-helpers-v0.4.0...csi-secrets-store-helpers-v0.5.0) (2024-11-06)
+
+
+### Features
+
+* Argo workflows operations chart ([#238](https://github.com/prefapp/charts/issues/238)) ([ef99339](https://github.com/prefapp/charts/commit/ef99339eaa1b0c5ebe538033291c58dd3c721156))
+
 ## [0.4.0](https://github.com/prefapp/charts/compare/csi-secrets-store-helpers-v0.3.0...csi-secrets-store-helpers-v0.4.0) (2024-05-22)
 
 
