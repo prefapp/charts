@@ -13,7 +13,7 @@ metadata:
 spec:
   entrypoint: main
   schedule: {{ .feature.cron }}
-  timezone: {{ if hasKey .feature "timezone" }}{{ .feature.timezone | default .global.timezone }}{{ else }}{{ .global.timezone }}{{ end }} 
+  timezone: {{ if hasKey .feature "timezone" }}{{ .feature.timezone | default .global.timezone }}{{ else }}{{ .global.timezone }}{{ end }}
   serviceAccountName: {{ include "argo-workflows-operations.dynamic-name" . }}-sa
   workflowTemplateRef:
     name: {{ .feature.name }}

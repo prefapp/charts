@@ -10,11 +10,11 @@ allowed_features:
   - datadog-unmute-mute-monitors
 
 global: {}
-  # managed_identity:
-  #   client_id: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
-  #   tenant_id: "YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY"
-  # subscription_id: "ZZZZZZZZ-ZZZZ-ZZZZ-ZZZZ-ZZZZZZZZZZZZ"
-  # timezone: "Europe/Madrid"
+#   managed_identity:
+#     client_id: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+#     tenant_id: "YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY"
+#   subscription_id: "ZZZZZZZZ-ZZZZ-ZZZZ-ZZZZ-ZZZZZZZZZZZZ"
+#   timezone: "Europe/Madrid"
 
 features: {}
   # - name: datadog-unmute-mute-monitors
