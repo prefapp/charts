@@ -21,10 +21,10 @@ subjects:
 {{ end }}
 
 {{- /*
-Iterate over the operations defined in the values file and create a RoleBinding for each feature.
-The root context and the current feature are passed to the "argo-workflows-operations.rolebinding" template.
+Iterate over the operations defined in the values file and create a RoleBinding for each operation.
+The root context and the current operation are passed to the "argo-workflows-operations.rolebinding" template.
 */ -}}
 {{- $root := . -}}
 {{- range .Values.operations }}
-  {{- include "argo-workflows-operations.rolebinding" (dict "root" $root "feature" . "Release" $root.Release "Values" $root.Values "global" $root.Values.global) -}}
+  {{- include "argo-workflows-operations.rolebinding" (dict "root" $root "operation" . "Release" $root.Release "Values" $root.Values "global" $root.Values.global) -}}
 {{- end }}

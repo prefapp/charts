@@ -12,21 +12,25 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   entrypoint: main
-  schedule: {{ .feature.cron }}
-  timezone: {{ if hasKey .feature "timezone" }}{{ .feature.timezone | default .global.timezone }}{{ else }}{{ .global.timezone }}{{ end }}
+  schedule: {{ .operation.cron }}
+  timezone: {{ if hasKey .operation "timezone" }}{{ .operation.timezone | default .global.timezone }}{{ else }}{{ .global.timezone }}{{ end }}
   serviceAccountName: {{ include "argo-workflows-operations.dynamic-name" . }}-sa
   workflowTemplateRef:
-    name: {{ .feature.name }}
+    name: {{ .operation.name }}
   arguments:
     parameters:
 {{ include "argo-workflows-operations.parameters" . | indent 6 }}
+      - name: output_tenant
+        value: {{ .Release.Namespace | splitList "-" | first }}
+      - name: output_environment
+        value: {{ .Release.Namespace | splitList "-" | last }}
 {{ end }}
 
 {{- /*
-Iterate over the operations defined in the values file and create a Workflow for each feature.
-The root context and the current feature are passed to the "argo-workflows-operations.workflow" template.
+Iterate over the operations defined in the values file and create a Workflow for each operation.
+The root context and the current operation are passed to the "argo-workflows-operations.workflow" template.
 */ -}}
 {{- $root := . -}}
 {{- range .Values.operations }}
-  {{- include "argo-workflows-operations.workflow" (dict "root" $root "feature" . "Release" $root.Release "Values" $root.Values "global" $root.Values.global) -}}
+  {{- include "argo-workflows-operations.workflow" (dict "root" $root "operation" . "Release" $root.Release "Values" $root.Values "global" $root.Values.global) -}}
 {{- end }}

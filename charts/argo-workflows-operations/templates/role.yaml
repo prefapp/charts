@@ -1,30 +1,30 @@
 ---
 {{- /*
 Define the rules for the Role resource for the argo-workflows-operations chart.
-This template is called for each feature defined and fixes rules for the Role.
+This template is called for each operation defined and fixes rules for the Role.
 */ -}}
 {{ define "argo-workflows-operations.rules" }}
 
-{{- if or (eq .feature.name "aks-start-stop-cluster") (eq .feature.name "flexible-server-start-stop-postgresql") (eq .feature.name "vmss-scale-instances_count") -}}
-- apiGroups: [""]
-  verbs: ["get", "list", "watch", "patch"]
-  resources: ["pods", "pods/exec", "secrets"]
+{{- if or (eq .operation.name "aks-start-stop-cluster") (eq .operation.name "flexible-server-start-stop-postgresql") (eq .operation.name "vmss-scale-instances_count") -}}
 - apiGroups: ["firestartr.dev"]
   resources: ["terraformworkspaces"]
   verbs: ["get", "list", "watch"]
 {{- end -}}
 
-{{- if or (eq .feature.name "mongodb-atlas-start-pause-cluster") (eq .feature.name "datadog-unmute-mute-monitors") (eq .feature.name "uptimerobot-resume-pause-monitors") -}}
-- apiGroups: [""]
-  verbs: ["get", "watch", "list", "patch"]
-  resources: ["pods", "pods/exec", "secrets"]
+{{- if or (eq .operation.name "mongodb-atlas-start-pause-cluster") (eq .operation.name "datadog-unmute-mute-monitors") (eq .operation.name "uptimerobot-resume-pause-monitors") -}}
 - apiGroups: ["firestartr.dev"]
   resources: ["terraformworkspaces"]
   verbs: ["get", "list", "watch"]
 - apiGroups: [""]
   resources: ["secrets"]
-  resourceNames: [{{ .feature.inputs.secret_name | quote }}]
+  resourceNames: [{{ .operation.inputs.secret_name | quote }}]
   verbs: ["get"]
+{{- end -}}
+
+{{- if eq .operation.name "uptimerobot-resume-pause-monitors" -}}
+- apiGroups: ["argoproj.io"]
+  resources: ["workflows"]
+  verbs: ["get", "list", "watch"]
 {{- end -}}
 
 {{- end -}}
@@ -41,14 +41,17 @@ metadata:
   name: {{ include "argo-workflows-operations.dynamic-name" . }}-r
   namespace: {{ .Release.Namespace }}
 rules:
+  - apiGroups: [""]
+    verbs: ["get", "list", "watch", "patch"]
+    resources: ["pods", "pods/exec", "secrets"]
 {{ include "argo-workflows-operations.rules" . | indent 2 }}
 {{ end }}
 
 {{- /*
-Iterate over the operations defined in the values file and create a Role for each feature.
-The root context and the current feature are passed to the "argo-workflows-operations.role" template.
+Iterate over the operations defined in the values file and create a Role for each operation.
+The root context and the current operation are passed to the "argo-workflows-operations.role" template.
 */ -}}
 {{- $root := . -}}
 {{- range .Values.operations }}
-  {{- include "argo-workflows-operations.role" (dict "root" $root "feature" . "Release" $root.Release "Values" $root.Values "global" $root.Values.global) -}}
+  {{- include "argo-workflows-operations.role" (dict "root" $root "operation" . "Release" $root.Release "Values" $root.Values "global" $root.Values.global) -}}
 {{- end }}

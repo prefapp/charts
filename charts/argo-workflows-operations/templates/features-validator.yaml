@@ -5,10 +5,10 @@ Load the allowed operations from the values.yaml file.
 {{- $allowed_operations := .Values.allowed_operations -}}
 
 {{- /*
-Validate that the feature.name is one of the allowed values.
+Validate that the operation.name is one of the allowed values.
 */ -}}
 {{- range .Values.operations }}
   {{- if not (has .name $allowed_operations) -}}
-    {{- fail (printf "Feature name '%s' is not allowed. Allowed feature names are:\n- %s" .name (join "\n- " $allowed_operations)) -}}
+    {{- fail (printf "Feature name '%s' is not allowed. Allowed operation names are:\n- %s" .name (join "\n- " $allowed_operations)) -}}
   {{- end -}}
 {{- end }}
