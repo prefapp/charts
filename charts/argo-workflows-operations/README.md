@@ -20,7 +20,7 @@ The chart supports the following operations:
 
 ## Values File Structure
 
-The values file should define global configurations and a list of operations. Each feature should specify the necessary inputs and schedule for the operation.
+The values file should define global configurations and a list of operations. Each operation should specify the necessary inputs and schedule for the operation.
 
 ### Global Configuration
 
@@ -33,9 +33,9 @@ The global configuration should define the following properties:
 
 ### Features Configuration
 
-The operations configuration should define a list of operations. Each feature should specify the following properties:
+The operations configuration should define a list of operations. Each operation should specify the following properties:
 
-- `name`: The name of the feature.
+- `name`: The name of the operation.
 - `cron`: The cron schedule for the operation.
 - `timezone` (optional, replaces the global configuration): The timezone for the cron schedule.
 - `managed_identity` (optional, replaces the global configuration): The managed identity properties for the Azure service principal.
@@ -46,14 +46,14 @@ The operations configuration should define a list of operations. Each feature sh
 
 #### Inputs Configuration for `aks-start-stop-cluster`
 
-The `aks-start-stop-cluster` feature should define the following input parameters:
+The `aks-start-stop-cluster` operation should define the following input parameters:
 - `resource_group`: The name of the resource group containing the AKS cluster.
 - `cluster_name`: The name of the AKS cluster.
 - `action`: The action to perform on the AKS cluster (`start` or `stop`).
 
 #### Inputs Configuration for `vmss-scale-instances_count`
 
-The `vmss-scale-instances_count` feature should define the following input parameters:
+The `vmss-scale-instances_count` operation should define the following input parameters:
 - `resource_group`: The name of the resource group containing the VMSS.
 - `vmss_name`: The name of the VMSS.
 - `instances_count`: The number of instances_count to scale (or descale) the VMSS to.
@@ -61,20 +61,36 @@ The `vmss-scale-instances_count` feature should define the following input param
 
 #### Inputs Configuration for `flexible-server-start-stop-postgresql`
 
-The `flexible-server-start-stop-postgresql` feature should define the following input parameters:
+The `flexible-server-start-stop-postgresql` operation should define the following input parameters:
 - `resource_group`: The name of the resource group containing the Flexible Server.
 - `server_name`: The name of the Flexible Server.
 - `action`: The action to perform on the Flexible Server (`start` or `stop`).
 
 #### Inputs Configuration for `mongodb-atlas-start-pause-cluster`
 
-The `mongodb-atlas-start-pause-cluster` feature should define the following input parameters:
+The `mongodb-atlas-start-pause-cluster` operation should define the following input parameters:
 - `secret_namespace`: The namespace of the Kubernetes secret containing the MongoDB Atlas (public and private) API key.
 - `secret_name`: The name of the Kubernetes secret containing the MongoDB Atlas (public and private) API key.
 - `organization_id`: The organization ID of the MongoDB Atlas project.
 - `project_id`: The project ID of the MongoDB Atlas project.
 - `cluster_name`: The name of the MongoDB Atlas cluster.
 - `action`: The action to perform on the MongoDB Atlas cluster (`start` or `pause`).
+
+#### Inputs Configuration for `datadog-unmute-mute-monitors`
+
+The `datadog-unmute-mute-monitors` operation should define the following input parameters:
+- `secret_namespace`: The namespace of the Kubernetes secret containing the Datadog API key and APPLICATION_KEY.
+- `secret_name`: The name of the Kubernetes secret containing the Datadog API key and APPLICATION_KEY.
+- `monitor_ids`: The list of monitor IDs to unmute or mute.
+- `action`: The action to perform on the Datadog monitors (`unmute` or `mute`).
+
+#### Inputs Configuration for `uptimerobot-resume-pause-monitors`
+
+The `uptimerobot-resume-pause-monitors` operation should define the following input parameters:
+- `secret_namespace`: The namespace of the Kubernetes secret containing the UptimeRobot API key.
+- `secret_name`: The name of the Kubernetes secret containing the UptimeRobot API key.
+- `monitor_ids`: The list of monitor IDs to resume or pause.
+- `action`: The action to perform on the UptimeRobot monitors (`resume` or `pause`).
 
 ### Example Values File
 
@@ -148,13 +164,13 @@ operations:
 
 ## Usage for developers
 
-If you wish to add a new feature to the chart, you need to follow these steps:
+If you wish to add a new operation to the chart, you need to follow these steps:
 
-1. Add the feature name to the `operations-allowed.yaml` into values.yaml file.
-2. Add the feature to the values file with the necessary inputs and schedule.
-3. Add the feature-specific logic to the templates.
-4. Add the feature-specific logic to the `argo-workflows-operations.dynamic-name` template.
-5. Add the feature-specific logic to the `argo-workflows-operations.role` template.
-6. Add the feature-specific logic to the `argo-workflows-operations.rules` template.
-7. Add the feature-specific logic to the `argo-workflows-operations.parameters` template.
-8. Add the feature-specific logic to the `argo-workflows-operations.workflow` template.
+1. Add the operation name to the `operations-allowed.yaml` into values.yaml file.
+2. Add the operation to the values file with the necessary inputs and schedule.
+3. Add the operation-specific logic to the templates.
+4. Add the operation-specific logic to the `argo-workflows-operations.dynamic-name` template.
+5. Add the operation-specific logic to the `argo-workflows-operations.role` template.
+6. Add the operation-specific logic to the `argo-workflows-operations.rules` template.
+7. Add the operation-specific logic to the `argo-workflows-operations.parameters` template.
+8. Add the operation-specific logic to the `argo-workflows-operations.workflow` template.

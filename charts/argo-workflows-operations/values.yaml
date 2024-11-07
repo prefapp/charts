@@ -8,27 +8,17 @@ allowed_operations:
   - mongodb-atlas-start-pause-cluster
   # Datadog
   - datadog-unmute-mute-monitors
+  # UptimeRobot
+  - uptimerobot-resume-pause-monitors
 
 global: {}
-#   managed_identity:
-#     client_id: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
-#     tenant_id: "YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY"
-#   subscription_id: "ZZZZZZZZ-ZZZZ-ZZZZ-ZZZZ-ZZZZZZZZZZZZ"
-#   timezone: "Europe/Madrid"
+  # managed_identity:
+  #   client_id: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+  #   tenant_id: "YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY"
+  # subscription_id: "ZZZZZZZZ-ZZZZ-ZZZZ-ZZZZ-ZZZZZZZZZZZZ"
+  # timezone: "Europe/Madrid"
 
-operations: {}
-  # - name: datadog-unmute-mute-monitors
-  #   cron: "0 0 * * *"
-  #   managed_identity:
-  #     client_id: "8891abab-8901-4894-b1b4-1b32eda5be11"
-  #     tenant_id: "ca5a6690-2f48-4776-91dd-8fde1d02e7e8"
-  #   inputs:
-  #     secret_namespace: "myNamespace"
-  #     secret_name: "mySecretName"
-  #     monitor_ids:
-  #       - "19376544"
-  #       - "19376545"
-  #     action: unmute
+operations:
 
   # - name: aks-start-stop-cluster
   #   cron: "0 0 * * *"
@@ -86,3 +76,27 @@ operations: {}
   #     project_id: "myProjectId"
   #     cluster_name: "myClusterName"
   #     action: "start"
+
+  # - name: datadog-unmute-mute-monitors
+  #   cron: "0 0 * * *"
+  #   managed_identity:
+  #     client_id: "8891abab-8901-4894-b1b4-1b32eda5be11"
+  #     tenant_id: "ca5a6690-2f48-4776-91dd-8fde1d02e7e8"
+  #   inputs:
+  #     secret_namespace: "myNamespace"
+  #     secret_name: "mySecretName"
+  #     monitor_ids:
+  #       - "19376544"
+  #       - "19376545"
+  #     action: unmute
+
+  # - name: uptimerobot-resume-pause-monitors
+  #   cron: "0 0 * * *"
+  #   inputs:
+  #     secret_namespace: "myNamespace"
+  #     secret_name: "mySecretName"
+  #     monitor_ids:
+  #       - "796707129"
+  #       - "796707139"
+  #       - "796707089"
+  #     action: pause
