@@ -1,23 +1,23 @@
 ---
 {{- /*
-Define a dynamic name for the Role based on the feature name and other properties.
-This template handles different feature names and constructs a unique name accordingly.
+Define a dynamic name for the Role based on the operation name and other properties.
+This template handles different operation names and constructs a unique name accordingly.
 */ -}}
 {{- define "argo-workflows-operations.dynamic-name" -}}
-  {{- $baseName := .feature.name | lower -}}
+  {{- $baseName := .operation.name | lower -}}
   {{- $namespaceName := .Release.Namespace | lower -}}
-  {{- if eq .feature.name "aks-start-stop-cluster" -}}
-    {{ printf "%s-%s-%s-%s" $baseName $namespaceName (.feature.inputs.resource_group | lower) (.feature.inputs.cluster_name | lower) | trunc 60 | trimSuffix "-" }}
-  {{- else if eq .feature.name "flexible-server-start-stop-postgresql" -}}
-    {{ printf "%s-%s-%s-%s" $baseName $namespaceName (.feature.inputs.resource_group | lower) (.feature.inputs.server_name | lower) | trunc 60 | trimSuffix "-" }}
-  {{- else if eq .feature.inputs.name "vmss-scale-instances_count" -}}
-    {{ printf "%s-%s-%s-%s" $baseName $namespaceName (.feature.inputs.resource_group | lower) (.feature.inputs.vmss_name | lower) | trunc 60 | trimSuffix "-" }}
-  {{- else if eq .feature.name "mongodb-atlas-start-pause-cluster" -}}
-    {{ printf "%s-%s-%s-%s" $baseName $namespaceName (.feature.inputs.project_id | lower) (.feature.inputs.cluster_name | lower) | trunc 60 | trimSuffix "-" }}
-  {{- else if eq .feature.name "datadog-unmute-mute-monitors" -}}
-    {{ printf "%s-%s-%s-%s" $baseName $namespaceName (.feature.inputs.monitor_ids | lower) (.feature.inputs.action | lower) | trunc 60 | trimSuffix "-" }}
-  {{- else if eq .feature.name "uptimerobot-resume-pause-monitors" -}}
-    {{ printf "%s-%s-%s-%s" $baseName $namespaceName (.feature.inputs.secret_namespace | lower) (.feature.inputs.action | lower) | trunc 60 | trimSuffix "-" }}
+  {{- if eq .operation.name "aks-start-stop-cluster" -}}
+    {{ printf "%s-%s-%s-%s" $baseName $namespaceName (.operation.inputs.resource_group | lower) (.operation.inputs.cluster_name | lower) | trunc 60 | trimSuffix "-" }}
+  {{- else if eq .operation.name "flexible-server-start-stop-postgresql" -}}
+    {{ printf "%s-%s-%s-%s" $baseName $namespaceName (.operation.inputs.resource_group | lower) (.operation.inputs.server_name | lower) | trunc 60 | trimSuffix "-" }}
+  {{- else if eq .operation.inputs.name "vmss-scale-instances_count" -}}
+    {{ printf "%s-%s-%s-%s" $baseName $namespaceName (.operation.inputs.resource_group | lower) (.operation.inputs.vmss_name | lower) | trunc 60 | trimSuffix "-" }}
+  {{- else if eq .operation.name "mongodb-atlas-start-pause-cluster" -}}
+    {{ printf "%s-%s-%s-%s" $baseName $namespaceName (.operation.inputs.project_id | lower) (.operation.inputs.cluster_name | lower) | trunc 60 | trimSuffix "-" }}
+  {{- else if eq .operation.name "datadog-unmute-mute-monitors" -}}
+    {{ printf "%s-%s-%s-%s" $baseName $namespaceName (.operation.inputs.monitor_ids | lower) (.operation.inputs.action | lower) | trunc 60 | trimSuffix "-" }}
+  {{- else if eq .operation.name "uptimerobot-resume-pause-monitors" -}}
+    {{ printf "%s-%s-%s-%s" $baseName $namespaceName (.operation.inputs.secret_namespace | lower) (.operation.inputs.action | lower) | trunc 60 | trimSuffix "-" }}
   {{- else -}}
     {{ printf "%s-%s" $baseName $namespaceName | trunc 60 | trimSuffix "-" }}
   {{- end -}}

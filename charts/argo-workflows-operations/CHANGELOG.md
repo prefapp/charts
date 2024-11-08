@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/prefapp/charts/compare/argo-workflows-operations-v0.4.0...argo-workflows-operations-v0.5.0) (2024-11-07)
+
+
+### Features
+
+* Add az feature templates ([#247](https://github.com/prefapp/charts/issues/247)) ([8f69379](https://github.com/prefapp/charts/commit/8f693799205133968f406dfbf3978595747441b3))
+
 ## [0.4.0](https://github.com/prefapp/charts/compare/argo-workflows-operations-v0.3.0...argo-workflows-operations-v0.4.0) (2024-11-06)
 
 

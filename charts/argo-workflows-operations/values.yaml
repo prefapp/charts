@@ -93,8 +93,8 @@ operations: {}
   # - name: uptimerobot-resume-pause-monitors
   #   cron: "0 0 * * *"
   #   inputs:
-  #     secret_namespace: "firestartr"
-  #     secret_name: "uptimerobot"
+  #     secret_namespace: "myNamespace"
+  #     secret_name: "mySecretName"
   #     monitor_ids:
   #       - "796707129"
   #       - "796707139"
