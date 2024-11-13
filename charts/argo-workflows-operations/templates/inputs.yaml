@@ -19,16 +19,16 @@ This template is called for each operation defined and fixes parameters for the 
   value: Azure-Kubernetes-Service
 {{- end -}}
 
-{{- if eq .operation.name "vmss-scale-instances_count" -}}
-{{- $errorMsg := "\n\nThe %s is required in the vmss-scale-instances_count operation. The minimal schema is:\n  vmss-scale-instances_count:\n    resource_group: string\n    vmss_name: string\n    instances_count: int" -}}
+{{- if eq .operation.name "vmss-scale-instances" -}}
+{{- $errorMsg := "\n\nThe %s is required in the vmss-scale-instances operation. The minimal schema is:\n  vmss-scale-instances:\n    resource_group: string\n    vmss_name: string\n    instances: int" -}}
 - name: subscription_id
   value: {{ if hasKey .operation "subscription_id" }}{{ .operation.subscription_id }}{{ else }}{{ .global.subscription_id }}{{ end }}
 - name: resource_group
   value: {{ if hasKey .operation.inputs "resource_group" }}{{ .operation.inputs.resource_group }}{{ else }}{{ fail (printf $errorMsg "resource_group") }}{{ end }}
 - name: vmss_name
   value: {{ if hasKey .operation.inputs "vmss_name" }}{{ .operation.inputs.vmss_name }}{{ else }}{{ fail (printf $errorMsg "vmss_name") }}{{ end }}
-- name: instances_count
-  value: {{ if hasKey .operation.inputs "instances_count" }}{{ .operation.inputs.instances_count }}{{ else }}{{ fail (printf $errorMsg "instances_count") }}{{ end }}
+- name: instances
+  value: {{ if hasKey .operation.inputs "instances" }}{{ .operation.inputs.instances }}{{ else }}{{ fail (printf $errorMsg "instances") }}{{ end }}
 - name: output_subject
   value: Azure-VMSS
 {{- end -}}
@@ -39,10 +39,10 @@ This template is called for each operation defined and fixes parameters for the 
   value: {{ if hasKey .operation "subscription_id" }}{{ .operation.subscription_id }}{{ else }}{{ .global.subscription_id }}{{ end }}
 - name: resource_group
   value: {{ if hasKey .operation.inputs "resource_group" }}{{ .operation.inputs.resource_group }}{{ else }}{{ fail (printf $errorMsg "resource_group") }}{{ end }}
-- name: vmss_name
+- name: server_name
   value: {{ if hasKey .operation.inputs "server_name" }}{{ .operation.inputs.server_name }}{{ else }}{{ fail (printf $errorMsg "server_name") }}{{ end }}
-- name: instances_count
-  value: {{ if hasKey .operation.inputs "action" }}{{ .operation.inputs.action }}{{ else }}{{ fail (printf $errorMsg "action") }}{{ end }}
+- name: action
+  value: {{ if and (hasKey .operation.inputs "action") (or (eq .operation.inputs.action "start") (eq .operation.inputs.action "stop")) }}{{ .operation.inputs.action }}{{ else }}{{ fail (printf (printf "%s (Only 'start' or 'stop' value)" $errorMsg) "action") }}{{ end }}
 - name: output_subject
   value: Azure-PostgreSQL
 {{- end -}}
@@ -93,16 +93,16 @@ This template is called for each operation defined and fixes parameters for the 
   value: UptimeRobot
 {{- end -}}
 
-{{- if eq .feature.name "uptimerobot-resume-pause-monitors" -}}
-{{- $errorMsg := "\n\nThe %s is required in the uptimerobot-resume-pause-monitors feature. The minimal schema is:\n  uptimerobot-resume-pause-monitors:\n    secret_namespace: string\n    secret_name: string\n    monitor_ids: []string\n    action: string" -}}
+{{- if eq .operation.name "slack-notification" -}}
+{{- $errorMsg := "\n\nThe %s is required in the slack-notification operation. The minimal schema is:\n  slack-notification:\n    secret_namespace: string\n    secret_name: string\n    operations: []string" -}}
 - name: secret_namespace
-  value: {{ if hasKey .feature.inputs "secret_namespace" }}{{ .feature.inputs.secret_namespace }}{{ else }}{{ fail (printf $errorMsg "secret_namespace") }}{{ end }}
+  value: {{ if hasKey .operation.inputs "secret_namespace" }}{{ .operation.inputs.secret_namespace }}{{ else }}{{ fail (printf $errorMsg "secret_namespace") }}{{ end }}
 - name: secret_name
-  value: {{ if hasKey .feature.inputs "secret_name" }}{{ .feature.inputs.secret_name }}{{ else }}{{ fail (printf $errorMsg "secret_name") }}{{ end }}
-- name: monitor_ids
-  value: {{ if hasKey .feature.inputs "monitor_ids" }}{{ join "," .feature.inputs.monitor_ids }}{{ else }}{{ fail (printf $errorMsg "monitor_ids") }}{{ end }}
-- name: action
-  value: {{ if and (hasKey .feature.inputs "action") (or (eq .feature.inputs.action "resume") (eq .feature.inputs.action "pause")) }}{{ .feature.inputs.action }}{{ else }}{{ fail (printf (printf "%s (Only 'resume' or 'pause' value)" $errorMsg) "action") }}{{ end }}
+  value: {{ if hasKey .operation.inputs "secret_name" }}{{ .operation.inputs.secret_name }}{{ else }}{{ fail (printf $errorMsg "secret_name ") }}{{ end }}
+- name: operations
+  value: {{ if hasKey .operation.inputs "operations" }}{{ join "," .operation.inputs.operations }}{{ else }}{{ fail (printf $errorMsg "operations") }}{{ end }}
+- name: namespace
+  value: {{ .Release.Namespace }}
 {{- end -}}
 
-{{ end }}
+{{- end -}}

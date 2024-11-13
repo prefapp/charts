@@ -8,23 +8,31 @@ The name of the Workflow is dynamically generated using the "argo-workflows-oper
 apiVersion: argoproj.io/v1alpha1
 kind: CronWorkflow
 metadata:
-  name: {{ include "argo-workflows-operations.dynamic-name" . }}-cw
+  name: {{ include "argo-workflows-operations.dynamic-name" . | trunc 49 }}-cw
   namespace: {{ .Release.Namespace }}
 spec:
-  entrypoint: main
+  concurrencyPolicy: Replace
   schedule: {{ .operation.cron }}
   timezone: {{ if hasKey .operation "timezone" }}{{ .operation.timezone | default .global.timezone }}{{ else }}{{ .global.timezone }}{{ end }}
-  serviceAccountName: {{ include "argo-workflows-operations.dynamic-name" . }}-sa
-  workflowTemplateRef:
-    name: {{ .operation.name }}
-  arguments:
-    parameters:
-{{ include "argo-workflows-operations.parameters" . | indent 6 }}
-      - name: output_tenant
-        value: {{ .Release.Namespace | splitList "-" | first }}
-      - name: output_environment
-        value: {{ .Release.Namespace | splitList "-" | last }}
-{{ end }}
+  workflowSpec:
+    entrypoint: main
+    serviceAccountName: {{ include "argo-workflows-operations.dynamic-name" . }}-sa
+    templates:
+      - name: main
+        steps:
+          - - name: {{ .operation.name }}
+              templateRef:
+                name: {{ .operation.name }}
+                template: main
+                clusterScope: true
+              arguments:
+                parameters:
+{{ include "argo-workflows-operations.parameters" . | indent 18 }}
+                  - name: output_tenant
+                    value: {{ .Release.Namespace | splitList "-" | first }}
+                  - name: output_environment
+                    value: {{ .Release.Namespace | splitList "-" | last }}
+{{- end }}
 
 {{- /*
 Iterate over the operations defined in the values file and create a Workflow for each operation.

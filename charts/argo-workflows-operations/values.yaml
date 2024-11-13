@@ -3,100 +3,128 @@ allowed_operations:
   # Azure
   - aks-start-stop-cluster
   - flexible-server-start-stop-postgresql
-  - vmss-scale-instances_count
+  - vmss-scale-instances
   # MongoDB Atlas
   - mongodb-atlas-start-pause-cluster
   # Datadog
   - datadog-unmute-mute-monitors
   # UptimeRobot
   - uptimerobot-resume-pause-monitors
+  # Slack
+  - slack-notification
 
-global: {}
-  # managed_identity:
-  #   client_id: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
-  #   tenant_id: "YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY"
-  # subscription_id: "ZZZZZZZZ-ZZZZ-ZZZZ-ZZZZ-ZZZZZZZZZZZZ"
-  # timezone: "Europe/Madrid"
+global:
+  managed_identity:
+    client_id: "3e3f573c-8503-406f-897e-f8aba2bbf673"
+    tenant_id: "ca5a6690-2f48-4776-91dd-8fde1d02e7e8"
+  subscription_id: "a152aa4d-7a6d-4535-893d-f11a70b27033"
+  timezone: "Europe/Madrid"
 
-operations: {}
+operations:
+  - name: aks-start-stop-cluster
+    managed_identity: true
+    cron: "00 07 * * 1-5"
+    inputs:
+      resource_group: "corpme-common-predev"
+      cluster_name: "corpme-predev-aks"
+      action: "start"
 
-  # - name: aks-start-stop-cluster
-  #   cron: "0 0 * * *"
-  #   inputs:
-  #     resource_group: "myResourceGroup"
-  #     cluster_name: "myAKSCluster"
-  #     action: "start"
+  - name: vmss-scale-instances
+    managed_identity: true
+    cron: "00 07 * * 1-5"
+    inputs:
+      resource_group: "corpme-shutter-pre"
+      vmss_name: "corpme-soup-pre"
+      instances: 1
 
-  # - name: aks-start-stop-cluster
-  #   cron: "0 0 * * *"
-  #   inputs:
-  #     resource_group: "myResourceGroup"
-  #     cluster_name: "myAKSCluster"
-  #     action: "stop"
+  - name: flexible-server-start-stop-postgresql
+    managed_identity: true
+    cron: "00 07 * * 1-5"
+    inputs:
+      resource_group: "corpme-horus-predev"
+      server_name: "corpme-horus-predev"
+      action: "start"
 
-  # - name: vmss-scale-instances_count
-  #   cron: "0 0 * * *"
-  #   inputs:
-  #     resource_group: "myResourceGroup"
-  #     vmss_name: "myVMSS"
-  #     instances_count: 1
+  - name: flexible-server-start-stop-postgresql
+    managed_identity: true
+    cron: "00 07 * * 1-5"
+    inputs:
+      resource_group: "corpme-ovac-predev"
+      server_name: "corpme-ovac-predev"
+      action: "start"
 
-  # - name: vmss-scale-instances_count
-  #   cron: "0 0 * * *"
-  #   timezone: "America/New_York"
-  #   inputs:
-  #     resource_group: "myResourceGroup"
-  #     vmss_name: "myVMSS"
-  #     instances_count: 2
+  - name: mongodb-atlas-start-pause-cluster
+    cron: "00 07 * * 1-5"
+    inputs:
+      secret_namespace: "firestartr"
+      secret_name: "mongodb-atlas-corpme"
+      organization_id: "65f8d0d1d0c28305b4c88fd2"
+      project_id: "65e84e9364273b0e73c72f4c"
+      cluster_name: "predev"
+      action: "start"
 
-  # - name: aks-start-stop-cluster
-  #   cron: "0 0 * * *"
-  #   subscription_id: "00000000-0000-0000-0000-000000000000"
-  #   managed_identity:
-  #     client_id: "00000000-0000-0000-0000-000000000000"
-  #     tenant_id: "00000000-0000-0000-0000-000000000000"
-  #   inputs:
-  #     resource_group: "myResourceGroup"
-  #     cluster_name: "myAKSCluster"
-  #     action: "start"
+  - name: datadog-unmute-mute-monitors
+    cron: "15 07 * * 1-5"
+    inputs:
+      secret_namespace: "firestartr"
+      secret_name: "datadog-corpme"
+      monitor_ids:
+        - "19376544"
+        - "19376545"
+        - "18297988"
+        - "16401040"
+        - "19376546"
+        - "19376547"
+        - "18297286"
+        - "18297988"
+        - "18297285"
+        - "16401707"
+        - "16401708"
+        - "16401296"
+        - "16401298"
+        - "16401299"
+        - "16401294"
+        - "16401425"
+        - "16401427"
+        - "16401424"
+        - "16401429"
+        - "16399636"
+        - "16399633"
+        - "16399629"
+        - "16399632"
+        - "16399631"
+        - "18421518"
+      action: unmute
 
-  # - name: flexible-server-start-stop-postgresql
-  #   cron: "0 0 * * *"
-  #   inputs:
-  #     resource_group: "myResourceGroup"
-  #     server_name: "myFlexibleServer"
-  #     action: "start"
+  - name: uptimerobot-resume-pause-monitors
+    cron: "15 07 * * 1-5"
+    inputs:
+      secret_namespace: "firestartr"
+      secret_name: "uptimerobot"
+      monitor_ids:
+        - "796707129"
+        - "796707139"
+        - "796707089"
+        - "796707082"
+        - "796710587"
+        - "796710591"
+        - "796710604"
+        - "796710616"
+        - "796710634"
+        - "796710650"
+        - "796710669"
+      action: resume
 
-  # - name: mongodb-atlas-start-pause-cluster
-  #   cron: "0 0 * * *"
-  #   inputs:
-  #     secret_namespace: "myNamespace"
-  #     secret_name: "mySecretName"
-  #     organization_id: "myOrganizationId"
-  #     project_id: "myProjectId"
-  #     cluster_name: "myClusterName"
-  #     action: "start"
-
-  # - name: datadog-unmute-mute-monitors
-  #   cron: "0 0 * * *"
-  #   managed_identity:
-  #     client_id: "8891abab-8901-4894-b1b4-1b32eda5be11"
-  #     tenant_id: "ca5a6690-2f48-4776-91dd-8fde1d02e7e8"
-  #   inputs:
-  #     secret_namespace: "myNamespace"
-  #     secret_name: "mySecretName"
-  #     monitor_ids:
-  #       - "19376544"
-  #       - "19376545"
-  #     action: unmute
-
-  # - name: uptimerobot-resume-pause-monitors
-  #   cron: "0 0 * * *"
-  #   inputs:
-  #     secret_namespace: "myNamespace"
-  #     secret_name: "mySecretName"
-  #     monitor_ids:
-  #       - "796707129"
-  #       - "796707139"
-  #       - "796707089"
-  #     action: pause
+  - name: slack-notification
+    cron: "30 07 * * 1-5"
+    inputs:
+      secret_namespace: "firestartr"
+      secret_name: "slack-webhook"
+      operations:
+        - "datadog-corpme-test-predev-mute"
+        - "aks-corpme-test-predev-corpme-common-predev"
+        - "vmss-corpme-test-predev"
+        - "flexible-corpme-test-predev-corpme-horus"
+        - "flexible-corpme-test-predev-corpme-ovac"
+        - "mongodb-corpme-test-predev"
+        - "uptimerobot-corpme-test-predev-pause"

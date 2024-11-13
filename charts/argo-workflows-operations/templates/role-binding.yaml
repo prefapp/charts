@@ -6,18 +6,20 @@ The name of the RoleBinding is dynamically generated using the "argo-workflows-o
 {{ define "argo-workflows-operations.rolebinding" }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+kind: ClusterRoleBinding
 metadata:
   name: {{ include "argo-workflows-operations.dynamic-name" . }}-rb
   namespace: {{ .Release.Namespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: Role
+  kind: ClusterRole
   name: {{ include "argo-workflows-operations.dynamic-name" . }}-r
+{{- if and (hasKey .operation "managed_identity") .operation.managed_identity }}
 subjects:
   - kind: ServiceAccount
     name: {{ include "argo-workflows-operations.dynamic-name" . }}-sa
     namespace: {{ .Release.Namespace }}
+{{- end }}
 {{ end }}
 
 {{- /*
