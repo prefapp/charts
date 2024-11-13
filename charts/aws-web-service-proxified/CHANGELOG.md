@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/prefapp/charts/compare/aws-web-service-proxified-v1.5.0...aws-web-service-proxified-v1.6.0) (2024-11-06)
+
+
+### Features
+
+* Argo workflows operations chart ([#238](https://github.com/prefapp/charts/issues/238)) ([ef99339](https://github.com/prefapp/charts/commit/ef99339eaa1b0c5ebe538033291c58dd3c721156))
+
 ## [1.5.0](https://github.com/prefapp/charts/compare/aws-web-service-proxified-v1.4.2...aws-web-service-proxified-v1.5.0) (2024-02-01)
 
 

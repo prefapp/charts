@@ -1,0 +1,48 @@
+---
+{{- /*
+Define the rules for the Role resource for the argo-workflows-operations chart.
+This template is called for each operation defined and fixes rules for the Role.
+*/ -}}
+{{ define "argo-workflows-operations.rules" }}
+
+{{- if or (eq .operation.name "mongodb-atlas-start-pause-cluster") (eq .operation.name "datadog-unmute-mute-monitors") (eq .operation.name "uptimerobot-resume-pause-monitors") (eq .operation.name "slack-notification") -}}
+- apiGroups: [""]
+  resources: ["secrets"]
+  resourceNames: [{{ .operation.inputs.secret_name | quote }}]
+  verbs: ["get"]
+{{- end -}}
+
+{{- if eq .operation.name "slack-notification" }}
+- apiGroups: ["argoproj.io"]
+  resources: ["workflows"]
+  verbs: ["get", "list", "watch"]
+{{- end -}}
+
+{{ end }}
+
+{{- /*
+Define the Role resource for the argo-workflows-operations chart.
+The name of the Role is dynamically generated using the "argo-workflows-operations.dynamic-name" template.
+*/ -}}
+{{ define "argo-workflows-operations.role" }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "argo-workflows-operations.dynamic-name" . }}-r
+  namespace: {{ .Release.Namespace }}
+rules:
+  - apiGroups: [""]
+    verbs: ["get", "list", "watch", "patch"]
+    resources: ["pods", "pods/exec", "secrets"]
+{{ include "argo-workflows-operations.rules" . | indent 2 }}
+{{ end }}
+
+{{- /*
+Iterate over the operations defined in the values file and create a Role for each operation.
+The root context and the current operation are passed to the "argo-workflows-operations.role" template.
+*/ -}}
+{{- $root := . -}}
+{{- range .Values.operations }}
+  {{- include "argo-workflows-operations.role" (dict "root" $root "operation" . "Release" $root.Release "Values" $root.Values "global" $root.Values.global) -}}
+{{- end }}

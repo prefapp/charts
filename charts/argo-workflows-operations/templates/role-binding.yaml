@@ -1,0 +1,32 @@
+---
+{{- /*
+Define the RoleBinding resource for the argo-workflows-operations chart.
+The name of the RoleBinding is dynamically generated using the "argo-workflows-operations.dynamic-name" template.
+*/ -}}
+{{ define "argo-workflows-operations.rolebinding" }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "argo-workflows-operations.dynamic-name" . }}-rb
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "argo-workflows-operations.dynamic-name" . }}-r
+{{- if and (hasKey .operation "managed_identity") .operation.managed_identity }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "argo-workflows-operations.dynamic-name" . }}-sa
+    namespace: {{ .Release.Namespace }}
+{{- end }}
+{{ end }}
+
+{{- /*
+Iterate over the operations defined in the values file and create a RoleBinding for each operation.
+The root context and the current operation are passed to the "argo-workflows-operations.rolebinding" template.
+*/ -}}
+{{- $root := . -}}
+{{- range .Values.operations }}
+  {{- include "argo-workflows-operations.rolebinding" (dict "root" $root "operation" . "Release" $root.Release "Values" $root.Values "global" $root.Values.global) -}}
+{{- end }}

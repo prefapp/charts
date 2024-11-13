@@ -5,7 +5,7 @@ description: >-
   A Helm chart for Kubernetes to deploy a service proxified via init container
   with nginx into AWS with alb.
 type: application
-version: 1.5.0
+version: 1.6.0
 home: https://github.com/prefapp/charts/tree/master/charts/aws-web-service-proxified
 icon: >-
   https://github.com/prefapp/charts/tree/master/charts/aws-web-service-proxified/icon.png

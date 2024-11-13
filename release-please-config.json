@@ -15,7 +15,9 @@
 
        "charts/az-argocd-firestarter-config": {},
 
-       "charts/csi-secrets-store-helpers": {}
+       "charts/csi-secrets-store-helpers": {},
+
+       "charts/argo-workflows-operations": {}
 
     }
 
