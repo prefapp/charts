@@ -8,18 +8,19 @@ This template handles different operation names and constructs a unique name acc
   {{- $splitBaseName := splitList "-" $fullBaseName -}}
   {{- $baseName := index $splitBaseName 0 -}}
   {{- $namespaceName := .Release.Namespace -}}
+  {{- $environment := .Release.Namespace | splitList "-" | last -}}
 
   {{- if eq .operation.name "aks-start-stop-cluster" -}}
-    {{ printf "%s-%s-%s" $baseName $namespaceName (.operation.inputs.cluster_name) | trunc 60 | replace "_" "-" | lower }}
+    {{ printf "%s-%s-%s-%s" $baseName $environment (.operation.inputs.cluster_name) (.operation.inputs.action) | trunc 60 | replace "_" "-" | lower }}
 
   {{- else if eq .operation.name "flexible-server-start-stop-postgresql" -}}
-    {{ printf "%s-%s-%s" $baseName $namespaceName (.operation.inputs.server_name) | trunc 60 | replace "_" "-" | lower }}
+    {{ printf "%s-%s-%s-%s" $baseName $environment (.operation.inputs.server_name) (.operation.inputs.action) | trunc 60 | replace "_" "-" | lower }}
 
-  {{- else if eq .operation.inputs.name "vmss-scale-instances" -}}
-    {{ printf "%s-%s-%s" $baseName $namespaceName (.operation.inputs.vmss_name) | trunc 60 | replace "_" "-" | lower }}
+  {{- else if eq .operation.name "vmss-scale-instances" -}}
+    {{ printf "%s-%s-%s-%d" $baseName $environment (.operation.inputs.vmss_name) (int (.operation.inputs.instances)) | trunc 60 | replace "_" "-" | lower }}
 
   {{- else if eq .operation.name "mongodb-atlas-start-pause-cluster" -}}
-    {{ printf "%s-%s-%s-%s" $baseName $namespaceName (.operation.inputs.project_id | trunc 6) (.operation.inputs.cluster_name) | trunc 60 | replace "_" "-" | lower }}
+    {{ printf "%s-%s-%s-%s-%s" $baseName $environment (.operation.inputs.project_id | trunc 4) (.operation.inputs.cluster_name) (.operation.inputs.action) | trunc 60 | replace "_" "-" | lower }}
 
   {{- else if eq .operation.name "datadog-unmute-mute-monitors" -}}
     {{ printf "%s-%s-%s" $baseName $namespaceName (.operation.inputs.action) | trunc 60 | replace "_" "-" | lower }}
@@ -28,7 +29,7 @@ This template handles different operation names and constructs a unique name acc
     {{ printf "%s-%s-%s" $baseName $namespaceName (.operation.inputs.action) | trunc 60 | replace "_" "-" | lower }}
 
   {{- else if eq .operation.name "slack-notification" -}}
-    {{ printf "%s-%s" $baseName $namespaceName | trunc 60 | replace "_" "-" | lower }}
+    {{ printf "%s-%s-%s" $baseName $namespaceName (.operation.inputs.message) | trunc 60 | replace "_" "-" | lower }}
 
   {{- else -}}
     {{ printf "%s-%s" $baseName $namespaceName | trunc 60 | replace "_" "-" }}

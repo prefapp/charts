@@ -1,0 +1,1118 @@
+---
+# Source: argo-workflows-operations/templates/service-account.yaml
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    azure.workload.identity/client-id: 3e3f573c-8503-406f-897e-f8aba2bbf673
+    azure.workload.identity/tenant-id: ca5a6690-2f48-4776-91dd-8fde1d02e7e8
+  name: aks-predev-corpme-predev-aks-stop-sa
+  namespace: corpme-test-predev
+---
+# Source: argo-workflows-operations/templates/service-account.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    azure.workload.identity/client-id: 3e3f573c-8503-406f-897e-f8aba2bbf673
+    azure.workload.identity/tenant-id: ca5a6690-2f48-4776-91dd-8fde1d02e7e8
+  name: aks-predev-corpme-predev-aks-start-sa
+  namespace: corpme-test-predev
+---
+# Source: argo-workflows-operations/templates/service-account.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    azure.workload.identity/client-id: 3e3f573c-8503-406f-897e-f8aba2bbf673
+    azure.workload.identity/tenant-id: ca5a6690-2f48-4776-91dd-8fde1d02e7e8
+  name: flexible-predev-corpme-horus-predev-stop-sa
+  namespace: corpme-test-predev
+---
+# Source: argo-workflows-operations/templates/service-account.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    azure.workload.identity/client-id: 3e3f573c-8503-406f-897e-f8aba2bbf673
+    azure.workload.identity/tenant-id: ca5a6690-2f48-4776-91dd-8fde1d02e7e8
+  name: flexible-predev-corpme-horus-predev-start-sa
+  namespace: corpme-test-predev
+---
+# Source: argo-workflows-operations/templates/service-account.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    azure.workload.identity/client-id: 3e3f573c-8503-406f-897e-f8aba2bbf673
+    azure.workload.identity/tenant-id: ca5a6690-2f48-4776-91dd-8fde1d02e7e8
+  name: flexible-predev-corpme-ovac-predev-stop-sa
+  namespace: corpme-test-predev
+---
+# Source: argo-workflows-operations/templates/service-account.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    azure.workload.identity/client-id: 3e3f573c-8503-406f-897e-f8aba2bbf673
+    azure.workload.identity/tenant-id: ca5a6690-2f48-4776-91dd-8fde1d02e7e8
+  name: flexible-predev-corpme-ovac-predev-start-sa
+  namespace: corpme-test-predev
+---
+# Source: argo-workflows-operations/templates/service-account.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    azure.workload.identity/client-id: 3e3f573c-8503-406f-897e-f8aba2bbf673
+    azure.workload.identity/tenant-id: ca5a6690-2f48-4776-91dd-8fde1d02e7e8
+  name: vmss-predev-corpme-soup-pre-0-sa
+  namespace: corpme-test-predev
+---
+# Source: argo-workflows-operations/templates/service-account.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    azure.workload.identity/client-id: 3e3f573c-8503-406f-897e-f8aba2bbf673
+    azure.workload.identity/tenant-id: ca5a6690-2f48-4776-91dd-8fde1d02e7e8
+  name: vmss-predev-corpme-soup-pre-1-sa
+  namespace: corpme-test-predev
+---
+# Source: argo-workflows-operations/templates/role.yaml
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: aks-predev-corpme-predev-aks-stop-r
+  namespace: corpme-test-predev
+rules:
+  - apiGroups: [""]
+    verbs: ["get", "list", "watch", "patch"]
+    resources: ["pods", "pods/exec", "secrets"]
+---
+# Source: argo-workflows-operations/templates/role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: aks-predev-corpme-predev-aks-start-r
+  namespace: corpme-test-predev
+rules:
+  - apiGroups: [""]
+    verbs: ["get", "list", "watch", "patch"]
+    resources: ["pods", "pods/exec", "secrets"]
+---
+# Source: argo-workflows-operations/templates/role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: flexible-predev-corpme-horus-predev-stop-r
+  namespace: corpme-test-predev
+rules:
+  - apiGroups: [""]
+    verbs: ["get", "list", "watch", "patch"]
+    resources: ["pods", "pods/exec", "secrets"]
+---
+# Source: argo-workflows-operations/templates/role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: flexible-predev-corpme-horus-predev-start-r
+  namespace: corpme-test-predev
+rules:
+  - apiGroups: [""]
+    verbs: ["get", "list", "watch", "patch"]
+    resources: ["pods", "pods/exec", "secrets"]
+---
+# Source: argo-workflows-operations/templates/role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: flexible-predev-corpme-ovac-predev-stop-r
+  namespace: corpme-test-predev
+rules:
+  - apiGroups: [""]
+    verbs: ["get", "list", "watch", "patch"]
+    resources: ["pods", "pods/exec", "secrets"]
+---
+# Source: argo-workflows-operations/templates/role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: flexible-predev-corpme-ovac-predev-start-r
+  namespace: corpme-test-predev
+rules:
+  - apiGroups: [""]
+    verbs: ["get", "list", "watch", "patch"]
+    resources: ["pods", "pods/exec", "secrets"]
+---
+# Source: argo-workflows-operations/templates/role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: vmss-predev-corpme-soup-pre-0-r
+  namespace: corpme-test-predev
+rules:
+  - apiGroups: [""]
+    verbs: ["get", "list", "watch", "patch"]
+    resources: ["pods", "pods/exec", "secrets"]
+---
+# Source: argo-workflows-operations/templates/role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: vmss-predev-corpme-soup-pre-1-r
+  namespace: corpme-test-predev
+rules:
+  - apiGroups: [""]
+    verbs: ["get", "list", "watch", "patch"]
+    resources: ["pods", "pods/exec", "secrets"]
+---
+# Source: argo-workflows-operations/templates/role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: mongodb-predev-65e8-predev-pause-r
+  namespace: corpme-test-predev
+rules:
+  - apiGroups: [""]
+    verbs: ["get", "list", "watch", "patch"]
+    resources: ["pods", "pods/exec", "secrets"]
+  - apiGroups: [""]
+    resources: ["secrets"]
+    resourceNames: ["mongodb-atlas-corpme"]
+    verbs: ["get"]
+---
+# Source: argo-workflows-operations/templates/role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: mongodb-predev-65e8-predev-start-r
+  namespace: corpme-test-predev
+rules:
+  - apiGroups: [""]
+    verbs: ["get", "list", "watch", "patch"]
+    resources: ["pods", "pods/exec", "secrets"]
+  - apiGroups: [""]
+    resources: ["secrets"]
+    resourceNames: ["mongodb-atlas-corpme"]
+    verbs: ["get"]
+---
+# Source: argo-workflows-operations/templates/role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: datadog-corpme-test-predev-mute-r
+  namespace: corpme-test-predev
+rules:
+  - apiGroups: [""]
+    verbs: ["get", "list", "watch", "patch"]
+    resources: ["pods", "pods/exec", "secrets"]
+  - apiGroups: [""]
+    resources: ["secrets"]
+    resourceNames: ["datadog-corpme"]
+    verbs: ["get"]
+---
+# Source: argo-workflows-operations/templates/role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: datadog-corpme-test-predev-unmute-r
+  namespace: corpme-test-predev
+rules:
+  - apiGroups: [""]
+    verbs: ["get", "list", "watch", "patch"]
+    resources: ["pods", "pods/exec", "secrets"]
+  - apiGroups: [""]
+    resources: ["secrets"]
+    resourceNames: ["datadog-corpme"]
+    verbs: ["get"]
+---
+# Source: argo-workflows-operations/templates/role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: uptimerobot-corpme-test-predev-pause-r
+  namespace: corpme-test-predev
+rules:
+  - apiGroups: [""]
+    verbs: ["get", "list", "watch", "patch"]
+    resources: ["pods", "pods/exec", "secrets"]
+  - apiGroups: [""]
+    resources: ["secrets"]
+    resourceNames: ["uptimerobot"]
+    verbs: ["get"]
+---
+# Source: argo-workflows-operations/templates/role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: uptimerobot-corpme-test-predev-resume-r
+  namespace: corpme-test-predev
+rules:
+  - apiGroups: [""]
+    verbs: ["get", "list", "watch", "patch"]
+    resources: ["pods", "pods/exec", "secrets"]
+  - apiGroups: [""]
+    resources: ["secrets"]
+    resourceNames: ["uptimerobot"]
+    verbs: ["get"]
+---
+# Source: argo-workflows-operations/templates/role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: slack-corpme-test-predev-%!s(<nil>)-r
+  namespace: corpme-test-predev
+rules:
+  - apiGroups: [""]
+    verbs: ["get", "list", "watch", "patch"]
+    resources: ["pods", "pods/exec", "secrets"]
+  - apiGroups: [""]
+    resources: ["secrets"]
+    resourceNames: ["slack-webhook"]
+    verbs: ["get"]
+  - apiGroups: ["argoproj.io"]
+    resources: ["workflows"]
+    verbs: ["get", "list", "watch"]
+---
+# Source: argo-workflows-operations/templates/role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: slack-corpme-test-predev-%!s(<nil>)-r
+  namespace: corpme-test-predev
+rules:
+  - apiGroups: [""]
+    verbs: ["get", "list", "watch", "patch"]
+    resources: ["pods", "pods/exec", "secrets"]
+  - apiGroups: [""]
+    resources: ["secrets"]
+    resourceNames: ["slack-webhook"]
+    verbs: ["get"]
+  - apiGroups: ["argoproj.io"]
+    resources: ["workflows"]
+    verbs: ["get", "list", "watch"]
+---
+# Source: argo-workflows-operations/templates/role-binding.yaml
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: aks-predev-corpme-predev-aks-stop-rb
+  namespace: corpme-test-predev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: aks-predev-corpme-predev-aks-stop-r
+subjects:
+  - kind: ServiceAccount
+    name: aks-predev-corpme-predev-aks-stop-sa
+    namespace: corpme-test-predev
+---
+# Source: argo-workflows-operations/templates/role-binding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: aks-predev-corpme-predev-aks-start-rb
+  namespace: corpme-test-predev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: aks-predev-corpme-predev-aks-start-r
+subjects:
+  - kind: ServiceAccount
+    name: aks-predev-corpme-predev-aks-start-sa
+    namespace: corpme-test-predev
+---
+# Source: argo-workflows-operations/templates/role-binding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: flexible-predev-corpme-horus-predev-stop-rb
+  namespace: corpme-test-predev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: flexible-predev-corpme-horus-predev-stop-r
+subjects:
+  - kind: ServiceAccount
+    name: flexible-predev-corpme-horus-predev-stop-sa
+    namespace: corpme-test-predev
+---
+# Source: argo-workflows-operations/templates/role-binding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: flexible-predev-corpme-horus-predev-start-rb
+  namespace: corpme-test-predev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: flexible-predev-corpme-horus-predev-start-r
+subjects:
+  - kind: ServiceAccount
+    name: flexible-predev-corpme-horus-predev-start-sa
+    namespace: corpme-test-predev
+---
+# Source: argo-workflows-operations/templates/role-binding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: flexible-predev-corpme-ovac-predev-stop-rb
+  namespace: corpme-test-predev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: flexible-predev-corpme-ovac-predev-stop-r
+subjects:
+  - kind: ServiceAccount
+    name: flexible-predev-corpme-ovac-predev-stop-sa
+    namespace: corpme-test-predev
+---
+# Source: argo-workflows-operations/templates/role-binding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: flexible-predev-corpme-ovac-predev-start-rb
+  namespace: corpme-test-predev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: flexible-predev-corpme-ovac-predev-start-r
+subjects:
+  - kind: ServiceAccount
+    name: flexible-predev-corpme-ovac-predev-start-sa
+    namespace: corpme-test-predev
+---
+# Source: argo-workflows-operations/templates/role-binding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: vmss-predev-corpme-soup-pre-0-rb
+  namespace: corpme-test-predev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: vmss-predev-corpme-soup-pre-0-r
+subjects:
+  - kind: ServiceAccount
+    name: vmss-predev-corpme-soup-pre-0-sa
+    namespace: corpme-test-predev
+---
+# Source: argo-workflows-operations/templates/role-binding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: vmss-predev-corpme-soup-pre-1-rb
+  namespace: corpme-test-predev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: vmss-predev-corpme-soup-pre-1-r
+subjects:
+  - kind: ServiceAccount
+    name: vmss-predev-corpme-soup-pre-1-sa
+    namespace: corpme-test-predev
+---
+# Source: argo-workflows-operations/templates/role-binding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: mongodb-predev-65e8-predev-pause-rb
+  namespace: corpme-test-predev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: mongodb-predev-65e8-predev-pause-r
+---
+# Source: argo-workflows-operations/templates/role-binding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: mongodb-predev-65e8-predev-start-rb
+  namespace: corpme-test-predev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: mongodb-predev-65e8-predev-start-r
+---
+# Source: argo-workflows-operations/templates/role-binding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: datadog-corpme-test-predev-mute-rb
+  namespace: corpme-test-predev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: datadog-corpme-test-predev-mute-r
+---
+# Source: argo-workflows-operations/templates/role-binding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: datadog-corpme-test-predev-unmute-rb
+  namespace: corpme-test-predev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: datadog-corpme-test-predev-unmute-r
+---
+# Source: argo-workflows-operations/templates/role-binding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: uptimerobot-corpme-test-predev-pause-rb
+  namespace: corpme-test-predev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: uptimerobot-corpme-test-predev-pause-r
+---
+# Source: argo-workflows-operations/templates/role-binding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: uptimerobot-corpme-test-predev-resume-rb
+  namespace: corpme-test-predev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: uptimerobot-corpme-test-predev-resume-r
+---
+# Source: argo-workflows-operations/templates/role-binding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: slack-corpme-test-predev-%!s(<nil>)-rb
+  namespace: corpme-test-predev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: slack-corpme-test-predev-%!s(<nil>)-r
+---
+# Source: argo-workflows-operations/templates/role-binding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: slack-corpme-test-predev-%!s(<nil>)-rb
+  namespace: corpme-test-predev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: slack-corpme-test-predev-%!s(<nil>)-r
+---
+# Source: argo-workflows-operations/templates/cronworkflow.yaml
+---
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: aks-predev-corpme-predev-aks-stop-cw
+  namespace: corpme-test-predev
+spec:
+  concurrencyPolicy: Replace
+  schedule: 00 19 * * 1-5
+  timezone: Europe/Madrid
+  workflowSpec:
+    entrypoint: main
+    serviceAccountName: aks-predev-corpme-predev-aks-stop-sa
+    templates:
+      - name: main
+        steps:
+          - - name: aks-start-stop-cluster
+              templateRef:
+                name: aks-start-stop-cluster
+                template: main
+                clusterScope: true
+              arguments:
+                parameters:
+                  - name: subscription_id
+                    value: a152aa4d-7a6d-4535-893d-f11a70b27033
+                  - name: resource_group
+                    value: corpme-common-predev
+                  - name: cluster_name
+                    value: corpme-predev-aks
+                  - name: action
+                    value: stop
+                  - name: output_subject
+                    value: Azure-Kubernetes-Service
+                  - name: output_tenant
+                    value: corpme
+                  - name: output_environment
+                    value: predev
+---
+# Source: argo-workflows-operations/templates/cronworkflow.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: aks-predev-corpme-predev-aks-start-cw
+  namespace: corpme-test-predev
+spec:
+  concurrencyPolicy: Replace
+  schedule: 00 07 * * 1-5
+  timezone: Europe/Madrid
+  workflowSpec:
+    entrypoint: main
+    serviceAccountName: aks-predev-corpme-predev-aks-start-sa
+    templates:
+      - name: main
+        steps:
+          - - name: aks-start-stop-cluster
+              templateRef:
+                name: aks-start-stop-cluster
+                template: main
+                clusterScope: true
+              arguments:
+                parameters:
+                  - name: subscription_id
+                    value: a152aa4d-7a6d-4535-893d-f11a70b27033
+                  - name: resource_group
+                    value: corpme-common-predev
+                  - name: cluster_name
+                    value: corpme-predev-aks
+                  - name: action
+                    value: start
+                  - name: output_subject
+                    value: Azure-Kubernetes-Service
+                  - name: output_tenant
+                    value: corpme
+                  - name: output_environment
+                    value: predev
+---
+# Source: argo-workflows-operations/templates/cronworkflow.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: flexible-predev-corpme-horus-predev-stop-cw
+  namespace: corpme-test-predev
+spec:
+  concurrencyPolicy: Replace
+  schedule: 00 19 * * 1-5
+  timezone: Europe/Madrid
+  workflowSpec:
+    entrypoint: main
+    serviceAccountName: flexible-predev-corpme-horus-predev-stop-sa
+    templates:
+      - name: main
+        steps:
+          - - name: flexible-server-start-stop-postgresql
+              templateRef:
+                name: flexible-server-start-stop-postgresql
+                template: main
+                clusterScope: true
+              arguments:
+                parameters:
+                  - name: subscription_id
+                    value: a152aa4d-7a6d-4535-893d-f11a70b27033
+                  - name: resource_group
+                    value: corpme-horus-predev
+                  - name: server_name
+                    value: corpme-horus-predev
+                  - name: action
+                    value: stop
+                  - name: output_subject
+                    value: Azure-PostgreSQL
+                  - name: output_tenant
+                    value: corpme
+                  - name: output_environment
+                    value: predev
+---
+# Source: argo-workflows-operations/templates/cronworkflow.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: flexible-predev-corpme-horus-predev-start-cw
+  namespace: corpme-test-predev
+spec:
+  concurrencyPolicy: Replace
+  schedule: 00 07 * * 1-5
+  timezone: Europe/Madrid
+  workflowSpec:
+    entrypoint: main
+    serviceAccountName: flexible-predev-corpme-horus-predev-start-sa
+    templates:
+      - name: main
+        steps:
+          - - name: flexible-server-start-stop-postgresql
+              templateRef:
+                name: flexible-server-start-stop-postgresql
+                template: main
+                clusterScope: true
+              arguments:
+                parameters:
+                  - name: subscription_id
+                    value: a152aa4d-7a6d-4535-893d-f11a70b27033
+                  - name: resource_group
+                    value: corpme-horus-predev
+                  - name: server_name
+                    value: corpme-horus-predev
+                  - name: action
+                    value: start
+                  - name: output_subject
+                    value: Azure-PostgreSQL
+                  - name: output_tenant
+                    value: corpme
+                  - name: output_environment
+                    value: predev
+---
+# Source: argo-workflows-operations/templates/cronworkflow.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: flexible-predev-corpme-ovac-predev-stop-cw
+  namespace: corpme-test-predev
+spec:
+  concurrencyPolicy: Replace
+  schedule: 00 19 * * 1-5
+  timezone: Europe/Madrid
+  workflowSpec:
+    entrypoint: main
+    serviceAccountName: flexible-predev-corpme-ovac-predev-stop-sa
+    templates:
+      - name: main
+        steps:
+          - - name: flexible-server-start-stop-postgresql
+              templateRef:
+                name: flexible-server-start-stop-postgresql
+                template: main
+                clusterScope: true
+              arguments:
+                parameters:
+                  - name: subscription_id
+                    value: a152aa4d-7a6d-4535-893d-f11a70b27033
+                  - name: resource_group
+                    value: corpme-ovac-predev
+                  - name: server_name
+                    value: corpme-ovac-predev
+                  - name: action
+                    value: stop
+                  - name: output_subject
+                    value: Azure-PostgreSQL
+                  - name: output_tenant
+                    value: corpme
+                  - name: output_environment
+                    value: predev
+---
+# Source: argo-workflows-operations/templates/cronworkflow.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: flexible-predev-corpme-ovac-predev-start-cw
+  namespace: corpme-test-predev
+spec:
+  concurrencyPolicy: Replace
+  schedule: 00 07 * * 1-5
+  timezone: Europe/Madrid
+  workflowSpec:
+    entrypoint: main
+    serviceAccountName: flexible-predev-corpme-ovac-predev-start-sa
+    templates:
+      - name: main
+        steps:
+          - - name: flexible-server-start-stop-postgresql
+              templateRef:
+                name: flexible-server-start-stop-postgresql
+                template: main
+                clusterScope: true
+              arguments:
+                parameters:
+                  - name: subscription_id
+                    value: a152aa4d-7a6d-4535-893d-f11a70b27033
+                  - name: resource_group
+                    value: corpme-ovac-predev
+                  - name: server_name
+                    value: corpme-ovac-predev
+                  - name: action
+                    value: start
+                  - name: output_subject
+                    value: Azure-PostgreSQL
+                  - name: output_tenant
+                    value: corpme
+                  - name: output_environment
+                    value: predev
+---
+# Source: argo-workflows-operations/templates/cronworkflow.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: vmss-predev-corpme-soup-pre-0-cw
+  namespace: corpme-test-predev
+spec:
+  concurrencyPolicy: Replace
+  schedule: 00 19 * * 1-5
+  timezone: Europe/Madrid
+  workflowSpec:
+    entrypoint: main
+    serviceAccountName: vmss-predev-corpme-soup-pre-0-sa
+    templates:
+      - name: main
+        steps:
+          - - name: vmss-scale-instances
+              templateRef:
+                name: vmss-scale-instances
+                template: main
+                clusterScope: true
+              arguments:
+                parameters:
+                  - name: subscription_id
+                    value: a152aa4d-7a6d-4535-893d-f11a70b27033
+                  - name: resource_group
+                    value: corpme-shutter-pre
+                  - name: vmss_name
+                    value: corpme-soup-pre
+                  - name: instances
+                    value: 0
+                  - name: output_subject
+                    value: Azure-VMSS
+                  - name: output_tenant
+                    value: corpme
+                  - name: output_environment
+                    value: predev
+---
+# Source: argo-workflows-operations/templates/cronworkflow.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: vmss-predev-corpme-soup-pre-1-cw
+  namespace: corpme-test-predev
+spec:
+  concurrencyPolicy: Replace
+  schedule: 00 07 * * 1-5
+  timezone: Europe/Madrid
+  workflowSpec:
+    entrypoint: main
+    serviceAccountName: vmss-predev-corpme-soup-pre-1-sa
+    templates:
+      - name: main
+        steps:
+          - - name: vmss-scale-instances
+              templateRef:
+                name: vmss-scale-instances
+                template: main
+                clusterScope: true
+              arguments:
+                parameters:
+                  - name: subscription_id
+                    value: a152aa4d-7a6d-4535-893d-f11a70b27033
+                  - name: resource_group
+                    value: corpme-shutter-pre
+                  - name: vmss_name
+                    value: corpme-soup-pre
+                  - name: instances
+                    value: 1
+                  - name: output_subject
+                    value: Azure-VMSS
+                  - name: output_tenant
+                    value: corpme
+                  - name: output_environment
+                    value: predev
+---
+# Source: argo-workflows-operations/templates/cronworkflow.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: mongodb-predev-65e8-predev-pause-cw
+  namespace: corpme-test-predev
+spec:
+  concurrencyPolicy: Replace
+  schedule: 00 19 * * 1-5
+  timezone: Europe/Madrid
+  workflowSpec:
+    entrypoint: main
+    serviceAccountName: mongodb-predev-65e8-predev-pause-sa
+    templates:
+      - name: main
+        steps:
+          - - name: mongodb-atlas-start-pause-cluster
+              templateRef:
+                name: mongodb-atlas-start-pause-cluster
+                template: main
+                clusterScope: true
+              arguments:
+                parameters:
+                  - name: secret_namespace
+                    value: firestartr
+                  - name: secret_name
+                    value: mongodb-atlas-corpme
+                  - name: organization_id
+                    value: 65f8d0d1d0c28305b4c88fd2
+                  - name: project_id
+                    value: 65e84e9364273b0e73c72f4c
+                  - name: cluster_name
+                    value: predev
+                  - name: action
+                    value: pause
+                  - name: output_subject
+                    value: MongoDB-Atlas
+                  - name: output_tenant
+                    value: corpme
+                  - name: output_environment
+                    value: predev
+---
+# Source: argo-workflows-operations/templates/cronworkflow.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: mongodb-predev-65e8-predev-start-cw
+  namespace: corpme-test-predev
+spec:
+  concurrencyPolicy: Replace
+  schedule: 00 07 * * 1-5
+  timezone: Europe/Madrid
+  workflowSpec:
+    entrypoint: main
+    serviceAccountName: mongodb-predev-65e8-predev-start-sa
+    templates:
+      - name: main
+        steps:
+          - - name: mongodb-atlas-start-pause-cluster
+              templateRef:
+                name: mongodb-atlas-start-pause-cluster
+                template: main
+                clusterScope: true
+              arguments:
+                parameters:
+                  - name: secret_namespace
+                    value: firestartr
+                  - name: secret_name
+                    value: mongodb-atlas-corpme
+                  - name: organization_id
+                    value: 65f8d0d1d0c28305b4c88fd2
+                  - name: project_id
+                    value: 65e84e9364273b0e73c72f4c
+                  - name: cluster_name
+                    value: predev
+                  - name: action
+                    value: start
+                  - name: output_subject
+                    value: MongoDB-Atlas
+                  - name: output_tenant
+                    value: corpme
+                  - name: output_environment
+                    value: predev
+---
+# Source: argo-workflows-operations/templates/cronworkflow.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: datadog-corpme-test-predev-mute-cw
+  namespace: corpme-test-predev
+spec:
+  concurrencyPolicy: Replace
+  schedule: 55 18 * * 1-5
+  timezone: Europe/Madrid
+  workflowSpec:
+    entrypoint: main
+    serviceAccountName: datadog-corpme-test-predev-mute-sa
+    templates:
+      - name: main
+        steps:
+          - - name: datadog-unmute-mute-monitors
+              templateRef:
+                name: datadog-unmute-mute-monitors
+                template: main
+                clusterScope: true
+              arguments:
+                parameters:
+                  - name: secret_namespace
+                    value: firestartr
+                  - name: secret_name
+                    value: datadog-corpme
+                  - name: monitor_ids
+                    value: 19376544,19376545,18297988,16401040,19376546,19376547,18297286,18297988,18297285,16401707,16401708,16401296,16401298,16401299,16401294,16401425,16401427,16401424,16401429,16399636,16399633,16399629,16399632,16399631,18421518
+                  - name: action
+                    value: mute
+                  - name: output_subject
+                    value: Datadog
+                  - name: output_tenant
+                    value: corpme
+                  - name: output_environment
+                    value: predev
+---
+# Source: argo-workflows-operations/templates/cronworkflow.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: datadog-corpme-test-predev-unmute-cw
+  namespace: corpme-test-predev
+spec:
+  concurrencyPolicy: Replace
+  schedule: 20 07 * * 1-5
+  timezone: Europe/Madrid
+  workflowSpec:
+    entrypoint: main
+    serviceAccountName: datadog-corpme-test-predev-unmute-sa
+    templates:
+      - name: main
+        steps:
+          - - name: datadog-unmute-mute-monitors
+              templateRef:
+                name: datadog-unmute-mute-monitors
+                template: main
+                clusterScope: true
+              arguments:
+                parameters:
+                  - name: secret_namespace
+                    value: firestartr
+                  - name: secret_name
+                    value: datadog-corpme
+                  - name: monitor_ids
+                    value: 19376544,19376545,18297988,16401040,19376546,19376547,18297286,18297988,18297285,16401707,16401708,16401296,16401298,16401299,16401294,16401425,16401427,16401424,16401429,16399636,16399633,16399629,16399632,16399631,18421518
+                  - name: action
+                    value: unmute
+                  - name: output_subject
+                    value: Datadog
+                  - name: output_tenant
+                    value: corpme
+                  - name: output_environment
+                    value: predev
+---
+# Source: argo-workflows-operations/templates/cronworkflow.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: uptimerobot-corpme-test-predev-pause-cw
+  namespace: corpme-test-predev
+spec:
+  concurrencyPolicy: Replace
+  schedule: 55 18 * * 1-5
+  timezone: Europe/Madrid
+  workflowSpec:
+    entrypoint: main
+    serviceAccountName: uptimerobot-corpme-test-predev-pause-sa
+    templates:
+      - name: main
+        steps:
+          - - name: uptimerobot-resume-pause-monitors
+              templateRef:
+                name: uptimerobot-resume-pause-monitors
+                template: main
+                clusterScope: true
+              arguments:
+                parameters:
+                  - name: secret_namespace
+                    value: firestartr
+                  - name: secret_name
+                    value: uptimerobot
+                  - name: monitor_ids
+                    value: 796707129,796707139,796707089,796707082,796710587,796710591,796710604,796710616,796710634,796710650,796710669
+                  - name: action
+                    value: pause
+                  - name: output_subject
+                    value: UptimeRobot
+                  - name: output_tenant
+                    value: corpme
+                  - name: output_environment
+                    value: predev
+---
+# Source: argo-workflows-operations/templates/cronworkflow.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: uptimerobot-corpme-test-predev-resume-cw
+  namespace: corpme-test-predev
+spec:
+  concurrencyPolicy: Replace
+  schedule: 20 07 * * 1-5
+  timezone: Europe/Madrid
+  workflowSpec:
+    entrypoint: main
+    serviceAccountName: uptimerobot-corpme-test-predev-resume-sa
+    templates:
+      - name: main
+        steps:
+          - - name: uptimerobot-resume-pause-monitors
+              templateRef:
+                name: uptimerobot-resume-pause-monitors
+                template: main
+                clusterScope: true
+              arguments:
+                parameters:
+                  - name: secret_namespace
+                    value: firestartr
+                  - name: secret_name
+                    value: uptimerobot
+                  - name: monitor_ids
+                    value: 796707129,796707139,796707089,796707082,796710587,796710591,796710604,796710616,796710634,796710650,796710669
+                  - name: action
+                    value: resume
+                  - name: output_subject
+                    value: UptimeRobot
+                  - name: output_tenant
+                    value: corpme
+                  - name: output_environment
+                    value: predev
+---
+# Source: argo-workflows-operations/templates/cronworkflow.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: slack-corpme-test-predev-%!s(<nil>)-cw
+  namespace: corpme-test-predev
+spec:
+  concurrencyPolicy: Replace
+  schedule: 30 19 * * 1-5
+  timezone: Europe/Madrid
+  workflowSpec:
+    entrypoint: main
+    serviceAccountName: slack-corpme-test-predev-%!s(<nil>)-sa
+    templates:
+      - name: main
+        steps:
+          - - name: slack-notification
+              templateRef:
+                name: slack-notification
+                template: main
+                clusterScope: true
+              arguments:
+                parameters:
+                  - name: secret_namespace
+                    value: firestartr
+                  - name: secret_name
+                    value: slack-webhook
+                  - name: operations
+                    value: aks-predev-corpme-predev-aks-stop,flexible-predev-corpme-ovac-predev-stop,flexible-predev-corpme-horus-predev-stop,vmss-predev-corpme-soup-pre-0,mongodb-predev-65e8-predev-pause,datadog-corpme-test-predev-mute,uptimerobot-corpme-test-predev-pause
+                  - name: namespace
+                    value: corpme-test-predev
+                  - name: output_tenant
+                    value: corpme
+                  - name: output_environment
+                    value: predev
+---
+# Source: argo-workflows-operations/templates/cronworkflow.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: slack-corpme-test-predev-%!s(<nil>)-cw
+  namespace: corpme-test-predev
+spec:
+  concurrencyPolicy: Replace
+  schedule: 30 07 * * 1-5
+  timezone: Europe/Madrid
+  workflowSpec:
+    entrypoint: main
+    serviceAccountName: slack-corpme-test-predev-%!s(<nil>)-sa
+    templates:
+      - name: main
+        steps:
+          - - name: slack-notification
+              templateRef:
+                name: slack-notification
+                template: main
+                clusterScope: true
+              arguments:
+                parameters:
+                  - name: secret_namespace
+                    value: firestartr
+                  - name: secret_name
+                    value: slack-webhook
+                  - name: operations
+                    value: aks-predev-corpme-predev-aks-start,flexible-predev-corpme-ovac-predev-start,flexible-predev-corpme-horus-predev-start,vmss-predev-corpme-soup-pre-1,mongodb-predev-65e8-predev-start,datadog-corpme-test-predem-unmute,uptimerobot-corpme-test-predev-resume
+                  - name: namespace
+                    value: corpme-test-predev
+                  - name: output_tenant
+                    value: corpme
+                  - name: output_environment
+                    value: predev
