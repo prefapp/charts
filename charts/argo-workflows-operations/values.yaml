@@ -13,118 +13,194 @@ allowed_operations:
   # Slack
   - slack-notification
 
-global:
-  managed_identity:
-    client_id: "3e3f573c-8503-406f-897e-f8aba2bbf673"
-    tenant_id: "ca5a6690-2f48-4776-91dd-8fde1d02e7e8"
-  subscription_id: "a152aa4d-7a6d-4535-893d-f11a70b27033"
-  timezone: "Europe/Madrid"
+global: {}
+  # managed_identity:
+  #   client_id: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+  #   tenant_id: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+  # subscription_id: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+  # timezone: "Europe/Madrid"
 
-operations:
-  - name: aks-start-stop-cluster
-    managed_identity: true
-    cron: "00 07 * * 1-5"
-    inputs:
-      resource_group: "corpme-common-predev"
-      cluster_name: "corpme-predev-aks"
-      action: "start"
+operations: {}
+  # # Azure #
+  # # AKS #
+  # - name: aks-start-stop-cluster
+  #   managed_identity: true
+  #   cron: "00 19 * * 1-5"
+  #   inputs:
+  #     resource_group: "group1"
+  #     cluster_name: "cluster1"
+  #     action: "stop"
+  # - name: aks-start-stop-cluster
+  #   managed_identity: true
+  #   cron: "00 07 * * 1-5"
+  #   inputs:
+  #     resource_group: "group1"
+  #     cluster_name: "cluster1"
+  #     action: "start"
 
-  - name: vmss-scale-instances
-    managed_identity: true
-    cron: "00 07 * * 1-5"
-    inputs:
-      resource_group: "corpme-shutter-pre"
-      vmss_name: "corpme-soup-pre"
-      instances: 1
+  # # Flexible Server PostgreSQL #
+  # - name: flexible-server-start-stop-postgresql
+  #   managed_identity: true
+  #   cron: "00 19 * * 1-5"
+  #   inputs:
+  #     resource_group: "group2"
+  #     server_name: "server1"
+  #     action: "stop"
+  # - name: flexible-server-start-stop-postgresql
+  #   managed_identity: true
+  #   cron: "00 07 * * 1-5"
+  #   inputs:
+  #     resource_group: "group2"
+  #     server_name: "server1"
+  #     action: "start"
+  # - name: flexible-server-start-stop-postgresql
+  #   managed_identity: true
+  #   cron: "00 19 * * 1-5"
+  #   inputs:
+  #     resource_group: "group3"
+  #     server_name: "server2"
+  #     action: "stop"
+  # - name: flexible-server-start-stop-postgresql
+  #   managed_identity: true
+  #   cron: "00 07 * * 1-5"
+  #   inputs:
+  #     resource_group: "group3"
+  #     server_name: "server2"
+  #     action: "start"
 
-  - name: flexible-server-start-stop-postgresql
-    managed_identity: true
-    cron: "00 07 * * 1-5"
-    inputs:
-      resource_group: "corpme-horus-predev"
-      server_name: "corpme-horus-predev"
-      action: "start"
+  # # VMSS #
+  # - name: vmss-scale-instances
+  #   managed_identity: true
+  #   cron: "00 19 * * 1-5"
+  #   inputs:
+  #     resource_group: "group4"
+  #     vmss_name: "vmss1"
+  #     instances: 0
+  # - name: vmss-scale-instances
+  #   managed_identity: true
+  #   cron: "00 07 * * 1-5"
+  #   inputs:
+  #     resource_group: "group4"
+  #     vmss_name: "vmss1"
+  #     instances: 1
 
-  - name: flexible-server-start-stop-postgresql
-    managed_identity: true
-    cron: "00 07 * * 1-5"
-    inputs:
-      resource_group: "corpme-ovac-predev"
-      server_name: "corpme-ovac-predev"
-      action: "start"
+  # # Third Party #
+  # # MongoDB Atlas #
+  # - name: mongodb-atlas-start-pause-cluster
+  #   cron: "00 19 * * 1-5"
+  #   inputs:
+  #     secret_namespace: "namespace1"
+  #     secret_name: "mongodb-atlas"
+  #     organization_id: "0123456789"
+  #     project_id: "proj1"
+  #     cluster_name: "cluster2"
+  #     action: "pause"
+  # - name: mongodb-atlas-start-pause-cluster
+  #   cron: "00 07 * * 1-5"
+  #   inputs:
+  #     secret_namespace: "namespace1"
+  #     secret_name: "mongodb-atlas"
+  #     organization_id: "0123456789"
+  #     project_id: "proj1"
+  #     cluster_name: "cluster2"
+  #     action: "start"
 
-  - name: mongodb-atlas-start-pause-cluster
-    cron: "00 07 * * 1-5"
-    inputs:
-      secret_namespace: "firestartr"
-      secret_name: "mongodb-atlas-corpme"
-      organization_id: "65f8d0d1d0c28305b4c88fd2"
-      project_id: "65e84e9364273b0e73c72f4c"
-      cluster_name: "predev"
-      action: "start"
+  # # Datadog #
+  # - name: datadog-unmute-mute-monitors
+  #   cron: "55 18 * * 1-5"
+  #   inputs:
+  #     secret_namespace: "namespace1"
+  #     secret_name: "datadog"
+  #     monitor_ids:
+  #       - "monitor1"
+  #       - "monitor2"
+  #       - "monitor3"
+  #       - "monitor4"
+  #       - "monitor5"
+  #       - "monitor6"
+  #       - "monitor7"
+  #       - "monitor8"
+  #       - "monitor9"
+  #       - "monitor10"
+  #     action: mute
+  # - name: datadog-unmute-mute-monitors
+  #   cron: "20 07 * * 1-5"
+  #   inputs:
+  #     secret_namespace: "namespace1"
+  #     secret_name: "datadog"
+  #     monitor_ids:
+  #       - "monitor1"
+  #       - "monitor2"
+  #       - "monitor3"
+  #       - "monitor4"
+  #       - "monitor5"
+  #       - "monitor6"
+  #       - "monitor7"
+  #       - "monitor8"
+  #       - "monitor9"
+  #       - "monitor10"
+  #     action: unmute
 
-  - name: datadog-unmute-mute-monitors
-    cron: "15 07 * * 1-5"
-    inputs:
-      secret_namespace: "firestartr"
-      secret_name: "datadog-corpme"
-      monitor_ids:
-        - "19376544"
-        - "19376545"
-        - "18297988"
-        - "16401040"
-        - "19376546"
-        - "19376547"
-        - "18297286"
-        - "18297988"
-        - "18297285"
-        - "16401707"
-        - "16401708"
-        - "16401296"
-        - "16401298"
-        - "16401299"
-        - "16401294"
-        - "16401425"
-        - "16401427"
-        - "16401424"
-        - "16401429"
-        - "16399636"
-        - "16399633"
-        - "16399629"
-        - "16399632"
-        - "16399631"
-        - "18421518"
-      action: unmute
+  # # UptimeRobot #
+  # - name: uptimerobot-resume-pause-monitors
+  #   cron: "55 18 * * 1-5"
+  #   inputs:
+  #     secret_namespace: "namespace1"
+  #     secret_name: "uptimerobot"
+  #     monitor_ids:
+  #       - "monitor1"
+  #       - "monitor2"
+  #       - "monitor3"
+  #       - "monitor4"
+  #       - "monitor5"
+  #       - "monitor6"
+  #       - "monitor7"
+  #       - "monitor8"
+  #       - "monitor9"
+  #       - "monitor10"
+  #     action: pause
+  # - name: uptimerobot-resume-pause-monitors
+  #   cron: "20 07 * * 1-5"
+  #   inputs:
+  #     secret_namespace: "namespace1"
+  #     secret_name: "uptimerobot"
+  #     monitor_ids:
+  #       - "monitor1"
+  #       - "monitor2"
+  #       - "monitor3"
+  #       - "monitor4"
+  #       - "monitor5"
+  #       - "monitor6"
+  #       - "monitor7"
+  #       - "monitor8"
+  #       - "monitor9"
+  #       - "monitor10"
+  #     action: resume
 
-  - name: uptimerobot-resume-pause-monitors
-    cron: "15 07 * * 1-5"
-    inputs:
-      secret_namespace: "firestartr"
-      secret_name: "uptimerobot"
-      monitor_ids:
-        - "796707129"
-        - "796707139"
-        - "796707089"
-        - "796707082"
-        - "796710587"
-        - "796710591"
-        - "796710604"
-        - "796710616"
-        - "796710634"
-        - "796710650"
-        - "796710669"
-      action: resume
-
-  - name: slack-notification
-    cron: "30 07 * * 1-5"
-    inputs:
-      secret_namespace: "firestartr"
-      secret_name: "slack-webhook"
-      operations:
-        - "datadog-corpme-test-predev-mute"
-        - "aks-corpme-test-predev-corpme-common-predev"
-        - "vmss-corpme-test-predev"
-        - "flexible-corpme-test-predev-corpme-horus"
-        - "flexible-corpme-test-predev-corpme-ovac"
-        - "mongodb-corpme-test-predev"
-        - "uptimerobot-corpme-test-predev-pause"
+  # # Slack #
+  # - name: slack-notification
+  #   cron: "30 19 * * 1-5"
+  #   inputs:
+  #     secret_namespace: "namespace1"
+  #     secret_name: "slack-webhook"
+  #     operations:
+  #       - "aks-group1-cluster1-stop"
+  #       - "flexible-group3-server2-stop"
+  #       - "flexible-group2-server1-stop"
+  #       - "vmss-group4-vmss1-0"
+  #       - "mongodb-0123-cluster2-pause"
+  #       - "datadog-namespace1-mute"
+  #       - "uptimerobot-namespace1-pause"
+  # - name: slack-notification
+  #   cron: "30 07 * * 1-5"
+  #   inputs:
+  #     secret_namespace: "namespace1"
+  #     secret_name: "slack-webhook"
+  #     operations:
+  #       - "aks-group1-cluster1-start"
+  #       - "flexible-group3-server2-start"
+  #       - "flexible-group2-server1-start"
+  #       - "vmss-group4-vmss1-1"
+  #       - "mongodb-0123-cluster2-start"
+  #       - "datadog-namespace1-unmute"
+  #       - "uptimerobot-namespace1-resume"
