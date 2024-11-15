@@ -17,7 +17,7 @@ roleRef:
 {{- if and (hasKey .operation "managed_identity") .operation.managed_identity }}
 subjects:
   - kind: ServiceAccount
-    name: {{ include "argo-workflows-operations.dynamic-name" . }}-sa
+    name: {{ .Release.Name }}-{{ .Release.Namespace }}-sa
     namespace: {{ .Release.Namespace }}
 {{- end }}
 {{ end }}
