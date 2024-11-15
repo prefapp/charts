@@ -105,7 +105,13 @@ The `uptimerobot-resume-pause-monitors` operation should define the following in
 The `slack-notification` operation should define the following input parameters:
 - `secret_namespace`: The namespace of the Kubernetes secret containing the Slack webhook URL.
 - `secret_name`: The name of the Kubernetes secret containing the Slack webhook URL. `webhook` is the key in the secret.
-- `operations`: The list of operations to notify.
+- `operations`: The list of operations to notify for:
+  - `aks`: `aks-<env>-<cluster_name>-<action>`
+  - `flexible`: `flexible-<env>-<server_name>-<action>`
+  - `vmss`: `vmss-<env>-<vmss_name>-<action>`
+  - `mongodb`: `mongodb-<env>-<project_id[4 digits]>-<cluster_name>-<action>`
+  - `datadog`: `datadog-<namespace>-<action>`
+  - `uptimerobot`: `uptimerobot-<namespace>-<action>`
 
 ### Example Values File
 
@@ -174,7 +180,7 @@ operations:
       secret_namespace: "myNamespace"
       secret_name: "mySecretName"
       organization_id: "myOrganizationId"
-      project_id: "myProjectId"
+      project_id: "0123456789"
       cluster_name: "myClusterName"
       action: "start"
 
@@ -213,13 +219,13 @@ operations:
       secret_namespace: "myNamespace"
       secret_name: "mySecretName"
       operations:
-        - "datadog-tenant-test-predev-mute"
-        - "aks-tenant-test-predev-tenant-common-predev"
-        - "vmss-tenant-test-predev"
-        - "flexible-tenant-test-predev-tenant-horus"
-        - "flexible-tenant-test-predev-tenant-ovac"
-        - "mongodb-tenant-test-predev"
-        - "uptimerobot-tenant-test-predev-pause"
+        - "aks-predev-myAKSCluster-start"
+        - "flexible-predev-myFlexibleServer-start"
+        - "flexible-predev-myFlexibleServer-stop"
+        - "vmss-predev-myVMSS-1"
+        - "mongodb-predev-0123-myClusterName-start"
+        - "datadog-tenant-test-predev-unmute"
+        - "uptimerobot-tenant-test-predev-resume"
 ```
 
 ## Usage for developers
