@@ -3,7 +3,17 @@ entries:
   argo-workflows-operations:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-15T09:30:43.939614356Z"
+    created: "2024-11-15T22:04:30.629519494Z"
+    description: A Helm chart for Kubernetes
+    digest: b4e27e85d8b39ed09a70c5330de6c138d93a277ac5a62d175afdad67ec0271fc
+    name: argo-workflows-operations
+    type: application
+    urls:
+    - argo-workflows-operations-0.8.0.tgz
+    version: 0.8.0
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-11-15T22:04:30.629191222Z"
     description: A Helm chart for Kubernetes
     digest: f9e2aaa8f3c81b3cdd4ab5aac8f60147cec347285f04bf39b67cce67c9befab3
     name: argo-workflows-operations
@@ -13,7 +23,7 @@ entries:
     version: 0.7.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-15T09:30:43.939276727Z"
+    created: "2024-11-15T22:04:30.628848723Z"
     description: A Helm chart for Kubernetes
     digest: b062db1c704fd7f2af46e27f2805f28b0616c0d520e81662136e5e5210b87c5a
     name: argo-workflows-operations
@@ -23,7 +33,7 @@ entries:
     version: 0.7.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-15T09:30:43.938891049Z"
+    created: "2024-11-15T22:04:30.628447594Z"
     description: A Helm chart for Kubernetes
     digest: b2b28c9d5d6c4f7e31394b2e0af873239df4d7cddbd52d7aa2850199fdd57101
     name: argo-workflows-operations
@@ -33,7 +43,7 @@ entries:
     version: 0.6.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-15T09:30:43.938368806Z"
+    created: "2024-11-15T22:04:30.627888692Z"
     description: A Helm chart for Kubernetes
     digest: eeffbdc33017cd566379e7ba033c98cf9171347de0a8690d374e7580ed70a2ac
     name: argo-workflows-operations
@@ -43,7 +53,7 @@ entries:
     version: 0.5.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-15T09:30:43.93802188Z"
+    created: "2024-11-15T22:04:30.627543097Z"
     description: A Helm chart for Kubernetes
     digest: 7e6fe1b090cfc45fbb0d5d08850aaa5964792f26f94492c68d6fa38c6e926dab
     name: argo-workflows-operations
@@ -53,7 +63,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-15T09:30:43.937682648Z"
+    created: "2024-11-15T22:04:30.627251222Z"
     description: A Helm chart for Kubernetes
     digest: 6309582da63ead4b900327a2e7d3e7541467a90e84369da75a244ea3f0300726
     name: argo-workflows-operations
@@ -63,7 +73,7 @@ entries:
     version: 0.2.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-15T09:30:43.937398939Z"
+    created: "2024-11-15T22:04:30.626948187Z"
     description: A Helm chart for Kubernetes
     digest: d3810ad1be585774d986b0790a1bc7a5954e71f31417f43ac5a22611100af182
     name: argo-workflows-operations
@@ -71,4 +81,4 @@ entries:
     urls:
     - argo-workflows-operations-0.2.0.tgz
     version: 0.2.0
-generated: "2024-11-15T09:30:43.936961965Z"
+generated: "2024-11-15T22:04:30.626516101Z"
