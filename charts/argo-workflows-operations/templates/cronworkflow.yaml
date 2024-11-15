@@ -16,7 +16,9 @@ spec:
   timezone: {{ if hasKey .operation "timezone" }}{{ .operation.timezone | default .global.timezone }}{{ else }}{{ .global.timezone }}{{ end }}
   workflowSpec:
     entrypoint: main
-    serviceAccountName: {{ include "argo-workflows-operations.dynamic-name" . }}-sa
+    {{- if and (hasKey .operation "managed_identity") .operation.managed_identity }}
+    serviceAccountName: {{ .Release.Name }}-{{ .Release.Namespace }}-sa
+    {{- end }}
     templates:
       - name: main
         steps:
