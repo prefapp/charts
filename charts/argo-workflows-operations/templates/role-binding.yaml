@@ -14,12 +14,10 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: {{ include "argo-workflows-operations.dynamic-name" . }}-r
-{{- if and (hasKey .operation "managed_identity") .operation.managed_identity }}
 subjects:
   - kind: ServiceAccount
     name: {{ .Release.Name }}-{{ .Release.Namespace }}-sa
     namespace: {{ .Release.Namespace }}
-{{- end }}
 {{ end }}
 
 {{- /*
