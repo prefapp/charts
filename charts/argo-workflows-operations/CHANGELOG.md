@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.2](https://github.com/prefapp/charts/compare/argo-workflows-operations-v0.8.1...argo-workflows-operations-v0.8.2) (2024-11-16)
+
+
+### Bug Fixes
+
+* Argo workflows operations chart ([#265](https://github.com/prefapp/charts/issues/265)) ([1813f76](https://github.com/prefapp/charts/commit/1813f7682b46380c1ba4f0546834ed365295068b))
+
 ## [0.8.1](https://github.com/prefapp/charts/compare/argo-workflows-operations-v0.8.0...argo-workflows-operations-v0.8.1) (2024-11-15)
 
 
