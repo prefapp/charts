@@ -204,3 +204,10 @@ operations: {}
   #       - "mongodb-0123-cluster2-start"
   #       - "datadog-namespace1-unmute"
   #       - "uptimerobot-namespace1-resume"
+  #
+  # - name: apply-patches-system-services-aks-to-datadog
+  #   managed_identity: true
+  #   cron: "00 00 * * 6"
+  #   inputs:
+  #     resource_group: "group1"
+  #     cluster_name: "cluster1"

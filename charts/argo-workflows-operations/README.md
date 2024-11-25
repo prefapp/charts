@@ -27,6 +27,7 @@ The chart supports the following operations:
 - `datadog-unmute-mute-monitors`: Unmute or mute Datadog monitors.
 - `uptimerobot-resume-pause-monitors`: Resume or pause UptimeRobot monitors.
 - `slack-notification`: Send a notification to a Slack channel.
+- `apply-patches-system-services-aks-to-datadog`: Apply patches to system services in AKS to send logs to Datadog.
 
 ## Values File Structure
 
@@ -112,6 +113,12 @@ The `slack-notification` operation should define the following input parameters:
   - `mongodb`: `mongodb-<env>-<project_id[4 digits]>-<cluster_name>-<action>`
   - `datadog`: `datadog-<namespace>-<action>`
   - `uptimerobot`: `uptimerobot-<namespace>-<action>`
+
+### Inputs Configuration for `apply-patches-system-services-aks-to-datadog`
+
+The `apply-patches-system-services-aks-to-datadog` operation should define the following input parameters:
+- `resource_group`: The name of the resource group containing the AKS cluster.
+- `cluster_name`: The name of the AKS cluster.
 
 ### Example Values File
 
@@ -226,6 +233,13 @@ operations:
         - "mongodb-predev-0123-myClusterName-start"
         - "datadog-tenant-test-predev-unmute"
         - "uptimerobot-tenant-test-predev-resume"
+
+  - name: apply-patches-system-services-aks-to-datadog
+    managed_identity: true
+    cron: "0 0 * * 6"
+    inputs:
+      resource_group: "myResourceGroup"
+      cluster_name: "myAKSCluster"
 ```
 
 ## Usage for developers
