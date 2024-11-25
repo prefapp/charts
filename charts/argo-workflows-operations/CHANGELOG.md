@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.0](https://github.com/prefapp/charts/compare/argo-workflows-operations-v0.8.3...argo-workflows-operations-v0.9.0) (2024-11-25)
+
+
+### Features
+
+* Add apply patches system services aks to datadog argo ops chart ([#271](https://github.com/prefapp/charts/issues/271)) ([6d340dd](https://github.com/prefapp/charts/commit/6d340dd89454c960b82277893b84a47f228aef56))
+
 ## [0.8.3](https://github.com/prefapp/charts/compare/argo-workflows-operations-v0.8.2...argo-workflows-operations-v0.8.3) (2024-11-16)
 
 
