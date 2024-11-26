@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.0](https://github.com/prefapp/charts/compare/argo-workflows-operations-v0.9.0...argo-workflows-operations-v0.10.0) (2024-11-26)
+
+
+### Features
+
+* Add grabage collector argo-workflow-ops chart ([#274](https://github.com/prefapp/charts/issues/274)) ([612746a](https://github.com/prefapp/charts/commit/612746ad04cbd48d6e6579791f1efd02a454fd40))
+
 ## [0.9.0](https://github.com/prefapp/charts/compare/argo-workflows-operations-v0.8.3...argo-workflows-operations-v0.9.0) (2024-11-25)
 
 
