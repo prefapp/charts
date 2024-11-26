@@ -105,7 +105,7 @@ This template is called for each operation defined and fixes parameters for the 
   value: {{ .Release.Namespace }}
 {{- end -}}
 
-{{- if or (eq .operation.name "aks-start-stop-cluster") (eq .operation.inputs.name "apply-patches-system-services-aks-to-datadog") -}}
+{{- if or (eq .operation.name "apply-patches-system-services-aks-to-datadog") (eq .operation.inputs.name "apply-patches-system-services-aks-to-datadog") -}}
 {{- $errorMsg := "\n\nThe %s is required in the apply-patches-system-services-aks-to-datadog operation. The minimal schema is:\n  apply-patches-system-services-aks-to-datadog:\n    resource_group: string\n    cluster_name: string\n" -}}
 - name: subscription_id
   value: {{ if hasKey .operation "subscription_id" }}{{ .operation.subscription_id }}{{ else }}{{ .global.subscription_id }}{{ end }}
