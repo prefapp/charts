@@ -14,6 +14,7 @@ spec:
   concurrencyPolicy: Replace
   schedule: {{ .operation.cron }}
   timezone: {{ if hasKey .operation "timezone" }}{{ .operation.timezone | default .global.timezone }}{{ else }}{{ .global.timezone }}{{ end }}
+  successfulJobsHistoryLimit: 2
   workflowSpec:
     entrypoint: main
     podGC:
