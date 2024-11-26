@@ -12,6 +12,8 @@ allowed_operations:
   - uptimerobot-resume-pause-monitors
   # Slack
   - slack-notification
+  # K8s
+  - apply-patches-system-services-aks-to-datadog
 
 global: {}
   # managed_identity:

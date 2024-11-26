@@ -37,7 +37,7 @@ This template handles different operation names and constructs a unique name acc
     {{- end -}}
     {{ printf "%s%s%s" $baseName $namespaceName $concatOperations | trunc 60 | replace "_" "-" | lower }}
 
-  {{- if eq .operation.name "apply-patches-system-services-aks-to-datadog" -}}
+  {{- else if eq .operation.name "apply-patches-system-services-aks-to-datadog" -}}
     {{ printf "%s-%s-%s" $baseName $environment (.operation.inputs.cluster_name) | trunc 60 | replace "_" "-" | lower }}
 
   {{- else -}}
