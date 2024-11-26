@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.0](https://github.com/prefapp/charts/compare/argo-workflows-operations-v0.10.0...argo-workflows-operations-v0.11.0) (2024-11-26)
+
+
+### Features
+
+* Add successfulJobsHistoryLimit argo-workflow-ops chart ([#277](https://github.com/prefapp/charts/issues/277)) ([ac2ada7](https://github.com/prefapp/charts/commit/ac2ada78d6f4abd0d7e5bd028f9112b7ac828c45))
+
 ## [0.10.0](https://github.com/prefapp/charts/compare/argo-workflows-operations-v0.9.0...argo-workflows-operations-v0.10.0) (2024-11-26)
 
 
