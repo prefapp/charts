@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.0](https://github.com/prefapp/charts/compare/aws-web-service-v0.9.0...aws-web-service-v0.10.0) (2024-11-28)
+
+
+### Features
+
+* firestartr annotations ([7b81e03](https://github.com/prefapp/charts/commit/7b81e0329d7dadc2e483775f01af7ea91a6ab030))
+
 ## [0.9.0](https://github.com/prefapp/charts/compare/aws-web-service-v0.8.0...aws-web-service-v0.9.0) (2024-11-06)
 
 
