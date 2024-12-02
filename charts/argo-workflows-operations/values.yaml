@@ -39,6 +39,21 @@ operations: {}
   #     resource_group: "group1"
   #     cluster_name: "cluster1"
   #     action: "start"
+  # - name: aks-upgrade-update
+  #   managed_identity: true
+  #   cron: "00 19 * * 1-5"
+  #   inputs:
+  #     resource_group: "group1"
+  #     cluster_name: "cluster1"
+  #     event: "upgrade_version"
+  #     kubernetes_version: "1.2.3"
+  # - name: aks-upgrade-update
+  #   managed_identity: true
+  #   cron: "00 07 * * 1-5"
+  #   inputs:
+  #     resource_group: "group1"
+  #     cluster_name: "cluster1"
+  #     event: "update_image"
 
   # # Flexible Server PostgreSQL #
   # - name: flexible-server-start-stop-postgresql

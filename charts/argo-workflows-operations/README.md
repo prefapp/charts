@@ -28,6 +28,7 @@ The chart supports the following operations:
 - `uptimerobot-resume-pause-monitors`: Resume or pause UptimeRobot monitors.
 - `slack-notification`: Send a notification to a Slack channel.
 - `apply-patches-system-services-aks-to-datadog`: Apply patches to system services in AKS to send logs to Datadog.
+- `aks-upgrade-upgrade`: Upgrade an AKS cluster.
 
 ## Values File Structure
 
@@ -120,6 +121,14 @@ The `apply-patches-system-services-aks-to-datadog` operation should define the f
 - `resource_group`: The name of the resource group containing the AKS cluster.
 - `cluster_name`: The name of the AKS cluster.
 
+### Inputs Configuration for `aks-upgrade-upgrade`
+
+The `aks-upgrade-upgrade` operation should define the following input parameters:
+- `resource_group`: The name of the resource group containing the AKS cluster.
+- `cluster_name`: The name of the AKS cluster.
+- `event`: The event to perform on the AKS cluster (`update_image` or `upgrade_version`). `update_image` will update the image of the all the nodes in the cluster, and `upgrade_version` will upgrade the version of the cluster (control plane and nodes).
+- `kubernetes_version`: The version of the Kubernetes cluster to upgrade to. This field is required if the `event` is `upgrade_version`.
+
 ### Example Values File
 
 ```yaml
@@ -147,6 +156,23 @@ operations:
       resource_group: "myResourceGroup"
       cluster_name: "myAKSCluster"
       action: "stop"
+
+  - name: aks-upgrade-update
+    managed_identity: true
+    cron: "00 19 * * 1-5"
+    inputs:
+      resource_group: "group1"
+      cluster_name: "cluster1"
+      event: "upgrade_version"
+      kubernetes_version: "1.2.3"
+
+  - name: aks-upgrade-update
+    managed_identity: true
+    cron: "00 07 * * 1-5"
+    inputs:
+      resource_group: "group1"
+      cluster_name: "cluster1"
+      event: "update_image"
 
   - name: vmss-scale-instances
     managed_identity: true

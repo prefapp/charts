@@ -115,4 +115,20 @@ This template is called for each operation defined and fixes parameters for the 
   value: {{ if hasKey .operation.inputs "cluster_name" }}{{ .operation.inputs.cluster_name }}{{ else }}{{ fail (printf $errorMsg "cluster_name") }}{{ end }}
 {{- end -}}
 
+{{- if or (eq .operation.name "aks-upgrade-update") (eq .operation.inputs.name "aks-upgrade-update") -}}
+{{- $errorMsg := "\n\nThe %s is required in the aks-upgrade-update operation. The minimal schema is:\n  aks-upgrade-update:\n    resource_group: string\n    cluster_name: string\n    event: string\n    kubernetes_version: string" -}}
+- name: subscription_id
+  value: {{ if hasKey .operation "subscription_id" }}{{ .operation.subscription_id }}{{ else }}{{ .global.subscription_id }}{{ end }}
+- name: resource_group
+  value: {{ if hasKey .operation.inputs "resource_group" }}{{ .operation.inputs.resource_group }}{{ else }}{{ fail (printf $errorMsg "resource_group") }}{{ end }}
+- name: cluster_name
+  value: {{ if hasKey .operation.inputs "cluster_name" }}{{ .operation.inputs.cluster_name }}{{ else }}{{ fail (printf $errorMsg "cluster_name") }}{{ end }}
+- name: event
+  value: {{ if and (hasKey .operation.inputs "event") (or (eq .operation.inputs.event "update_image") (eq .operation.inputs.event "upgrade_version")) }}{{ .operation.inputs.event }}{{ else }}{{ fail (printf (printf "%s (Only 'update_image' or 'upgrade_version' value)" $errorMsg) "event") }}{{ end }}
+- name: kubernetes_version
+  value: {{ default "none" .operation.inputs.kubernetes_version }}
+- name: output_subject
+  value: Azure-Kubernetes-Service
+{{- end -}}
+
 {{- end -}}
