@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.0](https://github.com/prefapp/charts/compare/argo-workflows-operations-v0.11.1...argo-workflows-operations-v0.12.0) (2024-12-02)
+
+
+### Features
+
+* Add aks-upgrade-update feature into argo-workflows-ops chart ([#286](https://github.com/prefapp/charts/issues/286)) ([64b7f58](https://github.com/prefapp/charts/commit/64b7f582867feacd2e2e7027a38dd73e5bcdb8d4))
+
 ## [0.11.1](https://github.com/prefapp/charts/compare/argo-workflows-operations-v0.11.0...argo-workflows-operations-v0.11.1) (2024-11-26)
 
 
