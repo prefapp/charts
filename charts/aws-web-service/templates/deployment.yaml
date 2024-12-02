@@ -8,6 +8,8 @@ metadata:
     {{ . | toYaml | nindent 4 }}
     {{- end }}
   annotations:
+    "firestartr.dev/image": "{{ .Values.image }}"
+    "firestartr.dev/microservice": "{{ .Chart.Name }}"
   {{ with .Values.deployment.annotations }}
   {{ . | toYaml | nindent 4 }}
   {{ end }}
@@ -34,7 +36,7 @@ spec:
       {{- end }}
       containers:
       - name: {{ .Values.deployment.app }}
-        image: {{ .Values.webService.image }}
+        image: {{ .Values.image }}
         resources:
           limits:
             {{- if .Values.deployment.resources.limits.cpu }}
