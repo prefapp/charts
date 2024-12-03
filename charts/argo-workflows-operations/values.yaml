@@ -4,6 +4,7 @@ allowed_operations:
   - aks-start-stop-cluster
   - flexible-server-start-stop-postgresql
   - vmss-scale-instances
+  - aks-upgrade-update
   # MongoDB Atlas
   - mongodb-atlas-start-pause-cluster
   # Datadog
