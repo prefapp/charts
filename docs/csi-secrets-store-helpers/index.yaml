@@ -3,7 +3,17 @@ entries:
   csi-secrets-store-helpers:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-06T16:44:02.107585472Z"
+    created: "2024-12-04T20:48:02.242775843Z"
+    description: A Helm chart for Kubernetes
+    digest: 83af58760fc56b440cc2c01c536a9122349d6314df3801da15ee800e68e988a5
+    name: csi-secrets-store-helpers
+    type: library
+    urls:
+    - csi-secrets-store-helpers-0.5.1.tgz
+    version: 0.5.1
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-12-04T20:48:02.242642785Z"
     description: A Helm chart for Kubernetes
     digest: d86b4188df3b0f366704f28d7bf6ea966d086e4d265540e0f80fd134385c09ff
     name: csi-secrets-store-helpers
@@ -13,7 +23,7 @@ entries:
     version: 0.5.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-06T16:44:02.107433247Z"
+    created: "2024-12-04T20:48:02.242503606Z"
     description: A Helm chart for Kubernetes
     digest: 6a7aff387bd58584618638c588a4dcc188cf982c2395d9e8ad1246b379635713
     name: csi-secrets-store-helpers
@@ -23,7 +33,7 @@ entries:
     version: 0.4.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-06T16:44:02.107275533Z"
+    created: "2024-12-04T20:48:02.242359508Z"
     description: A Helm chart for Kubernetes
     digest: 5a0589f9eece1890160df715a0b8a9be55bff3071e77f9a0d89e2f2a754fe752
     name: csi-secrets-store-helpers
@@ -33,7 +43,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-06T16:44:02.107122507Z"
+    created: "2024-12-04T20:48:02.242213947Z"
     description: A Helm chart for Kubernetes
     digest: 2b93e862d82851e8168f552a33e55f2918de95b0a7151caf3b15f5ede1373f3c
     name: csi-secrets-store-helpers
@@ -43,7 +53,7 @@ entries:
     version: 0.2.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-11-06T16:44:02.10695295Z"
+    created: "2024-12-04T20:48:02.242073596Z"
     description: A Helm chart for Kubernetes
     digest: 47822563c6ee37897c49bb96c2f318dcf64498ba94fb90101f70ef685e4c2253
     name: csi-secrets-store-helpers
@@ -51,4 +61,4 @@ entries:
     urls:
     - csi-secrets-store-helpers-0.2.0.tgz
     version: 0.2.0
-generated: "2024-11-06T16:44:02.105604489Z"
+generated: "2024-12-04T20:48:02.241797372Z"
