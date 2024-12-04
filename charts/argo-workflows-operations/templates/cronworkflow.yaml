@@ -15,6 +15,7 @@ spec:
   schedule: {{ .operation.cron }}
   timezone: {{ if hasKey .operation "timezone" }}{{ .operation.timezone | default .global.timezone }}{{ else }}{{ .global.timezone }}{{ end }}
   successfulJobsHistoryLimit: 2
+  suspend: {{ .operation.suspend | default false }}
   workflowSpec:
     entrypoint: main
     podGC:

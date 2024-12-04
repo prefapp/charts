@@ -42,6 +42,7 @@ The global configuration should define the following properties:
   - `tenant_id`: The Azure service principal tenant ID.
 - `subscription_id`: The Azure subscription ID.
 - `timezone`: The timezone for the cron schedule.
+- `suspend`: If true, the operations will not be executed.
 
 ### Features Configuration
 
