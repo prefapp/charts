@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/prefapp/charts/compare/argocd-firestarter-config-v0.3.0...argocd-firestarter-config-v0.3.1) (2024-12-04)
+
+
+### Bug Fixes
+
+* force release ([#297](https://github.com/prefapp/charts/issues/297)) ([84c4e29](https://github.com/prefapp/charts/commit/84c4e291ced018ccbb8d6dfaad1bf45adbae2f94))
+
 ## [0.3.0](https://github.com/prefapp/charts/compare/argocd-firestarter-config-v0.2.0...argocd-firestarter-config-v0.3.0) (2024-11-06)
 
 

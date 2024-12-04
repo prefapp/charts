@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/prefapp/charts/compare/datadog_helpers-v1.4.0...datadog_helpers-v1.4.1) (2024-12-04)
+
+
+### Bug Fixes
+
+* force release ([#297](https://github.com/prefapp/charts/issues/297)) ([84c4e29](https://github.com/prefapp/charts/commit/84c4e291ced018ccbb8d6dfaad1bf45adbae2f94))
+
 ## [1.4.0](https://github.com/prefapp/charts/compare/datadog_helpers-v1.3.2...datadog_helpers-v1.4.0) (2024-11-06)
 
 
