@@ -14,8 +14,8 @@ This template is called for each operation defined and fixes rules for the Role.
 
 {{- if eq .operation.name "slack-notification" }}
 - apiGroups: ["argoproj.io"]
-  resources: ["workflows"]
-  verbs: ["get", "list", "watch"]
+  resources: ["workflows", "workflowtaskresults"]
+  verbs: ["get", "list", "watch", "create", "patch"]
 {{- end -}}
 
 {{ end }}
