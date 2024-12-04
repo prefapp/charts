@@ -4,7 +4,7 @@ appVersion: "1.16.0"
 description: >-
   Library to help with Datadog integration
 type: library
-version: 1.4.0
+version: 1.4.1
 home: https://github.com/prefapp/charts/tree/master/charts/datadog_helpers
 annotations:
   artifacthub.io/links: |

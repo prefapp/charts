@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.1](https://github.com/prefapp/charts/compare/aws-web-service-v0.10.0...aws-web-service-v0.10.1) (2024-12-04)
+
+
+### Bug Fixes
+
+* force release ([#297](https://github.com/prefapp/charts/issues/297)) ([84c4e29](https://github.com/prefapp/charts/commit/84c4e291ced018ccbb8d6dfaad1bf45adbae2f94))
+
 ## [0.10.0](https://github.com/prefapp/charts/compare/aws-web-service-v0.9.0...aws-web-service-v0.10.0) (2024-11-28)
 
 
