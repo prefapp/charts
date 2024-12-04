@@ -5,5 +5,5 @@
   "charts/csi-secrets-store-helpers": "0.5.0",
   "charts/az-firestartr-controller": "1.4.0",
   "charts/az-argocd-firestarter-config": "0.3.0",
-  "charts/argo-workflows-operations": "0.12.1"
+  "charts/argo-workflows-operations": "0.13.0"
 }
