@@ -3,7 +3,17 @@ entries:
   argocd-firestarter-config:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-02-16T15:57:00.226499224Z"
+    created: "2024-12-04T20:48:02.147197597Z"
+    description: A Helm chart for Kubernetes
+    digest: d8f0cfddb7e08fbf1b00fab7740cc5622c17dfb099b56a695bbd1da2b3b731cb
+    name: argocd-firestarter-config
+    type: application
+    urls:
+    - argocd-firestarter-config-0.3.1.tgz
+    version: 0.3.1
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-12-04T20:48:02.146391337Z"
     description: A Helm chart for Kubernetes
     digest: 9ec04cd71e050a723037e5e6652608203c071bf247c87958d1fe043ee8bdeaca
     name: argocd-firestarter-config
@@ -11,4 +21,4 @@ entries:
     urls:
     - argocd-firestarter-config-0.2.0.tgz
     version: 0.2.0
-generated: "2024-02-16T15:57:00.226144933Z"
+generated: "2024-12-04T20:48:02.14602482Z"
