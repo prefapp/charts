@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.0](https://github.com/prefapp/charts/compare/argo-workflows-operations-v0.12.1...argo-workflows-operations-v0.13.0) (2024-12-04)
+
+
+### Features
+
+* Add cron suspend feature ([#292](https://github.com/prefapp/charts/issues/292)) ([88d45ab](https://github.com/prefapp/charts/commit/88d45ab99fc3ef27a47263397b5b8f47bd9d4497))
+
 ## [0.12.1](https://github.com/prefapp/charts/compare/argo-workflows-operations-v0.12.0...argo-workflows-operations-v0.12.1) (2024-12-03)
 
 
