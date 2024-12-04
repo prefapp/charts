@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.1](https://github.com/prefapp/charts/compare/argo-workflows-operations-v0.13.0...argo-workflows-operations-v0.13.1) (2024-12-04)
+
+
+### Bug Fixes
+
+* Add some argoproj api-group permissions into roles from argo-workflow-operations chart ([#295](https://github.com/prefapp/charts/issues/295)) ([623b0db](https://github.com/prefapp/charts/commit/623b0db9b3a78a80008f49addfec262ed10da160))
+
 ## [0.13.0](https://github.com/prefapp/charts/compare/argo-workflows-operations-v0.12.1...argo-workflows-operations-v0.13.0) (2024-12-04)
 
 
